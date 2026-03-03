@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -1004,6 +1003,80 @@
     .news-card-title { font-size: 13.5px; }
     .logo-name { font-size: 17px; }
   }
+
+  /* === РЕЙТИНГ / ДНИ РОЖДЕНИЯ / РАБОТА / КАРТОЧКИ === */
+  .ratings-section,.birthdays-section,.jobs-section{max-width:1280px;margin:56px auto 0;padding:0 32px}
+  .ratings-grid,.birthdays-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+  .rating-person-card,.birthday-card{background:var(--white);border-radius:14px;border:1px solid rgba(0,0,0,0.06);padding:16px;display:flex;gap:14px;text-decoration:none;color:inherit;transition:all .25s;position:relative;overflow:hidden}
+  .rating-person-card{align-items:flex-start}
+  .birthday-card{align-items:center}
+  .rating-person-card:hover,.birthday-card:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(0,0,0,.1);border-color:rgba(8,145,178,.25)}
+  .rating-person-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:0;transition:opacity .25s}
+  .rating-person-card:hover::before{opacity:1}
+  .rating-person-score{position:absolute;top:10px;right:10px;background:var(--grad);color:white;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px}
+  .rating-person-photo{width:64px;height:72px;object-fit:cover;border-radius:10px;flex-shrink:0;background:var(--light)}
+  .rating-person-body{flex:1;min-width:0;padding-right:44px}
+  .rating-person-name,.birthday-name{font-size:13px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:4px}
+  .rating-person-role,.birthday-role{font-size:11.5px;color:var(--muted);line-height:1.4}
+  .birthday-photo{width:56px;height:64px;object-fit:cover;border-radius:10px;flex-shrink:0;background:var(--light)}
+  .birthday-body{flex:1;min-width:0}
+  .birthday-cake{font-size:20px;flex-shrink:0;animation:cakePulse 2s ease-in-out infinite}
+  @keyframes cakePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+  .jobs-layout{display:grid;grid-template-columns:1fr 260px;gap:24px;margin-top:24px}
+  .jobs-categories{background:var(--white);border-radius:14px;border:1px solid rgba(0,0,0,.06);padding:22px 26px;columns:3;column-gap:20px}
+  .jobs-cat-item{display:block;font-size:12.5px;color:var(--accent);text-decoration:none;padding:6px 0 6px 16px;border-bottom:1px solid rgba(0,0,0,.04);break-inside:avoid;transition:all .2s;position:relative}
+  .jobs-cat-item:before{content:"--";position:absolute;left:0;color:var(--muted);font-size:10px;top:7px}
+  .jobs-cat-item:hover{color:var(--accent2);padding-left:22px}
+  .jobs-employer-widget{background:var(--white);border-radius:14px;border:1px solid rgba(0,0,0,.06);overflow:hidden}
+  .jobs-employer-header{padding:14px 18px;background:var(--grad);color:white;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+  .employer-list{padding:6px 0}
+  .employer-item{display:flex;align-items:center;gap:10px;padding:8px 16px;text-decoration:none;color:inherit;transition:background .2s}
+  .employer-item:hover{background:rgba(8,145,178,.05)}
+  .employer-rank{width:22px;height:22px;border-radius:50%;background:var(--grad);color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .employer-name{font-size:13px;font-weight:500;color:var(--ink);flex:1}
+  .employer-count{font-size:11px;color:var(--muted)}
+  .cards-row-section{max-width:1280px;margin:48px auto 0;padding:0 32px}
+  .cards-row-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+  .cards-row-title{font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+  .cards-row-link{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+  .cards-row-rule{flex:1;height:1px;background:rgba(0,0,0,.08)}
+  .cards-row-wrap{background:var(--white);border-radius:16px;border:1px solid rgba(0,0,0,.07);padding:20px}
+  .cards-scroll{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+  .cards-scroll::-webkit-scrollbar{display:none}
+  .vacancy-card{flex-shrink:0;width:185px;background:var(--light);border-radius:12px;padding:16px;text-decoration:none;color:inherit;transition:all .25s;border:1px solid rgba(0,0,0,.06);display:flex;flex-direction:column;gap:10px}
+  .vacancy-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08);border-color:rgba(8,145,178,.2);background:white}
+  .vacancy-logo-box{width:40px;height:40px;border-radius:8px;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .vacancy-logo-box img{width:28px;height:28px;object-fit:contain}
+  .vacancy-title{font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;flex:1}
+  .vacancy-salary{font-size:12px;font-weight:700;color:var(--accent)}
+  .resume-card{flex-shrink:0;width:240px;background:var(--light);border-radius:12px;padding:16px;text-decoration:none;color:inherit;transition:all .25s;border:1px solid rgba(0,0,0,.06);display:flex;gap:12px}
+  .resume-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08);border-color:rgba(8,145,178,.2);background:white}
+  .resume-photo{width:52px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;background:var(--light)}
+  .resume-body{flex:1;min-width:0}
+  .resume-name{font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:3px}
+  .resume-spec{font-size:11.5px;color:var(--accent);margin-bottom:6px}
+  .resume-meta span{display:block;font-size:10.5px;color:var(--muted);line-height:1.5}
+  .horoscope-card{flex-shrink:0;width:260px;background:linear-gradient(135deg,rgba(0,198,167,.06),rgba(0,102,204,.06));border-radius:12px;padding:18px;text-decoration:none;color:inherit;transition:all .25s;border:1px solid rgba(8,145,178,.12);display:flex;flex-direction:column;gap:10px}
+  .horoscope-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(8,145,178,.12);border-color:rgba(8,145,178,.3)}
+  .horoscope-head{display:flex;gap:12px;align-items:center}
+  .horoscope-icon{width:48px;height:48px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--grad);font-size:26px;line-height:1}
+  .horoscope-sign{font-size:15px;font-weight:700;color:var(--ink)}
+  .horoscope-range{font-size:11px;color:var(--muted);margin-top:2px}
+  .horoscope-text{font-size:12px;color:var(--muted);line-height:1.65;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  .horoscope-more{font-size:11.5px;font-weight:600;color:var(--accent)}
+  @media(max-width:1024px){
+    .ratings-grid,.birthdays-grid{grid-template-columns:repeat(2,1fr)}
+    .jobs-layout{grid-template-columns:1fr}
+    .jobs-categories{columns:2}
+    .ratings-section,.birthdays-section,.jobs-section,.cards-row-section{padding:0 20px}
+  }
+  @media(max-width:640px){
+    .ratings-section,.birthdays-section,.jobs-section,.cards-row-section{padding:0 16px;margin-top:40px}
+    .ratings-grid,.birthdays-grid{grid-template-columns:1fr}
+    .jobs-categories{columns:1;padding:16px}
+    .cards-row-wrap{padding:14px}
+  }
+
 </style>
 </head>
 <body>
@@ -1448,6 +1521,275 @@
           </div>
         </a>
       </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- РЕЙТИНГ ПЕРСОН -->
+<section class="ratings-section">
+  <div class="section-header" style="max-width:none;margin:0;padding:0">
+    <span class="section-title">Рейтинг персон</span>
+    <span class="section-rule"></span>
+    <a href="https://globalmsk.ru/person" class="section-link">Смотреть все <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="ratings-grid">
+    <a href="https://globalmsk.ru/person/id/1" class="rating-person-card">
+      <span class="rating-person-score">382</span>
+      <img class="rating-person-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=90&fit=crop&crop=face" alt="">
+      <div class="rating-person-body"><div class="rating-person-name">ПУТИН Владимир Владимирович</div><div class="rating-person-role">Президент Российской Федерации</div></div>
+    </a>
+    <a href="https://globalmsk.ru/person/id/9139" class="rating-person-card">
+      <span class="rating-person-score">210</span>
+      <img class="rating-person-photo" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=90&fit=crop&crop=face" alt="">
+      <div class="rating-person-body"><div class="rating-person-name">ЗИНОВЬЕВА Екатерина Анатольевна</div><div class="rating-person-role">Заместитель председателя правительства — министр</div></div>
+    </a>
+    <a href="https://globalmsk.ru/person/id/3" class="rating-person-card">
+      <span class="rating-person-score">255</span>
+      <img class="rating-person-photo" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=90&fit=crop&crop=face" alt="">
+      <div class="rating-person-body"><div class="rating-person-name">ТРАМП Дональд Джон</div><div class="rating-person-role">Президент США</div></div>
+    </a>
+    <a href="https://globalmsk.ru/person/id/4" class="rating-person-card">
+      <span class="rating-person-score">118</span>
+      <img class="rating-person-photo" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=90&fit=crop&crop=face" alt="">
+      <div class="rating-person-body"><div class="rating-person-name">СОБЯНИН Сергей Семёнович</div><div class="rating-person-role">Мэр города Москвы</div></div>
+    </a>
+    <a href="https://globalmsk.ru/person/id/5" class="rating-person-card">
+      <span class="rating-person-score">99</span>
+      <img class="rating-person-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=90&fit=crop&crop=face" alt="">
+      <div class="rating-person-body"><div class="rating-person-name">МИШУСТИН Михаил Владимирович</div><div class="rating-person-role">Председатель Правительства</div></div>
+    </a>
+    <a href="https://globalmsk.ru/person/id/6" class="rating-person-card">
+      <span class="rating-person-score">102</span>
+      <img class="rating-person-photo" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=90&fit=crop&crop=face" alt="">
+      <div class="rating-person-body"><div class="rating-person-name">БЕЛЯЕВ Михаил Кимович</div><div class="rating-person-role">Эксперт РИСИ</div></div>
+    </a>
+    <a href="https://globalmsk.ru/person/id/7" class="rating-person-card">
+      <span class="rating-person-score">75</span>
+      <img class="rating-person-photo" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=90&fit=crop&crop=face" alt="">
+      <div class="rating-person-body"><div class="rating-person-name">ЗУБЕЦ Алексей</div><div class="rating-person-role">Руководитель Центра стратегических исследований</div></div>
+    </a>
+    <a href="https://globalmsk.ru/person/id/8" class="rating-person-card">
+      <span class="rating-person-score">143</span>
+      <img class="rating-person-photo" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=90&fit=crop&crop=face" alt="">
+      <div class="rating-person-body"><div class="rating-person-name">НАБИУЛЛИНА Эльвира Сахипзадовна</div><div class="rating-person-role">Председатель Центробанка России</div></div>
+    </a>
+    <a href="https://globalmsk.ru/person/id/9" class="rating-person-card">
+      <span class="rating-person-score">54</span>
+      <img class="rating-person-photo" src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=80&h=90&fit=crop&crop=face" alt="">
+      <div class="rating-person-body"><div class="rating-person-name">ЛИКСУТОВ Максим Станиславович</div><div class="rating-person-role">Руководитель Департамента транспорта</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- БЛИЖАЙШИЕ ДНИ РОЖДЕНИЯ -->
+<section class="birthdays-section">
+  <div class="section-header" style="max-width:none;margin:0;padding:0">
+    <span class="section-title">Ближайшие дни рождения</span>
+    <span class="section-rule"></span>
+    <a href="https://globalmsk.ru/person" class="section-link">Смотреть все <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="birthdays-grid">
+    <a href="https://globalmsk.ru/person/id/5" class="birthday-card">
+      <img class="birthday-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=70&h=80&fit=crop&crop=face" alt="">
+      <div class="birthday-body"><div class="birthday-name">МИШУСТИН Михаил Владимирович</div><div class="birthday-role">Председатель Правительства</div></div>
+      <span class="birthday-cake">&#127874;</span>
+    </a>
+    <a href="https://globalmsk.ru/person/id/11" class="birthday-card">
+      <img class="birthday-photo" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=70&h=80&fit=crop&crop=face" alt="">
+      <div class="birthday-body"><div class="birthday-name">БУЦАЕВ Денис Петрович</div><div class="birthday-role">Генеральный директор компании «Российский экологический оператор»</div></div>
+      <span class="birthday-cake">&#127874;</span>
+    </a>
+    <a href="https://globalmsk.ru/person/id/12" class="birthday-card">
+      <img class="birthday-photo" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=70&h=80&fit=crop&crop=face" alt="">
+      <div class="birthday-body"><div class="birthday-name">ТАБАКОВА Александра Олеговна</div><div class="birthday-role">Актриса</div></div>
+      <span class="birthday-cake">&#127874;</span>
+    </a>
+    <a href="https://globalmsk.ru/person/id/13" class="birthday-card">
+      <img class="birthday-photo" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=70&h=80&fit=crop&crop=face" alt="">
+      <div class="birthday-body"><div class="birthday-name">ОКУНЕВСКАЯ Татьяна Кирилловна</div><div class="birthday-role">Актриса</div></div>
+      <span class="birthday-cake">&#127874;</span>
+    </a>
+    <a href="https://globalmsk.ru/person/id/14" class="birthday-card">
+      <img class="birthday-photo" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=70&h=80&fit=crop&crop=face" alt="">
+      <div class="birthday-body"><div class="birthday-name">ШМАТОВА Елена Александровна</div><div class="birthday-role">Генеральный директор</div></div>
+      <span class="birthday-cake">&#127874;</span>
+    </a>
+    <a href="https://globalmsk.ru/person/id/15" class="birthday-card">
+      <img class="birthday-photo" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=70&h=80&fit=crop&crop=face" alt="">
+      <div class="birthday-body"><div class="birthday-name">БРУНИЧ Николай Григорьевич</div><div class="birthday-role">Генеральный директор</div></div>
+      <span class="birthday-cake">&#127874;</span>
+    </a>
+  </div>
+</section>
+
+<!-- РАБОТА В МОСКВЕ -->
+<section class="jobs-section">
+  <div class="section-header" style="max-width:none;margin:0;padding:0">
+    <span class="section-title">Работа в Москве</span>
+    <span class="section-rule"></span>
+    <a href="https://globalmsk.ru/vacancy" class="section-link">Смотреть все <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <div class="jobs-layout">
+    <div class="jobs-categories">
+      <a href="https://globalmsk.ru/vacancy/cat/it" class="jobs-cat-item">IT и Интернет</a>
+      <a href="https://globalmsk.ru/vacancy/cat/logistic" class="jobs-cat-item">Логистика, Склад, ВЭД</a>
+      <a href="https://globalmsk.ru/vacancy/cat/marketing" class="jobs-cat-item">Маркетинг, Реклама, PR</a>
+      <a href="https://globalmsk.ru/vacancy/cat/medicine" class="jobs-cat-item">Медицина и Фармация</a>
+      <a href="https://globalmsk.ru/vacancy/cat/realty" class="jobs-cat-item">Недвижимость</a>
+      <a href="https://globalmsk.ru/vacancy/cat/edu" class="jobs-cat-item">Образование и Воспитание</a>
+      <a href="https://globalmsk.ru/vacancy/cat/trade" class="jobs-cat-item">Оптовая торговля</a>
+      <a href="https://globalmsk.ru/vacancy/cat/retail" class="jobs-cat-item">Розничная торговля</a>
+      <a href="https://globalmsk.ru/vacancy/cat/production" class="jobs-cat-item">Производство</a>
+      <a href="https://globalmsk.ru/vacancy/cat/managers" class="jobs-cat-item">Руководители</a>
+      <a href="https://globalmsk.ru/vacancy/cat/secretary" class="jobs-cat-item">Секретариат и АХО</a>
+      <a href="https://globalmsk.ru/vacancy/cat/smi" class="jobs-cat-item">СМИ, Издательство, Полиграфия</a>
+      <a href="https://globalmsk.ru/vacancy/cat/insurance" class="jobs-cat-item">Страхование</a>
+      <a href="https://globalmsk.ru/vacancy/cat/build" class="jobs-cat-item">Строительство и Архитектура</a>
+      <a href="https://globalmsk.ru/vacancy/cat/services" class="jobs-cat-item">Сфера услуг</a>
+      <a href="https://globalmsk.ru/vacancy/cat/transport" class="jobs-cat-item">Транспорт, Автобизнес</a>
+      <a href="https://globalmsk.ru/vacancy/cat/hr" class="jobs-cat-item">Управление персоналом</a>
+      <a href="https://globalmsk.ru/vacancy/cat/finance" class="jobs-cat-item">Финансы, Бухгалтерия, Банки</a>
+      <a href="https://globalmsk.ru/vacancy/cat/law" class="jobs-cat-item">Юриспруденция</a>
+      <a href="https://globalmsk.ru/vacancy/cat/economy" class="jobs-cat-item">Хозяйственники</a>
+      <a href="https://globalmsk.ru/vacancy/cat/students" class="jobs-cat-item">Работа для студентов</a>
+      <a href="https://globalmsk.ru/vacancy/cat/school" class="jobs-cat-item">Работа для школьников</a>
+    </div>
+    <div class="jobs-employer-widget">
+      <div class="jobs-employer-header">Рейтинг работодателей</div>
+      <div class="employer-list">
+        <a href="https://globalmsk.ru/catalog" class="employer-item"><span class="employer-rank">1</span><span class="employer-name">Спортмастер</span><span class="employer-count">158</span></a>
+        <a href="https://globalmsk.ru/catalog" class="employer-item"><span class="employer-rank">2</span><span class="employer-name">ВКонтакте</span><span class="employer-count">131</span></a>
+        <a href="https://globalmsk.ru/catalog" class="employer-item"><span class="employer-rank">3</span><span class="employer-name">Ростелеком</span><span class="employer-count">121</span></a>
+        <a href="https://globalmsk.ru/catalog" class="employer-item"><span class="employer-rank">4</span><span class="employer-name">Перекрёсток</span><span class="employer-count">105</span></a>
+        <a href="https://globalmsk.ru/catalog" class="employer-item"><span class="employer-rank">5</span><span class="employer-name">Азбука вкуса</span><span class="employer-count">100</span></a>
+        <a href="https://globalmsk.ru/catalog" class="employer-item"><span class="employer-rank">6</span><span class="employer-name">Дикси</span><span class="employer-count">92</span></a>
+        <a href="https://globalmsk.ru/catalog" class="employer-item"><span class="employer-rank">7</span><span class="employer-name">Магнит</span><span class="employer-count">82</span></a>
+        <a href="https://globalmsk.ru/catalog" class="employer-item"><span class="employer-rank">8</span><span class="employer-name">Альфа-Банк</span><span class="employer-count">81</span></a>
+        <a href="https://globalmsk.ru/catalog" class="employer-item"><span class="employer-rank">9</span><span class="employer-name">Седьмой континент</span><span class="employer-count">81</span></a>
+        <a href="https://globalmsk.ru/catalog" class="employer-item"><span class="employer-rank">10</span><span class="employer-name">Эльдорадо</span><span class="employer-count">78</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ВАКАНСИИ -->
+<div class="cards-row-section">
+  <div class="cards-row-header">
+    <span class="cards-row-title">Вакансии</span>
+    <a href="https://globalmsk.ru/vacancy" class="cards-row-link">Все</a>
+    <span class="cards-row-rule"></span>
+  </div>
+  <div class="cards-row-wrap">
+    <div class="cards-scroll">
+      <a href="https://globalmsk.ru/vacancy" class="vacancy-card">
+        <div class="vacancy-logo-box"><img src="logo.gif" alt=""></div>
+        <div class="vacancy-title">Региональный представитель СМИ в г. Москва</div>
+        <div class="vacancy-salary">50 000 руб.</div>
+      </a>
+      <a href="https://globalmsk.ru/vacancy" class="vacancy-card">
+        <div class="vacancy-logo-box"><img src="logo.gif" alt=""></div>
+        <div class="vacancy-title">Агент по привлечению клиентов (удалённая работа)</div>
+        <div class="vacancy-salary">15 000 руб.</div>
+      </a>
+      <a href="https://globalmsk.ru/vacancy" class="vacancy-card">
+        <div class="vacancy-logo-box"><img src="logo.gif" alt=""></div>
+        <div class="vacancy-title">Региональный менеджер по продажам рекламы</div>
+        <div class="vacancy-salary">50 000 руб.</div>
+      </a>
+      <a href="https://globalmsk.ru/vacancy" class="vacancy-card">
+        <div class="vacancy-logo-box"><img src="logo.gif" alt=""></div>
+        <div class="vacancy-title">Начальник отдела по правовым вопросам</div>
+        <div class="vacancy-salary">от договора</div>
+      </a>
+      <a href="https://globalmsk.ru/vacancy" class="vacancy-card">
+        <div class="vacancy-logo-box"><img src="logo.gif" alt=""></div>
+        <div class="vacancy-title">Менеджер по работе с клиентами</div>
+        <div class="vacancy-salary">45 000 руб.</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- СВЕЖИЕ РЕЗЮМЕ -->
+<div class="cards-row-section">
+  <div class="cards-row-header">
+    <span class="cards-row-title">Свежие резюме</span>
+    <a href="https://globalmsk.ru/resume" class="cards-row-link">Все</a>
+    <span class="cards-row-rule"></span>
+  </div>
+  <div class="cards-row-wrap">
+    <div class="cards-scroll">
+      <a href="https://globalmsk.ru/resume" class="resume-card">
+        <img class="resume-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=96&fit=crop&crop=face" alt="">
+        <div class="resume-body">
+          <div class="resume-name">АЛИМ Бекир Алим</div>
+          <div class="resume-spec">38 лет &middot; Адвокат</div>
+          <div class="resume-meta"><span>Юриспруденция</span><span>от 0 руб.</span><span>Высшее образование</span><span>Стаж: более 10 лет</span></div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/resume" class="resume-card">
+        <img class="resume-photo" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=96&fit=crop&crop=face" alt="">
+        <div class="resume-body">
+          <div class="resume-name">ЗАЙЦЕВА Регина Вячеславовна</div>
+          <div class="resume-spec">Специалист по работе с клиентами</div>
+          <div class="resume-meta"><span>Секретариат и АХО</span><span>от 110 000 руб.</span><span>Полный рабочий день</span><span>Стаж: более 10 лет</span></div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/resume" class="resume-card">
+        <img class="resume-photo" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=96&fit=crop&crop=face" alt="">
+        <div class="resume-body">
+          <div class="resume-name">СИДОРОВ Алексей Петрович</div>
+          <div class="resume-spec">45 лет &middot; Директор по маркетингу</div>
+          <div class="resume-meta"><span>Маркетинг, Реклама, PR</span><span>от 200 000 руб.</span><span>Полный день</span><span>Стаж: от 5 лет</span></div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/resume" class="resume-card">
+        <img class="resume-photo" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=96&fit=crop&crop=face" alt="">
+        <div class="resume-body">
+          <div class="resume-name">ПЕТРОВ Андрей Николаевич</div>
+          <div class="resume-spec">42 лет &middot; Финансовый директор</div>
+          <div class="resume-meta"><span>Финансы, Банки</span><span>от 180 000 руб.</span><span>Полный день</span><span>Стаж: более 15 лет</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ГОРОСКОПЫ -->
+<div class="cards-row-section" style="margin-bottom:0">
+  <div class="cards-row-header">
+    <span class="cards-row-title">Гороскопы</span>
+    <a href="https://globalmsk.ru/horoscope" class="cards-row-link">Все</a>
+    <span class="cards-row-rule"></span>
+  </div>
+  <div class="cards-row-wrap">
+    <div class="cards-scroll">
+      <a href="https://globalmsk.ru/horoscope/scorpio" class="horoscope-card">
+        <div class="horoscope-head"><div class="horoscope-icon">&#9807;</div><div><div class="horoscope-sign">Скорпион</div><div class="horoscope-range">24 окт &mdash; 21 ноя</div></div></div>
+        <div class="horoscope-text">Ложь, высказанная сегодня Скорпионами, обязательно будет иметь последствия именно для вас. Избегайте интриг и бессовестных поступков, так можно многое потерять безвозвратно.</div>
+        <span class="horoscope-more">Читать далее &rarr;</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/aries" class="horoscope-card">
+        <div class="horoscope-head"><div class="horoscope-icon">&#9800;</div><div><div class="horoscope-sign">Овен</div><div class="horoscope-range">21 мар &mdash; 20 апр</div></div></div>
+        <div class="horoscope-text">В возникших сегодня неприятностях Овны будут виноваты исключительно сами, но это ещё не все последствия ранее сказанных слов. Сохраняйте спокойствие.</div>
+        <span class="horoscope-more">Читать далее &rarr;</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/virgo" class="horoscope-card">
+        <div class="horoscope-head"><div class="horoscope-icon">&#9805;</div><div><div class="horoscope-sign">Дева</div><div class="horoscope-range">24 авг &mdash; 23 сен</div></div></div>
+        <div class="horoscope-text">В этот день Девам в руки само по себе ничего не пойдёт. Прилагайте максимум усилий, но будьте предельно осторожны. Успешными окажутся переговоры с партнёрами.</div>
+        <span class="horoscope-more">Читать далее &rarr;</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/leo" class="horoscope-card">
+        <div class="horoscope-head"><div class="horoscope-icon">&#9804;</div><div><div class="horoscope-sign">Лев</div><div class="horoscope-range">23 июл &mdash; 22 авг</div></div></div>
+        <div class="horoscope-text">Сегодня Львы почувствуют прилив сил и энергии. Отличный день для новых проектов и установления деловых контактов. Финансовые дела пойдут в гору.</div>
+        <span class="horoscope-more">Читать далее &rarr;</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/taurus" class="horoscope-card">
+        <div class="horoscope-head"><div class="horoscope-icon">&#9801;</div><div><div class="horoscope-sign">Телец</div><div class="horoscope-range">21 апр &mdash; 20 май</div></div></div>
+        <div class="horoscope-text">День благоприятен для решения финансовых вопросов. Стоит прислушаться к советам близких — они могут указать верный путь в непростой ситуации.</div>
+        <span class="horoscope-more">Читать далее &rarr;</span>
+      </a>
     </div>
   </div>
 </div>

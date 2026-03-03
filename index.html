@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,13 +10,17 @@
 <style>
   :root {
     --ink: #0d0d12;
-    --paper: #f5f2eb;
-    --accent: #c8102e;
-    --accent2: #1a3a5c;
-    --gold: #c9a84c;
-    --muted: #7a7870;
-    --light: #ece9e0;
+    --paper: #f4f7f7;
+    --accent: #0891b2;
+    --accent-start: #00c6a7;
+    --accent-end: #0066cc;
+    --accent2: #05617a;
+    --gold: #00c6a7;
+    --muted: #6b7a80;
+    --light: #e4eff2;
     --white: #ffffff;
+    --grad: linear-gradient(135deg, #00c6a7 0%, #0891b2 50%, #0066cc 100%);
+    --grad-h: linear-gradient(135deg, #00dbb8 0%, #0aa8d4 50%, #1a7ee0 100%);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,7 +37,7 @@
   /* ─── SCROLLBAR ─── */
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: var(--light); }
-  ::-webkit-scrollbar-thumb { background: var(--accent); }
+  ::-webkit-scrollbar-thumb { background: var(--grad); }
 
   /* ─── TOPBAR ─── */
   .topbar {
@@ -164,12 +169,12 @@
     left: 12px;
     right: 12px;
     height: 2px;
-    background: var(--accent);
+    background: var(--grad);
     transform: scaleX(0);
     transition: transform 0.25s ease;
     transform-origin: left;
   }
-  nav a:hover { color: var(--accent); background: rgba(200,16,46,0.04); }
+  nav a:hover { color: var(--accent); background: rgba(8,145,178,0.07); }
   nav a:hover::after { transform: scaleX(1); }
 
   .header-search {
@@ -186,7 +191,7 @@
   .header-search:focus-within {
     border-color: var(--accent);
     background: white;
-    box-shadow: 0 0 0 3px rgba(200,16,46,0.1);
+    box-shadow: 0 0 0 3px rgba(8,145,178,0.1);
   }
   .header-search input {
     border: none;
@@ -248,7 +253,7 @@
   }
   .hero-cat {
     display: inline-block;
-    background: var(--accent);
+    background: var(--grad);
     color: white;
     font-size: 10px;
     font-weight: 700;
@@ -326,7 +331,7 @@
     bottom: -4px;
     width: 40px;
     height: 3px;
-    background: var(--accent);
+    background: var(--grad);
     border-radius: 2px;
   }
   .section-link {
@@ -375,7 +380,7 @@
     display: flex;
     flex-direction: column;
   }
-  .news-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); border-color: rgba(200,16,46,0.2); }
+  .news-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); border-color: rgba(8,145,178,0.2); }
   .news-card-img {
     width: 100%;
     aspect-ratio: 16/10;
@@ -420,8 +425,8 @@
     padding: 0 32px;
   }
   .quotes-section .section-title { color: var(--white); }
-  .quotes-section .section-title::before { background: var(--gold); }
-  .quotes-section .section-link { color: var(--gold); }
+  .quotes-section .section-title::before { background: var(--grad); }
+  .quotes-section .section-link { color: var(--accent-start); }
 
   .quotes-grid {
     display: grid;
@@ -439,14 +444,14 @@
     cursor: pointer;
     text-decoration: none;
   }
-  .quote-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(200,16,46,0.4); transform: translateY(-3px); }
+  .quote-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(8,145,178,0.4); transform: translateY(-3px); }
   .quote-person { display: flex; gap: 14px; align-items: center; margin-bottom: 16px; }
   .quote-avatar {
     width: 52px;
     height: 52px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(201,168,76,0.4);
+    border: 2px solid rgba(0,198,167,0.5);
     background: rgba(255,255,255,0.1);
     flex-shrink: 0;
   }
@@ -467,7 +472,7 @@
     top: 4px;
     bottom: 4px;
     width: 3px;
-    background: var(--gold);
+    background: var(--grad);
     border-radius: 2px;
   }
   .quote-news-title { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 12px; line-height: 1.4; }
@@ -484,16 +489,16 @@
   .topic-pill {
     font-size: 12px;
     font-weight: 600;
-    color: var(--accent2);
-    background: rgba(26,58,92,0.08);
-    border: 1px solid rgba(26,58,92,0.15);
+    color: var(--accent);
+    background: rgba(8,145,178,0.07);
+    border: 1px solid rgba(8,145,178,0.2);
     padding: 6px 14px;
     border-radius: 100px;
     cursor: pointer;
     transition: all 0.2s;
     text-decoration: none;
   }
-  .topic-pill:hover { background: var(--accent2); color: white; border-color: var(--accent2); }
+  .topic-pill:hover { background: var(--grad); color: white; border-color: transparent; }
 
   /* ─── PRESS RELEASES ─── */
   .press-grid {
@@ -519,7 +524,7 @@
     text-decoration: none;
     color: inherit;
   }
-  .press-item:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); border-color: rgba(200,16,46,0.2); transform: translateX(4px); }
+  .press-item:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); border-color: rgba(8,145,178,0.2); transform: translateX(4px); }
   .press-num {
     font-family: 'Playfair Display', serif;
     font-size: 36px;
@@ -531,7 +536,7 @@
     text-align: center;
     transition: color 0.2s;
   }
-  .press-item:hover .press-num { color: rgba(200,16,46,0.2); }
+  .press-item:hover .press-num { color: rgba(8,145,178,0.2); }
   .press-body { flex: 1; }
   .press-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
   .press-title { font-size: 15px; font-weight: 600; line-height: 1.4; color: var(--ink); margin-bottom: 8px; }
@@ -580,7 +585,7 @@
     flex-shrink: 0;
     text-align: center;
   }
-  .rating-item:first-child .rating-rank { color: var(--gold); }
+  .rating-item:first-child .rating-rank { color: var(--accent-start); }
   .rating-item:nth-child(2) .rating-rank { color: #9fa8b0; }
   .rating-item:nth-child(3) .rating-rank { color: #cd7f32; }
   .rating-avatar {
@@ -659,7 +664,7 @@
     right: 32px;
     width: 44px;
     height: 44px;
-    background: var(--accent);
+    background: var(--grad);
     color: white;
     border: none;
     border-radius: 50%;
@@ -667,14 +672,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 16px rgba(200,16,46,0.4);
+    box-shadow: 0 4px 16px rgba(8,145,178,0.4);
     transition: all 0.3s;
     opacity: 0;
     pointer-events: none;
     z-index: 999;
   }
   .scroll-top.visible { opacity: 1; pointer-events: all; }
-  .scroll-top:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(200,16,46,0.5); }
+  .scroll-top:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(8,145,178,0.5); }
   .scroll-top svg { width: 18px; height: 18px; }
 
   /* ─── LOAD ANIMATIONS ─── */
@@ -687,7 +692,7 @@
 
   /* ─── BREAKING NEWS BANNER ─── */
   .breaking-bar {
-    background: var(--accent);
+    background: var(--grad);
     color: white;
     padding: 10px 0;
     overflow: hidden;
@@ -721,30 +726,275 @@
   .breaking-text a { color: white; text-decoration: none; }
   .breaking-text a:hover { text-decoration: underline; }
 
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 1024px) {
-    .news-grid { grid-template-columns: repeat(2, 1fr); }
-    .quotes-grid { grid-template-columns: repeat(2, 1fr); }
-    .hero { grid-template-columns: 1fr; }
-    .hero-main { grid-row: auto; aspect-ratio: 16/9; }
-    .hero-side { flex-direction: row; overflow-x: auto; }
-    .side-card { min-width: 260px; }
-    .press-grid { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  /* ─── HAMBURGER BUTTON ─── */
+  .burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    flex-shrink: 0;
+    margin-left: auto;
   }
-  @media (max-width: 640px) {
-    .header-inner { padding: 0 16px; gap: 16px; }
+  .burger:hover { background: var(--light); }
+  .burger span {
+    display: block;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ─── MOBILE DRAWER ─── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    pointer-events: none;
+  }
+  .mobile-nav.open { pointer-events: all; }
+  .mobile-nav-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(13,13,18,0);
+    transition: background 0.35s ease;
+  }
+  .mobile-nav.open .mobile-nav-backdrop { background: rgba(13,13,18,0.55); }
+  .mobile-nav-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(320px, 88vw);
+    background: var(--white);
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .mobile-nav.open .mobile-nav-panel { transform: translateX(0); }
+  .mobile-nav-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+  .mobile-nav-close {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: var(--light);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    transition: background 0.2s;
+  }
+  .mobile-nav-close:hover { background: var(--accent); color: white; }
+  .mobile-nav-close svg { width: 16px; height: 16px; }
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0;
+    flex: 1;
+  }
+  .mobile-nav-links a {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 14px 24px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .mobile-nav-links a:hover {
+    background: rgba(8,145,178,0.06);
+    border-left-color: var(--accent);
+    color: var(--accent);
+  }
+  .mobile-nav-links a svg { width: 18px; height: 18px; opacity: 0.5; flex-shrink: 0; }
+  .mobile-nav-search {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(0,0,0,0.07);
+  }
+  .mobile-nav-search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--light);
+    border-radius: 10px;
+    padding: 10px 14px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .mobile-nav-search-box input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+  }
+  .mobile-nav-search-box svg { width: 16px; height: 16px; color: var(--muted); flex-shrink: 0; }
+  .mobile-nav-city {
+    padding: 0 20px 20px;
+  }
+  .mobile-nav-city select {
+    width: 100%;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--light);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 10px 14px;
+    outline: none;
+  }
+
+  /* ─── TABLET 1024px ─── */
+  @media (max-width: 1024px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin: 28px auto;
+      padding: 0 20px;
+    }
+    .hero-main { grid-row: auto; aspect-ratio: 16/9; }
+    .hero-side {
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 12px;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .hero-side::-webkit-scrollbar { display: none; }
+    .side-card { min-width: 240px; flex-shrink: 0; }
+
+    .news-grid {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 0 20px;
+      gap: 16px;
+    }
+    .quotes-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .press-grid { grid-template-columns: 1fr; padding: 0 20px 48px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .section-header { padding: 0 20px; }
+    .topics-strip { padding: 0 20px; }
+    .topbar-inner { padding: 0 20px; }
+    .quotes-inner { padding: 0 20px; }
+    .footer-inner { padding: 48px 20px 28px; }
+
+    /* Show burger on tablet too */
     nav { display: none; }
-    .news-grid { grid-template-columns: 1fr; padding: 0 16px; }
-    .hero { padding: 0 16px; }
-    .section-header { padding: 0 16px; }
-    .quotes-grid { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr; }
+    .header-search { display: none; }
+    .burger { display: flex; }
+    .mobile-nav { display: block; }
+    .header-inner { gap: 12px; }
+  }
+
+  /* ─── MOBILE 640px ─── */
+  @media (max-width: 640px) {
+    /* Header */
+    .header-inner { padding: 0 16px; height: 60px; }
+    .logo-sub { display: none; }
+
+    /* Topbar: hide date, shrink */
+    .topbar-date { display: none; }
     .topbar-inner { padding: 0 16px; }
+    .ticker-label { font-size: 10px; }
+
+    /* Breaking bar */
+    .breaking-inner { padding: 0 16px; gap: 10px; }
+    .breaking-text { font-size: 12px; }
+
+    /* Hero */
+    .hero { padding: 0 16px; margin: 20px auto; }
+    .hero-main { border-radius: 12px; aspect-ratio: 4/3; }
+    .hero-main-content { padding: 20px; }
+    .hero-main-title { font-size: 18px; margin-bottom: 10px; }
+    .hero-cat { font-size: 9px; }
+    .side-card { min-width: 200px; padding: 12px; }
+    .side-card-img { width: 76px; height: 58px; }
+    .side-title { font-size: 12.5px; }
+
+    /* Topics */
+    .topics-strip {
+      padding: 0 16px;
+      gap: 8px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .topics-strip::-webkit-scrollbar { display: none; }
+    .topic-pill { white-space: nowrap; flex-shrink: 0; }
+
+    /* Section headers */
+    .section-header { padding: 0 16px; margin: 36px auto 18px; }
+    .section-title { font-size: 22px; }
+
+    /* News grid: single column */
+    .news-grid {
+      grid-template-columns: 1fr;
+      padding: 0 16px;
+      gap: 14px;
+    }
+    .news-card-title { font-size: 14px; }
+    .news-card-body { padding: 14px; gap: 8px; }
+
+    /* Quotes */
+    .quotes-section { margin: 40px 0; padding: 40px 0; }
     .quotes-inner { padding: 0 16px; }
-    .topics-strip { padding: 0 16px; }
-    .press-grid { padding: 0 16px 40px; }
-    .footer-inner { padding: 40px 16px 24px; }
+    .quotes-grid { grid-template-columns: 1fr; gap: 14px; }
+    .quote-card { padding: 18px; }
+    .quotes-section::before { font-size: 200px; top: -40px; }
+
+    /* Press */
+    .press-grid { padding: 0 16px 40px; grid-template-columns: 1fr; }
+    .press-item { padding: 16px; gap: 14px; }
+    .press-num { font-size: 28px; width: 36px; }
+    .press-title { font-size: 14px; }
+
+    /* Sidebar */
+    .sidebar { flex-direction: column; }
+
+    /* Footer */
+    .footer-top { grid-template-columns: 1fr; gap: 28px; }
+    .footer-inner { padding: 36px 16px 24px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .footer-bottom div { flex-direction: column; gap: 8px; }
+
+    /* Scroll top */
+    .scroll-top { bottom: 20px; right: 16px; width: 40px; height: 40px; }
+  }
+
+  /* ─── SMALL PHONES 390px ─── */
+  @media (max-width: 390px) {
+    .hero-main-title { font-size: 16px; }
+    .hero-main-content { padding: 16px; }
+    .section-title { font-size: 20px; }
+    .news-card-title { font-size: 13.5px; }
+    .logo-name { font-size: 17px; }
   }
 </style>
 </head>
@@ -809,8 +1059,81 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       </button>
     </div>
+
+    <!-- Burger button -->
+    <button class="burger" id="burgerBtn" aria-label="Меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>
+
+<!-- MOBILE DRAWER NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-backdrop" id="navBackdrop"></div>
+  <div class="mobile-nav-panel">
+    <div class="mobile-nav-head">
+      <a href="https://globalmsk.ru" class="logo">
+        <div class="logo-mark"><img src="logo.gif" alt="ГлобалМСК логотип"></div>
+        <div class="logo-text">
+          <span class="logo-name">ГлобалМСК</span>
+          <span class="logo-sub">Московский бизнес портал</span>
+        </div>
+      </a>
+      <button class="mobile-nav-close" id="navClose" aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="mobile-nav-search">
+      <div class="mobile-nav-search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Поиск по сайту…">
+      </div>
+    </div>
+    <nav class="mobile-nav-links">
+      <a href="https://globalmsk.ru/news">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8"/></svg>
+        Новости
+      </a>
+      <a href="https://globalmsk.ru/firmnews">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Пресс-релизы
+      </a>
+      <a href="https://globalmsk.ru/person">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Люди
+      </a>
+      <a href="https://globalmsk.ru/catalog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        Компании
+      </a>
+      <a href="https://globalmsk.ru/vacancy">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M16 3H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><path d="M12 12h.01"/></svg>
+        Работа
+      </a>
+      <a href="https://globalmsk.ru/horoscope">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Гороскопы
+      </a>
+    </nav>
+    <div class="mobile-nav-city">
+      <select onchange="if(this.value) location.href = this.value">
+        <option value="">🌍 Выберите город</option>
+        <option value="http://www.globalmsk.ru" selected>Москва</option>
+        <option value="http://www.global78.ru">Санкт-Петербург</option>
+        <option value="http://www.globalnsk.ru">Новосибирск</option>
+        <option value="http://www.globaleburg.ru">Екатеринбург</option>
+        <option value="http://www.globalkras.ru">Краснодар</option>
+        <option value="http://www.globalvlad.ru">Владивосток</option>
+        <option value="http://www.globalperm.ru">Пермь</option>
+        <option value="http://www.global52.ru">Нижний Новгород</option>
+        <option value="http://www.global-kazan.ru">Казань</option>
+        <option value="http://www.globalufa.ru">Уфа</option>
+      </select>
+    </div>
+  </div>
+</div>
 
 <!-- HERO -->
 <section>
@@ -968,7 +1291,7 @@
     <div class="section-header" style="max-width:none; margin:0 0 0 0; padding:0; margin-bottom:0;">
       <span class="section-title" style="color:white;">Цитаты</span>
       <span class="section-rule" style="background:linear-gradient(to right, rgba(255,255,255,0.12), transparent);"></span>
-      <a href="https://globalmsk.ru/quotes" class="section-link" style="color:var(--gold);">
+      <a href="https://globalmsk.ru/quotes" class="section-link" style="color:var(--accent-start);">
         Все цитаты
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -1190,7 +1513,29 @@
   });
   scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-  // Staggered card animations on scroll
+  // Burger menu
+  const burger = document.getElementById('burgerBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const navClose = document.getElementById('navClose');
+  const backdrop = document.getElementById('navBackdrop');
+
+  function openMenu() {
+    mobileNav.classList.add('open');
+    burger.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    mobileNav.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', openMenu);
+  navClose.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {

@@ -214,6 +214,57 @@
   .search-btn:hover { color: var(--accent); }
   .search-btn svg { width: 15px; height: 15px; }
 
+  /* ─── HEADER AUTH BUTTONS ─── */
+  .header-auth {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .btn-cabinet {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(8,145,178,0.35);
+    color: var(--accent);
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.22s;
+    background: rgba(8,145,178,0.04);
+  }
+  .btn-cabinet:hover {
+    border-color: var(--accent);
+    background: rgba(8,145,178,0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(8,145,178,0.15);
+  }
+  .btn-cabinet svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .btn-subscribe {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    background: var(--grad);
+    color: white;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.22s;
+    box-shadow: 0 3px 12px rgba(8,145,178,0.3);
+  }
+  .btn-subscribe:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(8,145,178,0.45);
+    filter: brightness(1.08);
+  }
+  .btn-subscribe svg { width: 14px; height: 14px; flex-shrink: 0; }
+
   /* ─── HERO SECTION ─── */
   .hero {
     max-width: 1280px;
@@ -520,9 +571,9 @@
   .press-list { display: flex; flex-direction: column; gap: 16px; }
   .press-item {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     align-items: flex-start;
-    padding: 20px;
+    padding: 16px;
     background: var(--white);
     border-radius: 12px;
     cursor: pointer;
@@ -531,19 +582,31 @@
     text-decoration: none;
     color: inherit;
   }
+  .press-thumb {
+    width: 90px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: var(--light);
+  }
   .press-item:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); border-color: rgba(8,145,178,0.2); transform: translateX(4px); }
   .press-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 36px;
-    font-weight: 700;
-    color: rgba(0,0,0,0.08);
-    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--grad);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
     flex-shrink: 0;
-    width: 48px;
-    text-align: center;
-    transition: color 0.2s;
+    margin-top: 2px;
+    font-family: 'Manrope', sans-serif;
   }
-  .press-item:hover .press-num { color: rgba(8,145,178,0.2); }
+  .press-item:hover .press-num { opacity: 0.8; }
   .press-body { flex: 1; }
   .press-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
   .press-title { font-size: 15px; font-weight: 600; line-height: 1.4; color: var(--ink); margin-bottom: 8px; }
@@ -914,6 +977,7 @@
     /* Show burger on tablet too */
     nav { display: none; }
     .header-search { display: none; }
+    .header-auth { display: none; }
     .burger { display: flex; }
     .mobile-nav { display: block; }
     .header-inner { gap: 12px; }
@@ -1091,9 +1155,91 @@
     .cards-row-wrap{padding:14px}
   }
 
+  /* ─── FINANCE TICKER ─── */
+  .finance-bar {
+    background: #0a1628;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+    height: 32px;
+    display: flex;
+    align-items: center;
+  }
+  .finance-track { overflow: hidden; flex: 1; }
+  .finance-items {
+    display: flex;
+    gap: 0;
+    animation: financeTicker 45s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+  }
+  .finance-items:hover { animation-play-state: paused; }
+  @keyframes financeTicker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .finance-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 20px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'Manrope', sans-serif;
+    border-right: 1px solid rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.04em;
+    cursor: default;
+  }
+  .finance-item .fi-label { color: rgba(255,255,255,0.4); font-weight: 500; }
+  .finance-item .fi-val { color: white; font-weight: 700; }
+  .finance-item .fi-up { color: #22c55e; font-size: 10px; }
+  .finance-item .fi-dn { color: #ef4444; font-size: 10px; }
+
+  .news-date-icon { display:inline-flex;align-items:center;gap:4px;color:var(--muted) }
+  .news-date-icon svg { width:12px;height:12px;flex-shrink:0;opacity:0.6 }
+
+  @media(max-width:640px){
+    html,body{overflow-x:hidden;max-width:100vw}
+    .finance-bar{display:none}
+    .hero-side{padding-right:16px}
+    .ratings-grid,.birthdays-grid{padding:0}
+    .cards-row-wrap{padding:12px}
+    .jobs-categories{word-break:break-word}
+  }
+
 </style>
 </head>
 <body>
+
+<!-- FINANCE TICKER -->
+<div class="finance-bar">
+  <div class="finance-track">
+    <div class="finance-items" id="financeTicker">
+      <span class="finance-item"><span class="fi-label">USD/RUB</span>&nbsp;<span class="fi-val">88.42</span>&nbsp;<span class="fi-up">▲ 0.31</span></span>
+      <span class="finance-item"><span class="fi-label">EUR/RUB</span>&nbsp;<span class="fi-val">95.18</span>&nbsp;<span class="fi-dn">▼ 0.12</span></span>
+      <span class="finance-item"><span class="fi-label">CNY/RUB</span>&nbsp;<span class="fi-val">12.17</span>&nbsp;<span class="fi-up">▲ 0.05</span></span>
+      <span class="finance-item"><span class="fi-label">НЕФТЬ Brent</span>&nbsp;<span class="fi-val">$74.20</span>&nbsp;<span class="fi-dn">▼ 0.85</span></span>
+      <span class="finance-item"><span class="fi-label">НЕФТЬ WTI</span>&nbsp;<span class="fi-val">$70.15</span>&nbsp;<span class="fi-dn">▼ 0.63</span></span>
+      <span class="finance-item"><span class="fi-label">ГАЗ TTF</span>&nbsp;<span class="fi-val">€38.40</span>&nbsp;<span class="fi-up">▲ 1.20</span></span>
+      <span class="finance-item"><span class="fi-label">ЗОЛОТО</span>&nbsp;<span class="fi-val">$2 915</span>&nbsp;<span class="fi-up">▲ 12.4</span></span>
+      <span class="finance-item"><span class="fi-label">СЕРЕБРО</span>&nbsp;<span class="fi-val">$32.80</span>&nbsp;<span class="fi-up">▲ 0.44</span></span>
+      <span class="finance-item"><span class="fi-label">IMOEX</span>&nbsp;<span class="fi-val">2 847</span>&nbsp;<span class="fi-up">▲ 18</span></span>
+      <span class="finance-item"><span class="fi-label">КЛЮЧ.СТАВКА</span>&nbsp;<span class="fi-val">21%</span>&nbsp;<span class="fi-label">ЦБ РФ</span></span>
+      <span class="finance-item"><span class="fi-label">БИТКОИН</span>&nbsp;<span class="fi-val">$84 200</span>&nbsp;<span class="fi-dn">▼ 1 340</span></span>
+      <span class="finance-item"><span class="fi-label">ПЛАТИНА</span>&nbsp;<span class="fi-val">$956</span>&nbsp;<span class="fi-dn">▼ 4</span></span>
+      <!-- дубль для бесшовной прокрутки -->
+      <span class="finance-item"><span class="fi-label">USD/RUB</span>&nbsp;<span class="fi-val">88.42</span>&nbsp;<span class="fi-up">▲ 0.31</span></span>
+      <span class="finance-item"><span class="fi-label">EUR/RUB</span>&nbsp;<span class="fi-val">95.18</span>&nbsp;<span class="fi-dn">▼ 0.12</span></span>
+      <span class="finance-item"><span class="fi-label">CNY/RUB</span>&nbsp;<span class="fi-val">12.17</span>&nbsp;<span class="fi-up">▲ 0.05</span></span>
+      <span class="finance-item"><span class="fi-label">НЕФТЬ Brent</span>&nbsp;<span class="fi-val">$74.20</span>&nbsp;<span class="fi-dn">▼ 0.85</span></span>
+      <span class="finance-item"><span class="fi-label">НЕФТЬ WTI</span>&nbsp;<span class="fi-val">$70.15</span>&nbsp;<span class="fi-dn">▼ 0.63</span></span>
+      <span class="finance-item"><span class="fi-label">ГАЗ TTF</span>&nbsp;<span class="fi-val">€38.40</span>&nbsp;<span class="fi-up">▲ 1.20</span></span>
+      <span class="finance-item"><span class="fi-label">ЗОЛОТО</span>&nbsp;<span class="fi-val">$2 915</span>&nbsp;<span class="fi-up">▲ 12.4</span></span>
+      <span class="finance-item"><span class="fi-label">СЕРЕБРО</span>&nbsp;<span class="fi-val">$32.80</span>&nbsp;<span class="fi-up">▲ 0.44</span></span>
+      <span class="finance-item"><span class="fi-label">IMOEX</span>&nbsp;<span class="fi-val">2 847</span>&nbsp;<span class="fi-up">▲ 18</span></span>
+      <span class="finance-item"><span class="fi-label">КЛЮЧ.СТАВКА</span>&nbsp;<span class="fi-val">21%</span>&nbsp;<span class="fi-label">ЦБ РФ</span></span>
+      <span class="finance-item"><span class="fi-label">БИТКОИН</span>&nbsp;<span class="fi-val">$84 200</span>&nbsp;<span class="fi-dn">▼ 1 340</span></span>
+      <span class="finance-item"><span class="fi-label">ПЛАТИНА</span>&nbsp;<span class="fi-val">$956</span>&nbsp;<span class="fi-dn">▼ 4</span></span>
+    </div>
+  </div>
+</div>
 
 <!-- TOPBAR -->
 <div class="topbar">
@@ -1116,7 +1262,10 @@
         </div>
       </div>
     </div>
-    <span class="topbar-date">Вторник, 3 марта 2026</span>
+    <div style="display:flex;align-items:center;gap:14px;flex-shrink:0">
+    <span class="topbar-date">Вт, 5 марта 2026</span>
+    <span class="topbar-date">Вт, 5 марта 2026</span>
+  </div>
   </div>
 </div>
 
@@ -1153,6 +1302,17 @@
       <button class="search-btn" aria-label="Найти">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       </button>
+    </div>
+
+    <div class="header-auth">
+      <a href="https://globalmsk.ru/login" class="btn-cabinet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Мой кабинет
+      </a>
+      <a href="https://globalmsk.ru/subscribe" class="btn-subscribe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Подписка
+      </a>
     </div>
 
     <!-- Burger button -->
@@ -1243,7 +1403,7 @@
           Ликсутов рассказал о передаче в Музей транспорта Москвы уникальных исторических материалов
         </a>
         <div class="hero-meta">
-          <span class="hero-date">2 марта 2026</span>
+          <span class="hero-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span>
           <span class="hero-views">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             1 204
@@ -1316,7 +1476,7 @@
       <div class="news-card-title">В Подмосковье более 80 млн рублей вложили в платформу для создания ИИ-помощников</div>
       <div class="news-card-text">Компания «Хоппер ИТ» является разработчиком корпоративных информационных систем. Новое решение — платформа Unica AI — позволит запускать ИИ-сценарии без передачи данных в публичные сервисы.</div>
       <div class="news-card-footer">
-        <span class="news-card-date">2 марта</span>
+        <span class="news-card-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта</span>
         <span class="news-card-views">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           589
@@ -1334,7 +1494,7 @@
       <div class="news-card-title">Новые сроки оплаты ЖКХ: какие изменения начнут действовать в России с марта</div>
       <div class="news-card-text">В новых правилах нет ничего непонятного или критичного. Многие жители России получают заработные платы 5–15 числа, и перенос сроков станет оптимальным решением.</div>
       <div class="news-card-footer">
-        <span class="news-card-date">2 марта</span>
+        <span class="news-card-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта</span>
         <span class="news-card-views">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           1 102
@@ -1352,7 +1512,7 @@
       <div class="news-card-title">Россия нацелена на дисконт на нефть в 10 долларов за баррель</div>
       <div class="news-card-text">В лучшие времена до введения санкций скидка на топливо была на уровне около 10 долларов за бочку. Мы стремимся снизить скидку до такого же значения.</div>
       <div class="news-card-footer">
-        <span class="news-card-date">2 марта</span>
+        <span class="news-card-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта</span>
         <span class="news-card-views">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           847
@@ -1370,7 +1530,7 @@
       <div class="news-card-title">«Эксперт РА»: займы в ломбардах всё чаще становятся альтернативой банковскому кредиту</div>
       <div class="news-card-text">Микрозаймы и займы в ломбардах не могут полноценно заменить потребительское банковское кредитование, но их объём продолжает расти на фоне роста ставок.</div>
       <div class="news-card-footer">
-        <span class="news-card-date">2 марта</span>
+        <span class="news-card-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта</span>
         <span class="news-card-views">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           413
@@ -1441,31 +1601,28 @@
       </a>
     </div>
     <div class="press-list anim-6">
-      <a href="https://globalmsk.ru/firmnews/id/1" class="press-item">
-        <div class="press-num">01</div>
+            <a href="https://globalmsk.ru/firmnews/id/1" class="press-item">
+        <img class="press-thumb" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=90&h=68&fit=crop" alt="">
         <div class="press-body">
-          <div class="press-cat">Банки и Финансы</div>
+          <div class="press-cat" style="display:flex;align-items:center;gap:7px"><span class="press-num">1</span> Банки и Финансы</div>
           <div class="press-title">Группа ББР Банка в Telegram вошла в топ-25 независимого рейтинга финансовых каналов</div>
-          <div class="press-text">Telegram-канал банковской группы занял высокую позицию в авторитетном рейтинге финансовых каналов мессенджера за счёт качественного контента и прироста аудитории.</div>
-          <div class="press-footer"><span>2 марта 2026</span><span>·</span><span>284 просмотра</span></div>
+          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span><span>·</span><span>284 просмотра</span></div>
         </div>
       </a>
       <a href="https://globalmsk.ru/firmnews/id/2" class="press-item">
-        <div class="press-num">02</div>
+        <img class="press-thumb" src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=90&h=68&fit=crop" alt="">
         <div class="press-body">
-          <div class="press-cat">Агропром</div>
+          <div class="press-cat" style="display:flex;align-items:center;gap:7px"><span class="press-num">2</span> Агропром</div>
           <div class="press-title">Ярославская область на 38% нарастила объём агроэкспорта в прошлом году</div>
-          <div class="press-text">Регион увеличил поставки сельскохозяйственной продукции за рубеж, опередив большинство центральных областей по темпам роста аграрного экспорта.</div>
-          <div class="press-footer"><span>2 марта 2026</span><span>·</span><span>192 просмотра</span></div>
+          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span><span>·</span><span>192 просмотра</span></div>
         </div>
       </a>
       <a href="https://globalmsk.ru/firmnews/id/3" class="press-item">
-        <div class="press-num">03</div>
+        <img class="press-thumb" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=90&h=68&fit=crop" alt="">
         <div class="press-body">
-          <div class="press-cat">Инвестиции</div>
+          <div class="press-cat" style="display:flex;align-items:center;gap:7px"><span class="press-num">3</span> Инвестиции</div>
           <div class="press-title">В Сочи для инвесторов утвердили механизм инфраструктурного сбора</div>
-          <div class="press-text">Новый механизм призван стимулировать развитие инфраструктуры курорта, направляя часть поступлений от туристических потоков на модернизацию объектов.</div>
-          <div class="press-footer"><span>2 марта 2026</span><span>·</span><span>341 просмотр</span></div>
+          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span><span>·</span><span>341 просмотр</span></div>
         </div>
       </a>
     </div>
@@ -1648,7 +1805,7 @@
         <div class="birthday-name">ГОРБАЧЁВ Михаил Сергеевич</div>
         <div class="birthday-role">1-й Президент СССР</div>
       </div>
-      <div class="birthday-date"><span class="birthday-date-day">2</span><span class="birthday-date-mon">МАРТ</span></div>
+      <div class="birthday-date"><span class="birthday-date-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2</span><span class="birthday-date-mon">МАРТ</span></div>
     </a>
     <a href="https://globalmsk.ru/person/id/13612" class="birthday-card">
       <img class="birthday-photo" src="https://globalmsk.ru/usr/person/7413-14722087260.webp" alt="ПАК Денис Климентьевич">
@@ -1656,7 +1813,7 @@
         <div class="birthday-name">ПАК Денис Климентьевич</div>
         <div class="birthday-role">Директор Департамента развития внутренней торговли Минпромторг</div>
       </div>
-      <div class="birthday-date"><span class="birthday-date-day">3</span><span class="birthday-date-mon">МАРТ</span></div>
+      <div class="birthday-date"><span class="birthday-date-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3</span><span class="birthday-date-mon">МАРТ</span></div>
     </a>
     <a href="https://globalmsk.ru/person/id/1337" class="birthday-card">
       <img class="birthday-photo" src="https://globalmsk.ru/usr/person/person-17642297260.webp" alt="СОЛОМИНА Мария Антониновна">
@@ -1664,7 +1821,7 @@
         <div class="birthday-name">СОЛОМИНА Мария Антониновна</div>
         <div class="birthday-role">Актриса</div>
       </div>
-      <div class="birthday-date"><span class="birthday-date-day">4</span><span class="birthday-date-mon">МАРТ</span></div>
+      <div class="birthday-date"><span class="birthday-date-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>4</span><span class="birthday-date-mon">МАРТ</span></div>
     </a>
     <a href="https://globalmsk.ru/person/id/4674" class="birthday-card">
       <img class="birthday-photo" src="https://globalmsk.ru/usr/person/person-17682039860.webp" alt="СМОЛКИН Борис Григорьевич">
@@ -1672,7 +1829,7 @@
         <div class="birthday-name">СМОЛКИН Борис Григорьевич</div>
         <div class="birthday-role">Актёр</div>
       </div>
-      <div class="birthday-date"><span class="birthday-date-day">5</span><span class="birthday-date-mon">МАРТ</span></div>
+      <div class="birthday-date"><span class="birthday-date-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>5</span><span class="birthday-date-mon">МАРТ</span></div>
     </a>
     <a href="https://globalmsk.ru/person/id/5720" class="birthday-card">
       <img class="birthday-photo" src="https://globalmsk.ru/usr/person/7413-15061299280.webp" alt="ЩЕЛЬЦИН Арсений Александрович">
@@ -1680,7 +1837,7 @@
         <div class="birthday-name">ЩЕЛЬЦИН Арсений Александрович</div>
         <div class="birthday-role">Директор ИРИ</div>
       </div>
-      <div class="birthday-date"><span class="birthday-date-day">7</span><span class="birthday-date-mon">МАРТ</span></div>
+      <div class="birthday-date"><span class="birthday-date-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>7</span><span class="birthday-date-mon">МАРТ</span></div>
     </a>
     <a href="https://globalmsk.ru/person/id/14121" class="birthday-card">
       <img class="birthday-photo" src="https://globalmsk.ru/usr/person/7413-15494212430.webp" alt="МЕЛЬНИКОВ Матвей Александрович (Мот)">
@@ -1688,7 +1845,7 @@
         <div class="birthday-name">МЕЛЬНИКОВ Матвей Александрович (Мот)</div>
         <div class="birthday-role">Певец</div>
       </div>
-      <div class="birthday-date"><span class="birthday-date-day">8</span><span class="birthday-date-mon">МАРТ</span></div>
+      <div class="birthday-date"><span class="birthday-date-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>8</span><span class="birthday-date-mon">МАРТ</span></div>
     </a>
   </div>
 </section>

@@ -103,7 +103,7 @@
     height: 72px;
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 16px;
   }
 
   .logo {
@@ -155,19 +155,23 @@
 
   nav {
     display: flex;
-    gap: 4px;
+    gap: 2px;
     flex: 1;
+    flex-wrap: nowrap;
+    min-width: 0;
+    overflow: hidden;
   }
   nav a {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     color: var(--ink);
     text-decoration: none;
-    padding: 6px 12px;
+    padding: 5px 8px;
     border-radius: 6px;
-    letter-spacing: 0.02em;
+    letter-spacing: 0;
     transition: all 0.2s;
     position: relative;
+    white-space: nowrap;
   }
   nav a::after {
     content: '';
@@ -218,52 +222,28 @@
   .header-auth {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 16px;
     flex-shrink: 0;
   }
-  .btn-cabinet {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 7px 14px;
-    border-radius: 8px;
-    border: 1.5px solid rgba(8,145,178,0.35);
-    color: var(--accent);
-    font-size: 12.5px;
-    font-weight: 600;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: all 0.22s;
-    background: rgba(8,145,178,0.04);
-  }
-  .btn-cabinet:hover {
-    border-color: var(--accent);
-    background: rgba(8,145,178,0.1);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(8,145,178,0.15);
-  }
-  .btn-cabinet svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .btn-cabinet,
   .btn-subscribe {
     display: flex;
     align-items: center;
-    gap: 7px;
-    padding: 7px 14px;
-    border-radius: 8px;
-    background: var(--grad);
-    color: white;
-    font-size: 12.5px;
-    font-weight: 600;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
     text-decoration: none;
     white-space: nowrap;
-    transition: all 0.22s;
-    box-shadow: 0 3px 12px rgba(8,145,178,0.3);
+    transition: color 0.2s;
+    background: none;
+    border: none;
+    padding: 0;
   }
-  .btn-subscribe:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(8,145,178,0.45);
-    filter: brightness(1.08);
-  }
-  .btn-subscribe svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .btn-cabinet:hover,
+  .btn-subscribe:hover { color: var(--accent); }
+  .btn-cabinet svg,
+  .btn-subscribe svg { width: 13px; height: 13px; flex-shrink: 0; opacity: 0.7; }
 
   /* ─── HERO SECTION ─── */
   .hero {
@@ -454,7 +434,8 @@
   .news-card-title { font-size: 14.5px; font-weight: 600; line-height: 1.45; color: var(--ink); }
   .news-card-text { font-size: 12.5px; color: var(--muted); line-height: 1.6; flex: 1; }
   .news-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.06); }
-  .news-card-date { font-size: 11px; color: var(--muted); }
+  .news-card-date { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 3px; }
+  .news-card-date svg { width: 12px; height: 12px; flex-shrink: 0; }
   .news-card-views { font-size: 11px; color: var(--muted); display: flex; gap: 3px; align-items: center; }
   .news-card-views svg { width: 12px; height: 12px; }
 
@@ -568,7 +549,7 @@
     gap: 24px;
   }
 
-  .press-list { display: flex; flex-direction: column; gap: 16px; }
+  .press-list { display: flex; flex-direction: column; gap: 12px; }
   .press-item {
     display: flex;
     gap: 16px;
@@ -591,27 +572,14 @@
     background: var(--light);
   }
   .press-item:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); border-color: rgba(8,145,178,0.2); transform: translateX(4px); }
-  .press-num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: var(--grad);
-    color: white;
-    font-size: 10px;
-    font-weight: 800;
-    flex-shrink: 0;
-    margin-top: 2px;
-    font-family: 'Manrope', sans-serif;
-  }
-  .press-item:hover .press-num { opacity: 0.8; }
+
   .press-body { flex: 1; }
   .press-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
   .press-title { font-size: 15px; font-weight: 600; line-height: 1.4; color: var(--ink); margin-bottom: 8px; }
   .press-text { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
-  .press-footer { display: flex; gap: 12px; margin-top: 10px; font-size: 11px; color: var(--muted); }
+  .press-footer { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 11px; color: var(--muted); }
+  .press-footer span { display: flex; align-items: center; gap: 3px; }
+  .press-footer svg { width: 11px; height: 11px; flex-shrink: 0; }
 
   /* ─── SIDEBAR ─── */
   .sidebar { display: flex; flex-direction: column; gap: 24px; }
@@ -1043,7 +1011,6 @@
     /* Press */
     .press-grid { padding: 0 16px 40px; grid-template-columns: 1fr; }
     .press-item { padding: 16px; gap: 14px; }
-    .press-num { font-size: 28px; width: 36px; }
     .press-title { font-size: 14px; }
 
     /* Sidebar */
@@ -1079,20 +1046,21 @@
   .rating-person-card:hover::before{opacity:1}
   .rating-person-rank{
     position:absolute;top:0;left:0;
-    width:28px;height:28px;
+    width:26px;height:26px;
     display:flex;align-items:center;justify-content:center;
-    font-family:'Playfair Display',serif;font-size:13px;font-weight:900;color:white;
-    border-radius:0 0 10px 0;
+    font-family:'Playfair Display',serif;font-size:12px;font-weight:900;color:white;
+    border-radius:0 0 8px 0;
     background:var(--grad);
     z-index:1;
+    flex-shrink:0;
   }
   .rating-person-rank.rank-1{background:linear-gradient(135deg,#f6c90e,#e8a400);color:#3d2b00}
   .rating-person-rank.rank-2{background:linear-gradient(135deg,#d0d8e0,#9daab5);color:#2a3540}
   .rating-person-rank.rank-3{background:linear-gradient(135deg,#e8966a,#c96a2a);color:white}
-  .rating-person-score{position:absolute;bottom:8px;right:8px;font-size:10px;font-weight:700;color:var(--accent);background:rgba(8,145,178,0.1);padding:2px 7px;border-radius:20px}
-  .rating-person-photo{width:81px;height:99px;object-fit:cover;border-radius:10px;flex-shrink:0;background:var(--light)}
-  .rating-person-body{flex:1;min-width:0;padding-right:44px}
-  .rating-person-name,.birthday-name{font-size:13px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:4px}
+  .rating-person-score{display:inline-block;margin-top:5px;font-size:10px;font-weight:700;color:var(--accent);background:rgba(8,145,178,0.1);padding:2px 8px;border-radius:20px}
+  .rating-person-photo{width:64px;height:78px;object-fit:cover;border-radius:8px;flex-shrink:0;background:var(--light)}
+  .rating-person-body{flex:1;min-width:0;}
+  .rating-person-name,.birthday-name{font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:3px}
   .rating-person-role,.birthday-role{font-size:11.5px;color:var(--muted);line-height:1.4}
   .birthday-photo{width:81px;height:99px;object-fit:cover;border-radius:10px;flex-shrink:0;background:var(--light)}
   .birthday-body{flex:1;min-width:0}
@@ -1142,18 +1110,7 @@
   .horoscope-range{font-size:11px;color:var(--muted);margin-top:2px}
   .horoscope-text{font-size:12px;color:var(--muted);line-height:1.65;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
   .horoscope-more{font-size:11.5px;font-weight:600;color:var(--accent)}
-  @media(max-width:1024px){
-    .ratings-grid,.birthdays-grid{grid-template-columns:repeat(2,1fr)}
-    .jobs-layout{grid-template-columns:1fr}
-    .jobs-categories{columns:2}
-    .ratings-section,.birthdays-section,.jobs-section,.cards-row-section{padding:0 20px}
-  }
-  @media(max-width:640px){
-    .ratings-section,.birthdays-section,.jobs-section,.cards-row-section{padding:0 16px;margin-top:40px}
-    .ratings-grid,.birthdays-grid{grid-template-columns:1fr}
-    .jobs-categories{columns:1;padding:16px}
-    .cards-row-wrap{padding:14px}
-  }
+
 
   /* ─── FINANCE TICKER ─── */
   .finance-bar {
@@ -1195,13 +1152,123 @@
   .news-date-icon { display:inline-flex;align-items:center;gap:4px;color:var(--muted) }
   .news-date-icon svg { width:12px;height:12px;flex-shrink:0;opacity:0.6 }
 
-  @media(max-width:640px){
-    html,body{overflow-x:hidden;max-width:100vw}
-    .finance-bar{display:none}
-    .hero-side{padding-right:16px}
-    .ratings-grid,.birthdays-grid{padding:0}
-    .cards-row-wrap{padding:12px}
-    .jobs-categories{word-break:break-word}
+
+
+  /* ══════════════════════════════════════════════
+     ПОЛНЫЙ АДАПТИВ — ПЛАНШЕТ 1024px
+  ══════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+
+    /* Finance ticker — уменьшаем шрифт */
+    .finance-item { padding: 0 14px; font-size: 10.5px; gap: 5px; }
+
+    /* Topbar */
+    .topbar-inner { padding: 0 20px; }
+    .topbar-date { display: none; }
+
+    /* Рейтинг и дни рождения — 2 колонки */
+    .ratings-section, .birthdays-section, .jobs-section, .cards-row-section {
+      padding: 0 20px;
+      margin-top: 44px;
+    }
+    .ratings-grid, .birthdays-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Работа — одна колонка, без боковой панели */
+    .jobs-layout { grid-template-columns: 1fr; gap: 16px; }
+    .jobs-categories { columns: 2; column-gap: 16px; padding: 20px; }
+    .jobs-employer-widget { display: none; } /* убираем на планшете — много места */
+
+    /* Карточки вакансий/резюме/гороскопов */
+    .cards-row-wrap { padding: 16px; }
+    .vacancy-card { width: 170px; }
+    .resume-card { width: 220px; }
+    .horoscope-card { width: 240px; }
+
+    /* Пресс-релизы */
+    .press-item { padding: 14px; gap: 12px; }
+    .press-thumb { width: 80px; height: 60px; }
+  }
+
+  /* ══════════════════════════════════════════════
+     ПОЛНЫЙ АДАПТИВ — МОБИЛЬНЫЙ 640px
+  ══════════════════════════════════════════════ */
+  @media (max-width: 640px) {
+
+    /* Глобальный overflow fix */
+    html, body { overflow-x: hidden; max-width: 100vw; }
+
+    /* Finance ticker — скрываем на телефоне (слишком узко) */
+    .finance-bar { display: none; }
+
+    /* Topbar */
+    .topbar-inner { padding: 0 16px; gap: 8px; }
+    .ticker-label { font-size: 9px; padding: 2px 6px; }
+    .ticker-items { gap: 28px; }
+    .ticker-items a { font-size: 10px; }
+
+    /* Рейтинг персон — 1 колонка */
+    .ratings-section, .birthdays-section, .jobs-section, .cards-row-section {
+      padding: 0 16px;
+      margin-top: 36px;
+    }
+    .ratings-grid, .birthdays-grid { grid-template-columns: 1fr; gap: 10px; }
+
+    /* Карточка персоны — горизонтальная компактнее */
+    .rating-person-photo, .birthday-photo { width: 60px; height: 73px; }
+    .rating-person-name, .birthday-name { font-size: 12.5px; }
+    .rating-person-role, .birthday-role { font-size: 11px; }
+    .rating-person-score { font-size: 9.5px; padding: 1px 6px; }
+    .rating-person-body { padding-right: 32px; }
+    .rating-person-rank { width: 24px; height: 24px; font-size: 11px; }
+
+    /* Дата рождения иконка */
+    .birthday-date { width: 38px; height: 42px; }
+    .birthday-date-day { font-size: 15px; }
+    .birthday-date-mon { font-size: 8px; }
+
+    /* Работа */
+    .jobs-categories { columns: 1; padding: 14px 16px; }
+    .jobs-cat-item { font-size: 12px; padding: 5px 0 5px 14px; }
+    .jobs-employer-widget { display: none; }
+
+    /* Карточки-карусели */
+    .cards-row-wrap { padding: 12px; }
+    .cards-row-title { font-size: 11px; }
+    .vacancy-card { width: 155px; padding: 12px; }
+    .vacancy-title { font-size: 12px; }
+    .vacancy-salary { font-size: 11px; }
+    .resume-card { width: 210px; padding: 12px; }
+    .resume-photo { width: 44px; height: 52px; }
+    .resume-name { font-size: 11.5px; }
+    .resume-spec { font-size: 10.5px; }
+    .resume-meta span { font-size: 10px; }
+    .horoscope-card { width: 230px; padding: 14px; }
+    .horoscope-sign { font-size: 13px; }
+    .horoscope-text { font-size: 11.5px; }
+
+    /* Пресс-релизы */
+    .press-item { padding: 12px; gap: 10px; }
+    .press-thumb { width: 70px; height: 54px; border-radius: 6px; }
+    .press-title { font-size: 13px; }
+    .press-cat { font-size: 9px; gap: 5px; }
+    .press-footer { font-size: 10px; gap: 6px; margin-top: 6px; }
+  }
+
+  /* ══════════════════════════════════════════════
+     МАЛЕНЬКИЕ ТЕЛЕФОНЫ 390px
+  ══════════════════════════════════════════════ */
+  @media (max-width: 390px) {
+    .ratings-section, .birthdays-section, .jobs-section, .cards-row-section {
+      padding: 0 12px;
+      margin-top: 28px;
+    }
+    .rating-person-photo, .birthday-photo { width: 52px; height: 64px; }
+    .rating-person-name, .birthday-name { font-size: 12px; }
+    .vacancy-card { width: 140px; }
+    .resume-card { width: 195px; }
+    .horoscope-card { width: 210px; }
+    .press-thumb { display: none; }
+    .jobs-cat-item { font-size: 11.5px; }
   }
 
 </style>
@@ -1309,9 +1376,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Мой кабинет
       </a>
+      <span style="width:1px;height:14px;background:rgba(0,0,0,0.12);flex-shrink:0"></span>
       <a href="https://globalmsk.ru/subscribe" class="btn-subscribe">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Подписка
+        Подписка на рассылку
       </a>
     </div>
 
@@ -1403,7 +1471,7 @@
           Ликсутов рассказал о передаче в Музей транспорта Москвы уникальных исторических материалов
         </a>
         <div class="hero-meta">
-          <span class="hero-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span>
+          <span class="hero-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span>
           <span class="hero-views">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             1 204
@@ -1476,7 +1544,7 @@
       <div class="news-card-title">В Подмосковье более 80 млн рублей вложили в платформу для создания ИИ-помощников</div>
       <div class="news-card-text">Компания «Хоппер ИТ» является разработчиком корпоративных информационных систем. Новое решение — платформа Unica AI — позволит запускать ИИ-сценарии без передачи данных в публичные сервисы.</div>
       <div class="news-card-footer">
-        <span class="news-card-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта</span>
+        <span class="news-card-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта</span>
         <span class="news-card-views">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           589
@@ -1494,7 +1562,7 @@
       <div class="news-card-title">Новые сроки оплаты ЖКХ: какие изменения начнут действовать в России с марта</div>
       <div class="news-card-text">В новых правилах нет ничего непонятного или критичного. Многие жители России получают заработные платы 5–15 числа, и перенос сроков станет оптимальным решением.</div>
       <div class="news-card-footer">
-        <span class="news-card-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта</span>
+        <span class="news-card-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта</span>
         <span class="news-card-views">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           1 102
@@ -1512,7 +1580,7 @@
       <div class="news-card-title">Россия нацелена на дисконт на нефть в 10 долларов за баррель</div>
       <div class="news-card-text">В лучшие времена до введения санкций скидка на топливо была на уровне около 10 долларов за бочку. Мы стремимся снизить скидку до такого же значения.</div>
       <div class="news-card-footer">
-        <span class="news-card-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта</span>
+        <span class="news-card-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта</span>
         <span class="news-card-views">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           847
@@ -1530,7 +1598,7 @@
       <div class="news-card-title">«Эксперт РА»: займы в ломбардах всё чаще становятся альтернативой банковскому кредиту</div>
       <div class="news-card-text">Микрозаймы и займы в ломбардах не могут полноценно заменить потребительское банковское кредитование, но их объём продолжает расти на фоне роста ставок.</div>
       <div class="news-card-footer">
-        <span class="news-card-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта</span>
+        <span class="news-card-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта</span>
         <span class="news-card-views">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           413
@@ -1604,25 +1672,25 @@
             <a href="https://globalmsk.ru/firmnews/id/1" class="press-item">
         <img class="press-thumb" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=90&h=68&fit=crop" alt="">
         <div class="press-body">
-          <div class="press-cat" style="display:flex;align-items:center;gap:7px"><span class="press-num">1</span> Банки и Финансы</div>
+          <div class="press-cat">Банки и Финансы</div>
           <div class="press-title">Группа ББР Банка в Telegram вошла в топ-25 независимого рейтинга финансовых каналов</div>
-          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span><span>·</span><span>284 просмотра</span></div>
+          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span><span>·</span><span>284 просмотра</span></div>
         </div>
       </a>
       <a href="https://globalmsk.ru/firmnews/id/2" class="press-item">
         <img class="press-thumb" src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=90&h=68&fit=crop" alt="">
         <div class="press-body">
-          <div class="press-cat" style="display:flex;align-items:center;gap:7px"><span class="press-num">2</span> Агропром</div>
+          <div class="press-cat">Агропром</div>
           <div class="press-title">Ярославская область на 38% нарастила объём агроэкспорта в прошлом году</div>
-          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span><span>·</span><span>192 просмотра</span></div>
+          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span><span>·</span><span>192 просмотра</span></div>
         </div>
       </a>
       <a href="https://globalmsk.ru/firmnews/id/3" class="press-item">
         <img class="press-thumb" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=90&h=68&fit=crop" alt="">
         <div class="press-body">
-          <div class="press-cat" style="display:flex;align-items:center;gap:7px"><span class="press-num">3</span> Инвестиции</div>
+          <div class="press-cat">Инвестиции</div>
           <div class="press-title">В Сочи для инвесторов утвердили механизм инфраструктурного сбора</div>
-          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span><span>·</span><span>341 просмотр</span></div>
+          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span><span>·</span><span>341 просмотр</span></div>
         </div>
       </a>
     </div>
@@ -1805,7 +1873,7 @@
         <div class="birthday-name">ГОРБАЧЁВ Михаил Сергеевич</div>
         <div class="birthday-role">1-й Президент СССР</div>
       </div>
-      <div class="birthday-date"><span class="birthday-date-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2</span><span class="birthday-date-mon">МАРТ</span></div>
+      <div class="birthday-date"><span class="birthday-date-day">2</span><span class="birthday-date-mon">МАРТА</span></div>
     </a>
     <a href="https://globalmsk.ru/person/id/13612" class="birthday-card">
       <img class="birthday-photo" src="https://globalmsk.ru/usr/person/7413-14722087260.webp" alt="ПАК Денис Климентьевич">
@@ -1813,7 +1881,7 @@
         <div class="birthday-name">ПАК Денис Климентьевич</div>
         <div class="birthday-role">Директор Департамента развития внутренней торговли Минпромторг</div>
       </div>
-      <div class="birthday-date"><span class="birthday-date-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3</span><span class="birthday-date-mon">МАРТ</span></div>
+      <div class="birthday-date"><span class="birthday-date-day">3</span><span class="birthday-date-mon">МАРТА</span></div>
     </a>
     <a href="https://globalmsk.ru/person/id/1337" class="birthday-card">
       <img class="birthday-photo" src="https://globalmsk.ru/usr/person/person-17642297260.webp" alt="СОЛОМИНА Мария Антониновна">
@@ -1821,7 +1889,7 @@
         <div class="birthday-name">СОЛОМИНА Мария Антониновна</div>
         <div class="birthday-role">Актриса</div>
       </div>
-      <div class="birthday-date"><span class="birthday-date-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>4</span><span class="birthday-date-mon">МАРТ</span></div>
+      <div class="birthday-date"><span class="birthday-date-day">4</span><span class="birthday-date-mon">МАРТА</span></div>
     </a>
     <a href="https://globalmsk.ru/person/id/4674" class="birthday-card">
       <img class="birthday-photo" src="https://globalmsk.ru/usr/person/person-17682039860.webp" alt="СМОЛКИН Борис Григорьевич">
@@ -1829,7 +1897,7 @@
         <div class="birthday-name">СМОЛКИН Борис Григорьевич</div>
         <div class="birthday-role">Актёр</div>
       </div>
-      <div class="birthday-date"><span class="birthday-date-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>5</span><span class="birthday-date-mon">МАРТ</span></div>
+      <div class="birthday-date"><span class="birthday-date-day">5</span><span class="birthday-date-mon">МАРТА</span></div>
     </a>
     <a href="https://globalmsk.ru/person/id/5720" class="birthday-card">
       <img class="birthday-photo" src="https://globalmsk.ru/usr/person/7413-15061299280.webp" alt="ЩЕЛЬЦИН Арсений Александрович">
@@ -1837,7 +1905,7 @@
         <div class="birthday-name">ЩЕЛЬЦИН Арсений Александрович</div>
         <div class="birthday-role">Директор ИРИ</div>
       </div>
-      <div class="birthday-date"><span class="birthday-date-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>7</span><span class="birthday-date-mon">МАРТ</span></div>
+      <div class="birthday-date"><span class="birthday-date-day">7</span><span class="birthday-date-mon">МАРТА</span></div>
     </a>
     <a href="https://globalmsk.ru/person/id/14121" class="birthday-card">
       <img class="birthday-photo" src="https://globalmsk.ru/usr/person/7413-15494212430.webp" alt="МЕЛЬНИКОВ Матвей Александрович (Мот)">
@@ -1845,7 +1913,7 @@
         <div class="birthday-name">МЕЛЬНИКОВ Матвей Александрович (Мот)</div>
         <div class="birthday-role">Певец</div>
       </div>
-      <div class="birthday-date"><span class="birthday-date-day"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;vertical-align:middle;opacity:0.5;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>8</span><span class="birthday-date-mon">МАРТ</span></div>
+      <div class="birthday-date"><span class="birthday-date-day">8</span><span class="birthday-date-mon">МАРТА</span></div>
     </a>
   </div>
 </section>

@@ -486,11 +486,12 @@
   .quote-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(8,145,178,0.4); transform: translateY(-3px); }
   .quote-person { display: flex; gap: 14px; align-items: center; margin-bottom: 16px; }
   .quote-avatar {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
+    width: 50px;
+    height: 60px;
+    border-radius: 10px;
     object-fit: cover;
-    border: 2px solid rgba(0,198,167,0.5);
+    object-position: top;
+    border: 2px solid rgba(0,198,167,0.3);
     background: rgba(255,255,255,0.1);
     flex-shrink: 0;
   }
@@ -574,6 +575,8 @@
   .press-item:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); border-color: rgba(8,145,178,0.2); transform: translateX(4px); }
 
   .press-body { flex: 1; }
+  .press-item-compact { padding: 10px 14px; }
+  .press-item-compact .press-title { font-size: 13.5px; margin-bottom: 4px; }
   .press-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
   .press-title { font-size: 15px; font-weight: 600; line-height: 1.4; color: var(--ink); margin-bottom: 8px; }
   .press-text { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
@@ -1075,7 +1078,7 @@
   .rating-person-body{flex:1;min-width:0;}
   .rating-person-name,.birthday-name{font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:3px}
   .rating-person-role,.birthday-role{font-size:11.5px;color:var(--muted);line-height:1.4}
-  .birthday-photo{width:81px;height:99px;object-fit:cover;border-radius:10px;flex-shrink:0;background:var(--light)}
+  .birthday-photo{width:64px;height:78px;object-fit:cover;border-radius:8px;flex-shrink:0;background:var(--light)}
   .birthday-body{flex:1;min-width:0}
   .birthday-date{display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;background:var(--grad);border-radius:10px;width:44px;height:48px;color:white;gap:0}
   .birthday-date-day{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;line-height:1}
@@ -1104,7 +1107,7 @@
   .cards-scroll::-webkit-scrollbar{display:none}
   .vacancy-card{flex-shrink:0;width:185px;background:var(--light);border-radius:12px;padding:16px;text-decoration:none;color:inherit;transition:all .25s;border:1px solid rgba(0,0,0,.06);display:flex;flex-direction:column;gap:10px}
   .vacancy-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08);border-color:rgba(8,145,178,.2);background:white}
-  .vacancy-logo-box{width:40px;height:40px;border-radius:8px;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .vacancy-logo-box{width:50px;height:50px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;font-weight:800;color:white;font-family:"Manrope",sans-serif;letter-spacing:-0.5px}
   .vacancy-logo-box img{width:28px;height:28px;object-fit:contain}
   .vacancy-title{font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;flex:1}
   .vacancy-salary{font-size:12px;font-weight:700;color:var(--accent)}
@@ -1287,6 +1290,55 @@
     .jobs-cat-item { font-size: 11.5px; }
   }
 
+  /* ─── AD BLOCKS ─── */
+  .ad-block {
+    max-width: 1280px;
+    margin: 24px auto;
+    padding: 0 32px;
+  }
+  .ad-banner {
+    background: linear-gradient(135deg, #f8fafc, #eef2f7);
+    border: 1px dashed rgba(0,0,0,0.12);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90px;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    gap: 8px;
+  }
+  .ad-banner-wide { min-height: 120px; }
+  @media (max-width: 640px) {
+    .ad-block { padding: 0 16px; margin: 16px auto; }
+    .ad-banner { min-height: 60px; font-size: 10px; }
+  }
+
+  /* ─── ADD BUTTONS ─── */
+  .header-add-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border-radius: 7px;
+    background: rgba(8,145,178,0.08);
+    border: 1px solid rgba(8,145,178,0.2);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .header-add-btn:hover { background: rgba(8,145,178,0.15); border-color: var(--accent); }
+  .header-add-btn svg { width: 12px; height: 12px; }
+  .header-add-group { display: flex; gap: 6px; flex-shrink: 0; }
+  @media (max-width: 1024px) { .header-add-group { display: none; } }
+
 </style>
 </head>
 <body>
@@ -1362,13 +1414,15 @@
   </div>
 </div>
 
+<!-- AD TOP -->
+<div class="ad-block"><div class="ad-banner ad-banner-wide"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> Реклама 970×90</div></div>
 <!-- HEADER -->
 <header>
   <div class="header-inner">
     <a href="https://globalmsk.ru" class="logo">
-      <div class="logo-mark"><img src="logo.gif" alt="ГлобалМСК логотип"></div>
+      <div class="logo-mark"><picture><source media="(max-width:1024px)" srcset="logo.gif" type="image/gif" class="logo-static"><img src="logo.gif" alt="ГлобалМСК логотип" id="logoImg"></picture></div>
       <div class="logo-text">
-        <span class="logo-name">ГлобалМСК.ру</span>
+        <span class="logo-name"><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">ГЛОБАЛ</span><span style="color:var(--ink)">МСК.РУ</span></span>
         <span class="logo-sub">Московский бизнес портал</span>
       </div>
     </a>
@@ -1387,6 +1441,20 @@
       </button>
     </div>
 
+    <div class="header-add-group">
+      <a href="https://globalmsk.ru/firmnews/add" class="header-add-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Пресс-релиз
+      </a>
+      <a href="https://globalmsk.ru/vacancy/add" class="header-add-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Вакансию
+      </a>
+      <a href="https://globalmsk.ru/person/add" class="header-add-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Персону
+      </a>
+    </div>
     <div class="header-auth">
       <a href="https://globalmsk.ru/login" class="btn-cabinet">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -1414,9 +1482,9 @@
   <div class="mobile-nav-panel">
     <div class="mobile-nav-head">
       <a href="https://globalmsk.ru" class="logo">
-        <div class="logo-mark"><img src="logo.gif" alt="ГлобалМСК логотип"></div>
+        <div class="logo-mark"><picture><source media="(max-width:1024px)" srcset="logo.gif" type="image/gif" class="logo-static"><img src="logo.gif" alt="ГлобалМСК логотип" id="logoImg"></picture></div>
         <div class="logo-text">
-          <span class="logo-name">ГлобалМСК.ру</span>
+          <span class="logo-name"><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">ГЛОБАЛ</span><span style="color:var(--ink)">МСК.РУ</span></span>
           <span class="logo-sub">Московский бизнес портал</span>
         </div>
       </a>
@@ -1456,6 +1524,17 @@
         Гороскопы
       </a>
     </nav>
+    <!-- Auth buttons in mobile nav -->
+    <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(0,0,0,0.07);margin-top:8px">
+      <a href="https://globalmsk.ru/login" style="display:flex;align-items:center;gap:12px;padding:14px 24px;font-size:14px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.05);transition:background 0.2s" onmouseover="this.style.background='rgba(8,145,178,0.05)'" onmouseout="this.style.background=''">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:0.5;flex-shrink:0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Мой кабинет
+      </a>
+      <a href="https://globalmsk.ru/subscribe" style="display:flex;align-items:center;gap:12px;padding:14px 24px;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(8,145,178,0.05)'" onmouseout="this.style.background=''">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:0.6;flex-shrink:0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Подписка на рассылку
+      </a>
+    </div>
     <div class="mobile-nav-city">
       <select onchange="if(this.value) location.href = this.value">
         <option value="">🌍 Выберите город</option>
@@ -1470,6 +1549,17 @@
         <option value="http://www.global-kazan.ru">Казань</option>
         <option value="http://www.globalufa.ru">Уфа</option>
       </select>
+    </div>
+    <!-- Auth in mobile nav -->
+    <div style="padding:16px 20px;border-top:1px solid rgba(0,0,0,0.07);display:flex;flex-direction:column;gap:0">
+      <a href="https://globalmsk.ru/login" style="display:flex;align-items:center;gap:12px;padding:13px 4px;font-size:14px;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.06)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:0.45;flex-shrink:0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Мой кабинет
+      </a>
+      <a href="https://globalmsk.ru/subscribe" style="display:flex;align-items:center;gap:12px;padding:13px 4px;font-size:14px;font-weight:600;color:var(--accent);text-decoration:none">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Подписка на рассылку
+      </a>
     </div>
   </div>
 </div>
@@ -1487,7 +1577,7 @@
           Ликсутов рассказал о передаче в Музей транспорта Москвы уникальных исторических материалов
         </a>
         <div class="hero-meta">
-          <span class="hero-date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span>
+          <span class="hero-date">2 марта 2026</span>
           <span class="hero-views">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
             1 204
@@ -1624,6 +1714,8 @@
   </a>
 </div>
 
+<!-- AD MID -->
+<div class="ad-block"><div class="ad-banner"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> Реклама 728×90</div></div>
 <!-- QUOTES SECTION -->
 <div class="quotes-section anim-5">
   <div class="quotes-inner">
@@ -1684,8 +1776,9 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
-    <div class="press-list anim-6">
-            <a href="https://globalmsk.ru/firmnews/id/1" class="press-item">
+        <div class="press-list anim-6">
+      <!-- 3 карточки с превью -->
+      <a href="https://globalmsk.ru/firmnews/id/1" class="press-item">
         <img class="press-thumb" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=90&h=68&fit=crop" alt="">
         <div class="press-body">
           <div class="press-cat">Банки и Финансы</div>
@@ -1707,6 +1800,42 @@
           <div class="press-cat">Инвестиции</div>
           <div class="press-title">В Сочи для инвесторов утвердили механизм инфраструктурного сбора</div>
           <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span><span>·</span><span>341 просмотр</span></div>
+        </div>
+      </a>
+      <!-- 5 строк без фото -->
+      <a href="https://globalmsk.ru/firmnews/id/4" class="press-item press-item-compact">
+        <div class="press-body">
+          <div class="press-cat">Технологии</div>
+          <div class="press-title">Отечественная платформа ИИ-помощников получила 80 млн рублей инвестиций</div>
+          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3 марта 2026</span><span>·</span><span>128 просмотров</span></div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/firmnews/id/5" class="press-item press-item-compact">
+        <div class="press-body">
+          <div class="press-cat">ЖКХ</div>
+          <div class="press-title">Новые сроки оплаты ЖКХ вступают в силу с марта 2026 года</div>
+          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3 марта 2026</span><span>·</span><span>215 просмотров</span></div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/firmnews/id/6" class="press-item press-item-compact">
+        <div class="press-body">
+          <div class="press-cat">Энергетика</div>
+          <div class="press-title">Россия нацелена на снижение дисконта нефти до 10 долларов за баррель</div>
+          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3 марта 2026</span><span>·</span><span>97 просмотров</span></div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/firmnews/id/7" class="press-item press-item-compact">
+        <div class="press-body">
+          <div class="press-cat">Финансы</div>
+          <div class="press-title">ЕС рассматривает запрет криптовалютных операций с российскими компаниями</div>
+          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>4 марта 2026</span><span>·</span><span>163 просмотра</span></div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/firmnews/id/8" class="press-item press-item-compact">
+        <div class="press-body">
+          <div class="press-cat">Рынок труда</div>
+          <div class="press-title">Индекс деловой активности ГлобалМедиа PMI за январь 2026 года</div>
+          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>4 марта 2026</span><span>·</span><span>441 просмотр</span></div>
         </div>
       </a>
     </div>
@@ -1735,49 +1864,7 @@
         </select>
       </div>
     </div>
-
-    <!-- Rating widget -->
-    <div class="sidebar-widget">
-      <div class="widget-header">
-        Рейтинг персон
-        <a href="https://globalmsk.ru/person">Все →</a>
-      </div>
-      <div class="rating-list">
-        <a href="https://globalmsk.ru/person/id/1541" class="rating-item">
-          <span class="rating-rank">1</span>
-          <img class="rating-avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face" alt="">
-          <div>
-            <div class="rating-name">Новак А.В.</div>
-            <div class="rating-org">Вице-премьер РФ</div>
-          </div>
-        </a>
-        <a href="https://globalmsk.ru/person/id/8995" class="rating-item">
-          <span class="rating-rank">2</span>
-          <img class="rating-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="">
-          <div>
-            <div class="rating-name">Кричевский А.Н.</div>
-            <div class="rating-org">Экономист</div>
-          </div>
-        </a>
-        <a href="https://globalmsk.ru/person/id/9139" class="rating-item">
-          <span class="rating-rank">3</span>
-          <img class="rating-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face" alt="">
-          <div>
-            <div class="rating-name">Зиновьева Е.А.</div>
-            <div class="rating-org">Hopper IT</div>
-          </div>
-        </a>
-        <a href="https://globalmsk.ru/person/id/12059" class="rating-item">
-          <span class="rating-rank">4</span>
-          <img class="rating-avatar" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=face" alt="">
-          <div>
-            <div class="rating-name">Гордиенко М.</div>
-            <div class="rating-org">Эксперт РА</div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
+</div>
 </div>
 
 
@@ -1994,27 +2081,27 @@
   <div class="cards-row-wrap">
     <div class="cards-scroll">
       <a href="https://globalmsk.ru/vacancy" class="vacancy-card">
-        <div class="vacancy-logo-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M2 8h20"/></svg></div>
+        <div class="vacancy-logo-box" style="background:linear-gradient(135deg,#0891b2,#0066cc)">СМИ</div>
         <div class="vacancy-title">Региональный представитель СМИ в г. Москва</div>
         <div class="vacancy-salary">50 000 руб.</div>
       </a>
       <a href="https://globalmsk.ru/vacancy" class="vacancy-card">
-        <div class="vacancy-logo-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="vacancy-logo-box" style="background:linear-gradient(135deg,#059669,#047857)">АГ</div>
         <div class="vacancy-title">Агент по привлечению клиентов (удалённая работа)</div>
         <div class="vacancy-salary">15 000 руб.</div>
       </a>
       <a href="https://globalmsk.ru/vacancy" class="vacancy-card">
-        <div class="vacancy-logo-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="vacancy-logo-box" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)">МЛ</div>
         <div class="vacancy-title">Региональный менеджер по продажам рекламы</div>
         <div class="vacancy-salary">50 000 руб.</div>
       </a>
       <a href="https://globalmsk.ru/vacancy" class="vacancy-card">
-        <div class="vacancy-logo-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22V12M3 7l9-5 9 5M3 7v10l9 5 9-5V7"/><path d="M6 10.5 3 12l3 1.5M18 10.5l3 1.5-3 1.5"/></svg></div>
+        <div class="vacancy-logo-box" style="background:linear-gradient(135deg,#dc2626,#b91c1c)">ЮР</div>
         <div class="vacancy-title">Начальник отдела по правовым вопросам</div>
         <div class="vacancy-salary">от договора</div>
       </a>
       <a href="https://globalmsk.ru/vacancy" class="vacancy-card">
-        <div class="vacancy-logo-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <div class="vacancy-logo-box" style="background:linear-gradient(135deg,#d97706,#b45309)">КМ</div>
         <div class="vacancy-title">Менеджер по работе с клиентами</div>
         <div class="vacancy-salary">45 000 руб.</div>
       </a>
@@ -2111,9 +2198,9 @@
     <div class="footer-top">
       <div class="footer-brand">
         <a href="https://globalmsk.ru" class="logo">
-          <div class="logo-mark"><img src="logo.gif" alt="ГлобалМСК логотип"></div>
+          <div class="logo-mark"><picture><source media="(max-width:1024px)" srcset="logo.gif" type="image/gif" class="logo-static"><img src="logo.gif" alt="ГлобалМСК логотип" id="logoImg"></picture></div>
           <div class="logo-text">
-            <span class="logo-name">ГлобалМСК.ру</span>
+            <span class="logo-name"><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">ГЛОБАЛ</span><span style="color:var(--ink)">МСК.РУ</span></span>
             <span class="logo-sub">Московский бизнес портал</span>
           </div>
         </a>

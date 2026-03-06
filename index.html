@@ -84,6 +84,9 @@
   @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
   .topbar-date { white-space: nowrap; color: rgba(255,255,255,0.35); }
+  .fn-grad, .fn-white, .fn-dark {
+    font-weight: 800;
+  }
   .fn-grad {
     background: var(--grad);
     -webkit-background-clip: text;
@@ -136,28 +139,25 @@
   .logo-text {
     display: flex;
     flex-direction: column;
-    line-height: 1.1;
-    gap: 2px;
+    line-height: 1;
+    gap: 4px;
   }
   .logo-name {
     font-family: 'Playfair Display', serif;
-    font-size: 19px;
-    font-weight: 700;
-    color: var(--ink);
-    letter-spacing: -0.3px;
+    font-size: 20px;
+    font-weight: 800;
     white-space: nowrap;
     display: block;
+    letter-spacing: 0.5px;
   }
   .logo-sub {
-    font-size: 8.5px;
+    font-size: 7.5px;
     text-transform: uppercase;
     color: var(--muted);
     white-space: nowrap;
     display: block;
-    text-align: justify;
-    text-align-last: justify;
-    width: 100%;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.25em;
+    transform-origin: left center;
   }
 
   nav {
@@ -548,48 +548,180 @@
   .topic-pill:hover { background: var(--grad); color: white; border-color: transparent; }
 
   /* ─── PRESS RELEASES ─── */
-  .press-grid {
+  /* ─── PRESS TICKER ─── */
+  .press-ticker-section {
     max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 32px 56px;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 24px;
+    margin: 0 auto 0;
+    padding: 0 32px;
+  }
+    .press-ticker-wrap {
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.07);
+    background: var(--white);
+    position: relative;
+    cursor: default;
+  }
+  /* Fade edges */
+  .press-ticker-wrap::before,
+  .press-ticker-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .press-ticker-wrap::before { left: 0; background: linear-gradient(to right, white 20%, transparent); }
+  .press-ticker-wrap::after  { right: 0; background: linear-gradient(to left, white 20%, transparent); }
+
+  .press-ticker-track {
+    display: flex;
+    gap: 0;
+    animation: pressTicker 40s linear infinite;
+    width: max-content;
+  }
+  /* Пауза при наведении на весь враппер — срабатывает на любую карточку */
+  .press-ticker-wrap:hover .press-ticker-track { animation-play-state: paused; }
+  @keyframes pressTicker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
-  .press-list { display: flex; flex-direction: column; gap: 12px; }
-  .press-item {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    padding: 16px;
-    background: var(--white);
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.25s;
-    border: 1px solid rgba(0,0,0,0.06);
+  /* Карточка */
+  .press-card {
+    flex-shrink: 0;
+    width: 280px;
     text-decoration: none;
     color: inherit;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(0,0,0,0.06);
+    transition: background 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
   }
-  .press-thumb {
-    width: 90px;
-    height: 68px;
-    object-fit: cover;
-    border-radius: 8px;
-    flex-shrink: 0;
-    background: var(--light);
+  .press-card:hover {
+    background: rgba(8,145,178,0.05);
+    box-shadow: inset 0 0 0 2px rgba(8,145,178,0.22);
+    z-index: 3;
   }
-  .press-item:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); border-color: rgba(8,145,178,0.2); transform: translateX(4px); }
+  /* Акцентная полоска снизу */
+  .press-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--grad);
+    transform: scaleX(0);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    transform-origin: left;
+    z-index: 5;
+  }
+  .press-card:hover::after { transform: scaleX(1); }
 
-  .press-body { flex: 1; }
-  .press-item-compact { padding: 10px 14px; }
-  .press-item-compact .press-title { font-size: 13.5px; margin-bottom: 4px; }
-  .press-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-  .press-title { font-size: 15px; font-weight: 600; line-height: 1.4; color: var(--ink); margin-bottom: 8px; }
-  .press-text { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
-  .press-footer { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 11px; color: var(--muted); }
-  .press-footer span { display: flex; align-items: center; gap: 3px; }
-  .press-footer svg { width: 11px; height: 11px; flex-shrink: 0; }
+  .press-card-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+    transition: transform 0.45s ease;
+  }
+  .press-card:hover .press-card-img { transform: scale(1.06); }
+  .press-card-img-wrap {
+    overflow: hidden;
+    flex-shrink: 0;
+    height: 160px;
+    position: relative;
+  }
+  /* Оверлей при hover */
+  .press-card-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(8,145,178,0.22), rgba(0,0,0,0.08));
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .press-card:hover .press-card-img-wrap::after { opacity: 1; }
+  /* Иконка стрелки на фото при hover */
+  .press-card-img-wrap::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.94) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230891b2' stroke-width='2.5'%3E%3Cpath d='M5 12h14M12 5l7 7-7 7'/%3E%3C/svg%3E") center/18px no-repeat;
+    opacity: 0;
+    transition: opacity 0.25s, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 2;
+    pointer-events: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  }
+  .press-card:hover .press-card-img-wrap::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* Категория поверх фото */
+  .press-card-cat {
+    position: absolute;
+    bottom: 8px; left: 10px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--grad);
+    padding: 3px 8px;
+    border-radius: 20px;
+    z-index: 3;
+    transition: transform 0.25s;
+  }
+  .press-card:hover .press-card-cat { transform: translateY(-2px); }
+  .press-card-body {
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+  .press-card-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--ink);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s;
+  }
+  .press-card:hover .press-card-title { color: var(--accent); }
+  .press-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: auto;
+  }
+  .press-card-meta svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+  /* Адаптив */
+  @media (max-width: 640px) {
+    .press-ticker-section { padding: 0 16px; }
+    .press-card { width: 220px; }
+    .press-card-img-wrap { height: 130px; }
+    .press-card-img { height: 130px; }
+    .press-card-title { font-size: 12.5px; -webkit-line-clamp: 2; }
+    .press-ticker-track { animation-duration: 28s; }
+  }
+
 
   /* ─── SIDEBAR ─── */
   .sidebar { display: flex; flex-direction: column; gap: 24px; }
@@ -1982,106 +2114,181 @@
 </div>
 
 <!-- PRESS RELEASES + SIDEBAR -->
-<div class="press-grid">
-  <div>
-    <div class="section-header anim-5" style="padding:0; margin-bottom:20px;">
-      <span class="section-title">Пресс-релизы</span>
-      <span class="section-rule"></span>
-      <a href="https://globalmsk.ru/firmnews" class="section-link">
-        Все релизы
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-        <div class="press-list anim-6">
-      <!-- 3 карточки с превью -->
-      <a href="https://globalmsk.ru/firmnews/id/1" class="press-item">
-        <img class="press-thumb" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=90&h=68&fit=crop" alt="">
-        <div class="press-body">
-          <div class="press-cat">Банки и Финансы</div>
-          <div class="press-title">Группа ББР Банка в Telegram вошла в топ-25 независимого рейтинга финансовых каналов</div>
-          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span><span>·</span><span>284 просмотра</span></div>
+<!-- ПРЕСС-РЕЛИЗЫ ЛЕНТА -->
+<section class="press-ticker-section anim-5">
+  <div class="section-header" style="padding:0; margin-bottom:20px;">
+    <span class="section-title">Пресс-релизы</span>
+    <span class="section-rule"></span>
+    <a href="https://globalmsk.ru/firmnews" class="section-link">
+      Все релизы
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="press-ticker-wrap">
+    <div class="press-ticker-track">
+      <a href="https://globalmsk.ru/firmnews/id/1" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Банки и Финансы</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">Группа ББР Банка в Telegram вошла в топ-25 независимого рейтинга финансовых каналов</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026<span style="opacity:.4">·</span>284 просмотра</div>
         </div>
       </a>
-      <a href="https://globalmsk.ru/firmnews/id/2" class="press-item">
-        <img class="press-thumb" src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=90&h=68&fit=crop" alt="">
-        <div class="press-body">
-          <div class="press-cat">Агропром</div>
-          <div class="press-title">Ярославская область на 38% нарастила объём агроэкспорта в прошлом году</div>
-          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span><span>·</span><span>192 просмотра</span></div>
+      <a href="https://globalmsk.ru/firmnews/id/2" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Агропром</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">Ярославская область на 38% нарастила объём агроэкспорта в прошлом году</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026<span style="opacity:.4">·</span>192 просмотра</div>
         </div>
       </a>
-      <a href="https://globalmsk.ru/firmnews/id/3" class="press-item">
-        <img class="press-thumb" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=90&h=68&fit=crop" alt="">
-        <div class="press-body">
-          <div class="press-cat">Инвестиции</div>
-          <div class="press-title">В Сочи для инвесторов утвердили механизм инфраструктурного сбора</div>
-          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026</span><span>·</span><span>341 просмотр</span></div>
+      <a href="https://globalmsk.ru/firmnews/id/3" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Инвестиции</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">В Сочи для инвесторов утвердили механизм инфраструктурного сбора</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026<span style="opacity:.4">·</span>341 просмотр</div>
         </div>
       </a>
-      <!-- 5 строк без фото -->
-      <a href="https://globalmsk.ru/firmnews/id/4" class="press-item press-item-compact">
-        <div class="press-body">
-          <div class="press-cat">Технологии</div>
-          <div class="press-title">Отечественная платформа ИИ-помощников получила 80 млн рублей инвестиций</div>
-          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3 марта 2026</span><span>·</span><span>128 просмотров</span></div>
+      <a href="https://globalmsk.ru/firmnews/id/4" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Технологии</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">Отечественная платформа ИИ-помощников получила 80 млн рублей инвестиций</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3 марта 2026<span style="opacity:.4">·</span>128 просмотров</div>
         </div>
       </a>
-      <a href="https://globalmsk.ru/firmnews/id/5" class="press-item press-item-compact">
-        <div class="press-body">
-          <div class="press-cat">ЖКХ</div>
-          <div class="press-title">Новые сроки оплаты ЖКХ вступают в силу с марта 2026 года</div>
-          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3 марта 2026</span><span>·</span><span>215 просмотров</span></div>
+      <a href="https://globalmsk.ru/firmnews/id/5" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">ЖКХ</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">Новые сроки оплаты ЖКХ вступают в силу с марта 2026 года</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3 марта 2026<span style="opacity:.4">·</span>215 просмотров</div>
         </div>
       </a>
-      <a href="https://globalmsk.ru/firmnews/id/6" class="press-item press-item-compact">
-        <div class="press-body">
-          <div class="press-cat">Энергетика</div>
-          <div class="press-title">Россия нацелена на снижение дисконта нефти до 10 долларов за баррель</div>
-          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3 марта 2026</span><span>·</span><span>97 просмотров</span></div>
+      <a href="https://globalmsk.ru/firmnews/id/6" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Энергетика</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">Россия нацелена на снижение дисконта нефти до 10 долларов за баррель</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3 марта 2026<span style="opacity:.4">·</span>97 просмотров</div>
         </div>
       </a>
-      <a href="https://globalmsk.ru/firmnews/id/7" class="press-item press-item-compact">
-        <div class="press-body">
-          <div class="press-cat">Финансы</div>
-          <div class="press-title">ЕС рассматривает запрет криптовалютных операций с российскими компаниями</div>
-          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>4 марта 2026</span><span>·</span><span>163 просмотра</span></div>
+      <a href="https://globalmsk.ru/firmnews/id/7" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Финансы</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">ЕС рассматривает запрет криптовалютных операций с российскими компаниями</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>4 марта 2026<span style="opacity:.4">·</span>163 просмотра</div>
         </div>
       </a>
-      <a href="https://globalmsk.ru/firmnews/id/8" class="press-item press-item-compact">
-        <div class="press-body">
-          <div class="press-cat">Рынок труда</div>
-          <div class="press-title">Индекс деловой активности ГлобалМедиа PMI за январь 2026 года</div>
-          <div class="press-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>4 марта 2026</span><span>·</span><span>441 просмотр</span></div>
+      <a href="https://globalmsk.ru/firmnews/id/8" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Рынок труда</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">Индекс деловой активности ГлобалМедиа PMI за январь 2026 года</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>4 марта 2026<span style="opacity:.4">·</span>441 просмотр</div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/firmnews/id/1" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Банки и Финансы</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">Группа ББР Банка в Telegram вошла в топ-25 независимого рейтинга финансовых каналов</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026<span style="opacity:.4">·</span>284 просмотра</div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/firmnews/id/2" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Агропром</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">Ярославская область на 38% нарастила объём агроэкспорта в прошлом году</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026<span style="opacity:.4">·</span>192 просмотра</div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/firmnews/id/3" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Инвестиции</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">В Сочи для инвесторов утвердили механизм инфраструктурного сбора</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 марта 2026<span style="opacity:.4">·</span>341 просмотр</div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/firmnews/id/4" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Технологии</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">Отечественная платформа ИИ-помощников получила 80 млн рублей инвестиций</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3 марта 2026<span style="opacity:.4">·</span>128 просмотров</div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/firmnews/id/5" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">ЖКХ</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">Новые сроки оплаты ЖКХ вступают в силу с марта 2026 года</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3 марта 2026<span style="opacity:.4">·</span>215 просмотров</div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/firmnews/id/6" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Энергетика</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">Россия нацелена на снижение дисконта нефти до 10 долларов за баррель</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3 марта 2026<span style="opacity:.4">·</span>97 просмотров</div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/firmnews/id/7" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Финансы</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">ЕС рассматривает запрет криптовалютных операций с российскими компаниями</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>4 марта 2026<span style="opacity:.4">·</span>163 просмотра</div>
+        </div>
+      </a>
+      <a href="https://globalmsk.ru/firmnews/id/8" class="press-card">
+        <div class="press-card-img-wrap">
+          <img class="press-card-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=280&h=160&fit=crop" alt="">
+          <span class="press-card-cat">Рынок труда</span>
+        </div>
+        <div class="press-card-body">
+          <div class="press-card-title">Индекс деловой активности ГлобалМедиа PMI за январь 2026 года</div>
+          <div class="press-card-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>4 марта 2026<span style="opacity:.4">·</span>441 просмотр</div>
         </div>
       </a>
     </div>
   </div>
-
-  <!-- SIDEBAR -->
-  <div class="sidebar anim-5">
-    <!-- City select -->
-    <div class="sidebar-widget">
-      <div class="widget-header">
-        🌍 Ваш город
-      </div>
-      <div class="city-select-widget">
-        <select class="city-select" onchange="if(this.value) location.href = this.value">
-          <option value="">Выберите город</option>
-          <option value="http://www.globalmsk.ru" selected>Москва</option>
-          <option value="http://www.global78.ru">Санкт-Петербург</option>
-          <option value="http://www.globalnsk.ru">Новосибирск</option>
-          <option value="http://www.globaleburg.ru">Екатеринбург</option>
-          <option value="http://www.globalkras.ru">Краснодар</option>
-          <option value="http://www.globalvlad.ru">Владивосток</option>
-          <option value="http://www.globalperm.ru">Пермь</option>
-          <option value="http://www.global52.ru">Нижний Новгород</option>
-          <option value="http://www.global-kazan.ru">Казань</option>
-          <option value="http://www.globalufa.ru">Уфа</option>
-        </select>
-      </div>
-    </div>
-</div>
-</div>
+</section>
 
 
 <!-- РЕЙТИНГ ПЕРСОН -->
@@ -2550,6 +2757,22 @@
 </button>
 
 <script>
+  // Pixel-perfect logo-sub width via scaleX
+  function fitLogoSub() {
+    document.querySelectorAll('.logo').forEach(logo => {
+      const name = logo.querySelector('.logo-name');
+      const sub  = logo.querySelector('.logo-sub');
+      if (!name || !sub) return;
+      sub.style.transform = 'scaleX(1)';
+      const nameW = name.getBoundingClientRect().width;
+      const subW  = sub.getBoundingClientRect().width;
+      if (!nameW || !subW) return;
+      sub.style.transform = 'scaleX(' + (nameW / subW) + ')';
+    });
+  }
+  document.fonts.ready.then(fitLogoSub);
+  window.addEventListener('resize', fitLogoSub);
+
   // Scroll to top
   const scrollBtn = document.getElementById('scrollTop');
   window.addEventListener('scroll', () => {

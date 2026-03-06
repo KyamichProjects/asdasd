@@ -84,6 +84,13 @@
   @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
   .topbar-date { white-space: nowrap; color: rgba(255,255,255,0.35); }
+  .fn-grad {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .fn-dark { color: var(--ink); -webkit-text-fill-color: var(--ink); }
 
   /* ─── HEADER ─── */
   header {
@@ -158,8 +165,8 @@
     gap: 2px;
     flex: 1;
     flex-wrap: nowrap;
-    min-width: 0;
     overflow: hidden;
+    min-width: 0;
   }
   nav a {
     font-size: 12px;
@@ -660,43 +667,252 @@
   }
   .city-select:focus { border-color: var(--accent); }
 
-  /* ─── FOOTER ─── */
+  /* ═══════════════════════════════════
+     FOOTER — полный рефактор
+  ═══════════════════════════════════ */
   footer {
-    background: var(--ink);
-    color: rgba(255,255,255,0.5);
-    margin-top: 56px;
+    background: #0b0f18;
+    color: rgba(255,255,255,0.45);
+    margin-top: 72px;
+    position: relative;
   }
+  /* Градиентная полоса сверху */
+  footer::before {
+    content: '';
+    display: block;
+    height: 4px;
+    background: var(--grad);
+  }
+
+  /* Подписка — полоса над основным футером */
+  .footer-subscribe-bar {
+    background: rgba(8,145,178,0.08);
+    border-bottom: 1px solid rgba(8,145,178,0.12);
+    padding: 20px 32px;
+  }
+  .footer-subscribe-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .footer-subscribe-text {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .footer-subscribe-text svg { width: 20px; height: 20px; color: var(--accent); flex-shrink: 0; }
+  .footer-subscribe-label { font-size: 13.5px; font-weight: 600; color: rgba(255,255,255,0.8); }
+  .footer-subscribe-sub { font-size: 11.5px; color: rgba(255,255,255,0.35); margin-top: 1px; }
+  .footer-subscribe-form { display: flex; gap: 8px; flex-shrink: 0; }
+  .footer-subscribe-input {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 9px 14px;
+    font-size: 13px;
+    color: white;
+    outline: none;
+    width: 220px;
+    font-family: 'Manrope', sans-serif;
+    transition: border-color 0.2s;
+  }
+  .footer-subscribe-input::placeholder { color: rgba(255,255,255,0.25); }
+  .footer-subscribe-input:focus { border-color: var(--accent); }
+  .footer-subscribe-btn {
+    background: var(--grad);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'Manrope', sans-serif;
+    transition: opacity 0.2s;
+  }
+  .footer-subscribe-btn:hover { opacity: 0.85; }
+
   .footer-inner {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 56px 32px 32px;
+    padding: 52px 32px 0;
   }
+
+  /* ── Верхняя часть: бренд + колонки ── */
   .footer-top {
     display: grid;
-    grid-template-columns: 240px 1fr 1fr 1fr;
+    grid-template-columns: 280px 1fr 1fr 1fr;
     gap: 48px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 44px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
-  .footer-brand .logo-name { color: white; }
-  .footer-brand .logo-sub { color: rgba(255,255,255,0.3); }
-  .footer-desc { font-size: 12.5px; line-height: 1.7; color: rgba(255,255,255,0.4); margin-top: 14px; }
 
-  .footer-col-title { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+  /* ── Бренд-колонка ── */
+  .footer-brand { display: flex; flex-direction: column; gap: 0; }
+  .footer-brand .logo { text-decoration: none; display: inline-flex; align-items: center; gap: 12px; }
+  .footer-brand .logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    line-height: 1;
+    white-space: nowrap;
+    display: block;
+  }
+  .footer-brand .logo-name .fn-grad {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .footer-brand .logo-name .fn-white { color: white; -webkit-text-fill-color: white; }
+  .footer-brand .logo-sub { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.28); margin-top: 4px; }
+  .footer-desc {
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.35);
+    margin-top: 18px;
+    max-width: 240px;
+  }
+
+  /* Метрики портала */
+  .footer-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .footer-stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .footer-stat-val {
+    font-size: 16px;
+    font-weight: 800;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+  }
+  .footer-stat-lbl {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.3);
+    margin-top: 3px;
+  }
+
+  /* Соцсети */
+  .footer-social { display: flex; gap: 8px; margin-top: 20px; }
+  .footer-social a {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: all 0.2s;
+    background: rgba(255,255,255,0.03);
+  }
+  .footer-social a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(8,145,178,0.12);
+    transform: translateY(-2px);
+  }
+  .footer-social svg { width: 16px; height: 16px; }
+
+  /* ── Колонки ссылок ── */
+  .footer-col-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: white;
+    opacity: 0.55;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer-col-title svg { width: 12px; height: 12px; opacity: 0.7; }
   .footer-links { display: flex; flex-direction: column; gap: 10px; }
-  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: white; }
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.42);
+    text-decoration: none;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 1px 0;
+  }
+  .footer-links a::before {
+    content: '';
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: rgba(8,145,178,0.4);
+    flex-shrink: 0;
+    transition: all 0.18s;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.85); transform: translateX(4px); }
+  .footer-links a:hover::before { background: var(--accent); transform: scale(1.5); }
 
+  /* ── Нижняя полоса ── */
   .footer-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 24px;
+    padding: 20px 0 28px;
     font-size: 11.5px;
-    color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.18);
+    flex-wrap: wrap;
+    gap: 12px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: 4px;
   }
-  .footer-bottom a { color: rgba(255,255,255,0.25); text-decoration: none; }
+  .footer-bottom a { color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
   .footer-bottom a:hover { color: rgba(255,255,255,0.6); }
+  .footer-bottom-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+
+  /* Счётчик/бейдж 18+ */
+  .footer-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 10px; font-weight: 700;
+    color: rgba(255,255,255,0.28);
+    flex-shrink: 0;
+  }
+
+  /* Адаптив футера */
+  @media (max-width: 1024px) {
+    .footer-subscribe-bar { padding: 16px 20px; }
+    .footer-subscribe-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .footer-subscribe-form { width: 100%; }
+    .footer-subscribe-input { flex: 1; width: auto; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-inner { padding: 40px 20px 0; }
+  }
+  @media (max-width: 640px) {
+    .footer-subscribe-bar { padding: 14px 16px; }
+    .footer-subscribe-label { font-size: 13px; }
+    .footer-top { grid-template-columns: 1fr; gap: 28px; padding-bottom: 28px; }
+    .footer-inner { padding: 32px 16px 0; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; padding: 16px 0 24px; }
+    .footer-bottom-links { justify-content: center; }
+    .footer-stats { grid-template-columns: repeat(3, 1fr); }
+    .footer-social { flex-wrap: wrap; }
+  }
 
   /* ─── SCROLL TO TOP ─── */
   .scroll-top {
@@ -938,7 +1154,7 @@
     }
     .quotes-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .press-grid { grid-template-columns: 1fr; padding: 0 20px 48px; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
     .section-header { padding: 0 20px; }
     .topics-strip { padding: 0 20px; }
     .topbar-inner { padding: 0 20px; }
@@ -1422,7 +1638,7 @@
     <a href="https://globalmsk.ru" class="logo">
       <div class="logo-mark"><picture><source media="(max-width:1024px)" srcset="logo.gif" type="image/gif" class="logo-static"><img src="logo.gif" alt="ГлобалМСК логотип" id="logoImg"></picture></div>
       <div class="logo-text">
-        <span class="logo-name"><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">ГЛОБАЛ</span><span style="color:var(--ink)">МСК.РУ</span></span>
+        <span class="logo-name"><span class="fn-grad">ГЛОБАЛ</span><span class="fn-dark">МСК.РУ</span></span>
         <span class="logo-sub">Московский бизнес портал</span>
       </div>
     </a>
@@ -1484,7 +1700,7 @@
       <a href="https://globalmsk.ru" class="logo">
         <div class="logo-mark"><picture><source media="(max-width:1024px)" srcset="logo.gif" type="image/gif" class="logo-static"><img src="logo.gif" alt="ГлобалМСК логотип" id="logoImg"></picture></div>
         <div class="logo-text">
-          <span class="logo-name"><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">ГЛОБАЛ</span><span style="color:var(--ink)">МСК.РУ</span></span>
+          <span class="logo-name"><span class="fn-grad">ГЛОБАЛ</span><span class="fn-dark">МСК.РУ</span></span>
           <span class="logo-sub">Московский бизнес портал</span>
         </div>
       </a>
@@ -2194,57 +2410,137 @@
 
 <!-- FOOTER -->
 <footer>
+  <!-- Полоса подписки -->
+  <div class="footer-subscribe-bar">
+    <div class="footer-subscribe-inner">
+      <div class="footer-subscribe-text">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div>
+          <div class="footer-subscribe-label">Подписка на рассылку ГлобалМСК</div>
+          <div class="footer-subscribe-sub">Лучшие новости бизнеса Москвы — каждое утро</div>
+        </div>
+      </div>
+      <div class="footer-subscribe-form">
+        <input class="footer-subscribe-input" type="email" placeholder="Ваш e-mail…">
+        <button class="footer-subscribe-btn">Подписаться</button>
+      </div>
+    </div>
+  </div>
+
   <div class="footer-inner">
     <div class="footer-top">
+
+      <!-- БРЕНД -->
       <div class="footer-brand">
         <a href="https://globalmsk.ru" class="logo">
-          <div class="logo-mark"><picture><source media="(max-width:1024px)" srcset="logo.gif" type="image/gif" class="logo-static"><img src="logo.gif" alt="ГлобалМСК логотип" id="logoImg"></picture></div>
+          <div class="logo-mark">
+            <img src="logo.gif" alt="ГлобалМСК">
+          </div>
           <div class="logo-text">
-            <span class="logo-name"><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">ГЛОБАЛ</span><span style="color:var(--ink)">МСК.РУ</span></span>
+            <span class="logo-name">
+              <span class="fn-grad">ГЛОБАЛ</span><span class="fn-white">МСК.РУ</span>
+            </span>
             <span class="logo-sub">Московский бизнес портал</span>
           </div>
         </a>
-        <p class="footer-desc">Новости бизнеса, пресс-релизы, рейтинги компаний и персоналий, каталог предприятий Москвы.</p>
+        <p class="footer-desc">Новости бизнеса, пресс-релизы, рейтинги персон и каталог предприятий Москвы и регионов России с 2005 года.</p>
+        <!-- Метрики -->
+        <div class="footer-stats">
+          <div class="footer-stat">
+            <div class="footer-stat-val">78K+</div>
+            <div class="footer-stat-lbl">Новостей</div>
+          </div>
+          <div class="footer-stat">
+            <div class="footer-stat-val">12K+</div>
+            <div class="footer-stat-lbl">Компаний</div>
+          </div>
+          <div class="footer-stat">
+            <div class="footer-stat-val">4K+</div>
+            <div class="footer-stat-lbl">Персон</div>
+          </div>
+        </div>
+        <!-- Соцсети -->
+        <div class="footer-social">
+          <a href="https://t.me/globalmsk" title="Telegram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.932z"/></svg>
+          </a>
+          <a href="https://vk.com/globalmsk" title="ВКонтакте">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.136.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.253-1.406 2.151-3.574 2.151-3.574.119-.254.322-.491.762-.491h1.744c.525 0 .643.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.049.17.474-.085.712-.576.712z"/></svg>
+          </a>
+          <a href="https://dzen.ru/globalmsk" title="Дзен">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-.051 13.324c-.625 3.215-2.961 5.55-6.177 6.174a.372.372 0 0 1-.43-.43c.624-3.214 2.96-5.549 6.175-6.173a.373.373 0 0 1 .432.429zm.43-2.648a.373.373 0 0 1-.431.43C8.733 10.48 6.398 8.145 5.773 4.93a.372.372 0 0 1 .43-.43c3.215.625 5.55 2.96 6.175 6.176zm2.216 2.216c3.215.624 5.55 2.96 6.175 6.175a.372.372 0 0 1-.43.43c-3.216-.625-5.551-2.96-6.176-6.175a.373.373 0 0 1 .431-.43zm.43-2.648a.372.372 0 0 1-.43-.43c.624-3.215 2.96-5.55 6.175-6.175a.372.372 0 0 1 .43.43c-.625 3.216-2.96 5.551-6.175 6.175z"/></svg>
+          </a>
+          <a href="https://globalmsk.ru/rss" title="RSS">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg>
+          </a>
+        </div>
       </div>
+
+      <!-- РАЗДЕЛЫ -->
       <div>
-        <div class="footer-col-title">Разделы</div>
+        <div class="footer-col-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          Разделы
+        </div>
         <div class="footer-links">
-          <a href="https://globalmsk.ru/news">Новости</a>
+          <a href="https://globalmsk.ru/news">Новости Москвы</a>
           <a href="https://globalmsk.ru/firmnews">Пресс-релизы</a>
-          <a href="https://globalmsk.ru/person">Рейтинг людей</a>
+          <a href="https://globalmsk.ru/person">Рейтинг персон</a>
           <a href="https://globalmsk.ru/catalog">Каталог компаний</a>
           <a href="https://globalmsk.ru/vacancy">Вакансии</a>
+          <a href="https://globalmsk.ru/resume">Резюме</a>
           <a href="https://globalmsk.ru/horoscope">Гороскопы</a>
+          <a href="https://globalmsk.ru/courses">Онлайн курсы</a>
         </div>
       </div>
+
+      <!-- КАБИНЕТ -->
       <div>
-        <div class="footer-col-title">Города</div>
+        <div class="footer-col-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Кабинет
+        </div>
         <div class="footer-links">
-          <a href="http://www.global78.ru">Санкт-Петербург</a>
-          <a href="http://www.globalnsk.ru">Новосибирск</a>
-          <a href="http://www.globaleburg.ru">Екатеринбург</a>
-          <a href="http://www.globalkras.ru">Краснодар</a>
-          <a href="http://www.globalvlad.ru">Владивосток</a>
-          <a href="http://www.global-kazan.ru">Казань</a>
+          <a href="https://globalmsk.ru/login">Мой кабинет</a>
+          <a href="https://globalmsk.ru/register">Регистрация</a>
+          <a href="https://globalmsk.ru/firmnews/add">Добавить пресс-релиз</a>
+          <a href="https://globalmsk.ru/person/add">Добавить персону</a>
+          <a href="https://globalmsk.ru/vacancy/add">Добавить вакансию</a>
+          <a href="https://globalmsk.ru/resume/add">Добавить резюме</a>
+          <a href="https://globalmsk.ru/catalog/add">Добавить компанию</a>
         </div>
       </div>
+
+      <!-- О ПОРТАЛЕ -->
       <div>
-        <div class="footer-col-title">О портале</div>
+        <div class="footer-col-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          О портале
+        </div>
         <div class="footer-links">
           <a href="https://globalmsk.ru/about">О нас</a>
-          <a href="https://globalmsk.ru/ad">Реклама</a>
-          <a href="https://globalmsk.ru/contacts">Контакты</a>
+          <a href="https://globalmsk.ru/ad">Реклама на сайте</a>
+          <a href="https://globalmsk.ru/contacts">Контакты редакции</a>
+          <a href="https://globalmsk.ru/stats">Глобальная статистика</a>
+          <a href="https://globalmsk.ru/quotes">Все цитаты</a>
           <a href="https://globalmsk.ru/rss">RSS-лента</a>
+          <a href="https://globalmsk.ru/sitemap">Карта сайта</a>
         </div>
       </div>
-    </div>
+
+    </div><!-- /footer-top -->
+
+    <!-- FOOTER BOTTOM -->
     <div class="footer-bottom">
-      <span>© 2026 ГлобалМСК.ру — Московский бизнес портал</span>
-      <div style="display:flex;gap:20px;">
-        <a href="https://globalmsk.ru/privacy">Политика конфиденциальности</a>
+      <span>© 2005–2026 ГлобалМСК.ру · Все права защищены</span>
+      <div class="footer-bottom-links">
+        <a href="https://globalmsk.ru/privacy">Конфиденциальность</a>
         <a href="https://globalmsk.ru/terms">Пользовательское соглашение</a>
+        <a href="https://globalmsk.ru/sitemap">Карта сайта</a>
+        <span class="footer-badge">18+</span>
       </div>
     </div>
+
   </div>
 </footer>
 

@@ -18,9 +18,102 @@
     --muted: #6b7a80;
     --light: #e4eff2;
     --white: #ffffff;
+    --bg: #f4f7f7;
+    --card-bg: #ffffff;
+    --border: rgba(0,0,0,0.07);
     --grad: linear-gradient(135deg, #00c6a7 0%, #0891b2 50%, #0066cc 100%);
     --grad-h: linear-gradient(135deg, #00dbb8 0%, #0aa8d4 50%, #1a7ee0 100%);
   }
+
+  /* ── ТЁМНАЯ ТЕМА ── */
+  [data-theme="dark"] {
+    --ink: #e8edf0;
+    --paper: #0f1318;
+    --muted: #8a9aa3;
+    --light: #1e2730;
+    --white: #161d26;
+    --bg: #0f1318;
+    --card-bg: #161d26;
+    --border: rgba(255,255,255,0.07);
+  }
+  [data-theme="dark"] body { background: var(--bg); color: var(--ink); }
+  [data-theme="dark"] header { background: #161d26; box-shadow: 0 1px 0 rgba(255,255,255,0.06); }
+  [data-theme="dark"] .news-card,
+  [data-theme="dark"] .side-card,
+  [data-theme="dark"] .press-card,
+  [data-theme="dark"] .rating-person-card,
+  [data-theme="dark"] .birthday-card,
+  [data-theme="dark"] .sidebar-widget,
+  [data-theme="dark"] .vacancy-card,
+  [data-theme="dark"] .resume-card,
+  [data-theme="dark"] .horoscope-card,
+  [data-theme="dark"] .cards-row-wrap,
+  [data-theme="dark"] .jobs-categories,
+  [data-theme="dark"] .jobs-employer-widget { background: var(--card-bg); border-color: var(--border); }
+  [data-theme="dark"] .press-ticker-wrap { background: var(--card-bg); border-color: var(--border); }
+  [data-theme="dark"] .press-ticker-wrap::before { background: linear-gradient(to right, #161d26, transparent); }
+  [data-theme="dark"] .press-ticker-wrap::after  { background: linear-gradient(to left,  #161d26, transparent); }
+  [data-theme="dark"] nav a { color: var(--ink); }
+  [data-theme="dark"] nav a:hover { background: rgba(8,145,178,0.12); }
+  [data-theme="dark"] .section-title { color: var(--ink); }
+  [data-theme="dark"] .topic-pill { background: var(--card-bg); border-color: var(--border); color: var(--ink); }
+  [data-theme="dark"] .topic-pill:hover { background: rgba(8,145,178,0.15); }
+  [data-theme="dark"] .footer-subscribe-input { background: rgba(255,255,255,0.05); }
+  [data-theme="dark"] .city-select { background: var(--light); color: var(--ink); border-color: var(--border); }
+  [data-theme="dark"] .ad-banner { background: #1a2330; border-color: rgba(255,255,255,0.08); }
+  [data-theme="dark"] .press-card { background: var(--card-bg); }
+  [data-theme="dark"] .press-card:hover { background: rgba(8,145,178,0.08); }
+  [data-theme="dark"] .mobile-nav-panel { background: #161d26; }
+  [data-theme="dark"] .mobile-nav-links a { color: var(--ink); border-color: var(--border); }
+  [data-theme="dark"] .quotes-section { background: #111822; }
+  [data-theme="dark"] .quote-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+  [data-theme="dark"] .finance-bar { background: #070c14; border-color: rgba(255,255,255,0.04); }
+  [data-theme="dark"] .breaking-bar { background: #0e2a3a; }
+  [data-theme="dark"] .topbar { background: #070c14; }
+  [data-theme="dark"] footer { background: #070c14; }
+  [data-theme="dark"] .footer-subscribe-bar { background: rgba(8,145,178,0.06); border-color: rgba(8,145,178,0.1); }
+  [data-theme="dark"] .news-card-img-wrap img { opacity: 0.9; }
+  [data-theme="dark"] .hero-main-overlay { background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); }
+  [data-theme="dark"] .section-rule { background: linear-gradient(to right, rgba(8,145,178,0.5), transparent); }
+  [data-theme="dark"] .header-search { background: var(--light); border-color: var(--border); }
+  [data-theme="dark"] .header-search input { color: var(--ink); }
+
+  /* Переключатель тем */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3px;
+    gap: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .theme-toggle:hover { border-color: var(--accent); }
+  .theme-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 16px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.22s;
+    color: var(--muted);
+    padding: 0;
+  }
+  .theme-btn svg { width: 13px; height: 13px; }
+  .theme-btn.active {
+    background: var(--grad);
+    color: white;
+    box-shadow: 0 2px 8px rgba(8,145,178,0.35);
+  }
+  [data-theme="dark"] .theme-toggle { background: var(--light); }
+  [data-theme="dark"] .fn-dark { color: var(--ink) !important; -webkit-text-fill-color: var(--ink) !important; }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1746,8 +1839,7 @@
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:14px;flex-shrink:0">
-    <span class="topbar-date">Вт, 5 марта 2026</span>
-    <span class="topbar-date">Вт, 5 марта 2026</span>
+<span class="topbar-date">Вт, 5 марта 2026</span>
   </div>
   </div>
 </div>
@@ -1813,6 +1905,15 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Подписка на рассылку
       </a>
+      <span style="width:1px;height:14px;background:rgba(0,0,0,0.12);flex-shrink:0"></span>
+      <div class="theme-toggle" title="Переключить тему">
+        <button class="theme-btn active" id="themeLight" aria-label="Светлая тема">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        <button class="theme-btn" id="themeDark" aria-label="Тёмная тема">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
     </div>
 
     <!-- Burger button -->
@@ -2757,6 +2858,29 @@
 </button>
 
 <script>
+
+  // ── ПЕРЕКЛЮЧАТЕЛЬ ТЕМ ──────────────────────────────────────────────────
+  (function() {
+    const root = document.documentElement;
+    const btnsLight = document.querySelectorAll('#themeLight');
+    const btnsDark  = document.querySelectorAll('#themeDark');
+
+    function setTheme(theme) {
+      root.setAttribute('data-theme', theme);
+      localStorage.setItem('gmsk-theme', theme);
+      btnsLight.forEach(b => b.classList.toggle('active', theme === 'light'));
+      btnsDark.forEach(b  => b.classList.toggle('active', theme === 'dark'));
+    }
+
+    // Restore saved theme
+    const saved = localStorage.getItem('gmsk-theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(saved);
+
+    btnsLight.forEach(b => b.addEventListener('click', () => setTheme('light')));
+    btnsDark.forEach(b  => b.addEventListener('click', () => setTheme('dark')));
+  })();
+
   // Pixel-perfect logo-sub width via scaleX
   function fitLogoSub() {
     document.querySelectorAll('.logo').forEach(logo => {

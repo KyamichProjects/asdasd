@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ГлобалМСК — Московский бизнес портал</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+AR:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #0d0d12;
@@ -120,7 +120,7 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Inter', 'Noto Sans', 'Noto Sans SC', 'Noto Sans AR', sans-serif;
     background: var(--paper);
     color: var(--ink);
     overflow-x: hidden;
@@ -236,12 +236,19 @@
     gap: 4px;
   }
   .logo-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 800;
+    font-family: 'Inter', 'Noto Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 900;
     white-space: nowrap;
     display: block;
-    letter-spacing: 0.5px;
+    letter-spacing: 1.5px;
+    color: var(--ink);
+    -webkit-text-fill-color: var(--ink);
+    background: none;
+  }
+  [data-theme="dark"] .logo-name {
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
   }
   .logo-sub {
     font-size: 7.5px;
@@ -307,7 +314,7 @@
   .header-search input {
     border: none;
     background: transparent;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Inter', 'Noto Sans', 'Noto Sans SC', 'Noto Sans AR', sans-serif;
     font-size: 13px;
     color: var(--ink);
     width: 160px;
@@ -835,7 +842,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  .widget-header a { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+  .widget-header a { font-family: 'Inter', 'Noto Sans', 'Noto Sans SC', 'Noto Sans AR', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
 
   .rating-list { padding: 12px 20px; }
   .rating-item {
@@ -875,7 +882,7 @@
   .city-select-widget { padding: 16px 20px; }
   .city-select {
     width: 100%;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Inter', 'Noto Sans', 'Noto Sans SC', 'Noto Sans AR', sans-serif;
     font-size: 13px;
     color: var(--ink);
     background: var(--light);
@@ -941,7 +948,7 @@
     color: white;
     outline: none;
     width: 220px;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Inter', 'Noto Sans', 'Noto Sans SC', 'Noto Sans AR', sans-serif;
     transition: border-color 0.2s;
   }
   .footer-subscribe-input::placeholder { color: rgba(255,255,255,0.25); }
@@ -956,7 +963,7 @@
     font-weight: 700;
     cursor: pointer;
     white-space: nowrap;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Inter', 'Noto Sans', 'Noto Sans SC', 'Noto Sans AR', sans-serif;
     transition: opacity 0.2s;
   }
   .footer-subscribe-btn:hover { opacity: 0.85; }
@@ -980,21 +987,17 @@
   .footer-brand { display: flex; flex-direction: column; gap: 0; }
   .footer-brand .logo { text-decoration: none; display: inline-flex; align-items: center; gap: 12px; }
   .footer-brand .logo-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
+    font-family: 'Inter', 'Noto Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
     line-height: 1;
     white-space: nowrap;
     display: block;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+    background: none;
   }
-  .footer-brand .logo-name .fn-grad {
-    background: var(--grad);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .footer-brand .logo-name .fn-white { color: white; -webkit-text-fill-color: white; }
   .footer-brand .logo-sub { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.28); margin-top: 4px; }
   .footer-desc {
     font-size: 12.5px;
@@ -1331,7 +1334,7 @@
     flex: 1;
     border: none;
     background: transparent;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Inter', 'Noto Sans', 'Noto Sans SC', 'Noto Sans AR', sans-serif;
     font-size: 14px;
     color: var(--ink);
     outline: none;
@@ -1342,7 +1345,7 @@
   }
   .mobile-nav-city select {
     width: 100%;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Inter', 'Noto Sans', 'Noto Sans SC', 'Noto Sans AR', sans-serif;
     font-size: 13px;
     color: var(--ink);
     background: var(--light);
@@ -1548,7 +1551,7 @@
   .cards-scroll::-webkit-scrollbar{display:none}
   .vacancy-card{flex-shrink:0;width:185px;background:var(--light);border-radius:12px;padding:16px;text-decoration:none;color:inherit;transition:all .25s;border:1px solid rgba(0,0,0,.06);display:flex;flex-direction:column;gap:10px}
   .vacancy-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08);border-color:rgba(8,145,178,.2);background:white}
-  .vacancy-logo-box{width:50px;height:50px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;font-weight:800;color:white;font-family:"Manrope",sans-serif;letter-spacing:-0.5px}
+  .vacancy-logo-box{width:50px;height:50px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;font-weight:800;color:white;font-family:"Inter",sans-serif;letter-spacing:-0.5px}
   .vacancy-logo-box img{width:28px;height:28px;object-fit:contain}
   .vacancy-title{font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;flex:1}
   .vacancy-salary{font-size:12px;font-weight:700;color:var(--accent)}
@@ -1595,7 +1598,7 @@
     padding: 0 20px;
     font-size: 11px;
     font-weight: 600;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Inter', 'Noto Sans', 'Noto Sans SC', 'Noto Sans AR', sans-serif;
     border-right: 1px solid rgba(255,255,255,0.07);
     color: rgba(255,255,255,0.75);
     letter-spacing: 0.04em;
@@ -1780,6 +1783,191 @@
   .header-add-group { display: flex; gap: 6px; flex-shrink: 0; }
   @media (max-width: 1024px) { .header-add-group { display: none; } }
 
+  /* ════════════════════════════════════════════════════
+     ПОЛНЫЙ АДАПТИВ — все устройства
+  ════════════════════════════════════════════════════ */
+
+  /* ── 1280px и ниже (ноутбуки) ── */
+  @media (max-width: 1280px) {
+    .hero { gap: 12px; }
+    .ratings-grid { grid-template-columns: repeat(4, 1fr); }
+    .press-ticker-section, .ratings-section, .birthdays-section,
+    .jobs-section, .cards-row-section { padding: 0 24px; }
+  }
+
+  /* ── 1024px и ниже (планшет горизонтальный) ── */
+  @media (max-width: 1024px) {
+    /* Хедер */
+    .header-inner { gap: 12px; padding: 0 20px; }
+    .header-search { max-width: 180px; }
+    .header-add-group { display: none; }
+    .header-auth { gap: 8px; }
+    .btn-cabinet span, .btn-subscribe span { display: none; }
+
+    /* Герой */
+    .hero { grid-template-columns: 1fr 1fr; }
+    .hero-side { grid-template-columns: 1fr; gap: 8px; }
+
+    /* Новости */
+    .news-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Рейтинг */
+    .ratings-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .birthdays-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+    /* Пресс-лента */
+    .press-card { width: 240px; }
+    .press-card-img-wrap, .press-card-img { height: 140px; }
+
+    /* Цитаты */
+    .quotes-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Гороскопы */
+    .horoscopes-grid { grid-template-columns: repeat(4, 1fr); }
+    .cards-row-section { padding: 0 20px; }
+
+    /* Вакансии */
+    .jobs-grid { grid-template-columns: 1fr; }
+    .jobs-categories { grid-template-columns: repeat(3, 1fr); }
+
+    /* Топбар */
+    .topbar-inner { padding: 0 20px; }
+    .topbar-topics { display: none; }
+    .topbar-date { display: none; }
+    .finance-bar { padding: 0; }
+  }
+
+  /* ── 768px (планшет вертикальный) ── */
+  @media (max-width: 768px) {
+    /* Герой */
+    .hero { grid-template-columns: 1fr; }
+    .hero-main { min-height: 320px; border-radius: 14px; }
+    .hero-side { grid-template-columns: repeat(2, 1fr); }
+    .side-card { min-width: unset; }
+
+    /* Новости */
+    .news-grid { grid-template-columns: repeat(2, 1fr); }
+    .news-card-text { display: none; }
+
+    /* Рейтинг */
+    .ratings-grid { grid-template-columns: repeat(2, 1fr); }
+    .birthdays-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Цитаты */
+    .quotes-grid { grid-template-columns: 1fr; gap: 12px; }
+
+    /* Гороскопы */
+    .horoscopes-grid { grid-template-columns: repeat(3, 1fr); }
+
+    /* Вакансии */
+    .jobs-categories { grid-template-columns: repeat(2, 1fr); }
+
+    /* Пресс */
+    .press-card { width: 220px; }
+
+    /* Секции */
+    .ratings-section, .birthdays-section, .jobs-section,
+    .cards-row-section, .press-ticker-section { padding: 0 16px; margin-top: 36px; }
+
+    /* Футер */
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .footer-inner { padding: 36px 20px 0; }
+  }
+
+  /* ── 640px (мобильный большой) ── */
+  @media (max-width: 640px) {
+    /* Герой */
+    .hero { grid-template-columns: 1fr; gap: 10px; }
+    .hero-main { min-height: 260px; border-radius: 12px; }
+    .hero-main-title { font-size: 17px; }
+    .hero-side { display: flex; overflow-x: auto; gap: 10px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+    .side-card { min-width: calc(85vw); scroll-snap-align: start; flex-shrink: 0; border-radius: 12px; }
+
+    /* Топбар */
+    .topbar-inner { padding: 0 16px; gap: 8px; }
+    .fi-label { display: none; }
+
+    /* Хедер */
+    .header-inner { padding: 0 16px; gap: 10px; }
+    .header-search { display: none; }
+    .logo-name { font-size: 17px !important; }
+    .logo-mark { width: 38px !important; height: 38px !important; }
+
+    /* Новости */
+    .news-grid { grid-template-columns: 1fr; }
+    .news-section { padding: 0 16px; }
+    .news-card { flex-direction: row; gap: 10px; }
+    .news-card-img-wrap { width: 100px; height: 75px; flex-shrink: 0; }
+    .news-card-img-wrap img { height: 75px; }
+    .news-card-text { display: none; }
+
+    /* Рейтинг и ДР */
+    .ratings-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .birthdays-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .rating-person-photo { width: 54px !important; height: 66px !important; }
+
+    /* Пресс-лента */
+    .press-card { width: calc(75vw); }
+    .press-card-img-wrap, .press-card-img { height: 120px; }
+    .press-card-title { font-size: 12.5px; -webkit-line-clamp: 2; }
+    .press-ticker-track { animation-duration: 28s; }
+
+    /* Цитаты */
+    .quotes-section { padding: 28px 16px 36px; }
+    .quotes-grid { grid-template-columns: 1fr; gap: 12px; }
+    .quote-card { padding: 16px; }
+
+    /* Гороскопы */
+    .horoscopes-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+    /* Вакансии */
+    .jobs-categories { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .vacancy-card, .resume-card { padding: 14px; }
+    .jobs-section { padding: 0 16px; }
+
+    /* Секции */
+    .section-title { font-size: 18px; }
+    .ratings-section, .birthdays-section, .cards-row-section,
+    .press-ticker-section { padding: 0 16px; margin-top: 32px; }
+
+    /* Футер */
+    .footer-top { grid-template-columns: 1fr; gap: 24px; padding-bottom: 24px; }
+    .footer-inner { padding: 28px 16px 0; }
+    .footer-subscribe-bar { padding: 14px 16px; }
+    .footer-subscribe-inner { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .footer-subscribe-form { width: 100%; }
+    .footer-subscribe-input { flex: 1; min-width: 0; }
+    .footer-stats { grid-template-columns: repeat(3, 1fr); }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding: 14px 0 20px; }
+    .footer-bottom-links { justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+    /* Переключатель тем */
+    .theme-toggle { scale: 0.9; }
+
+    /* Мобильная навигация */
+    .mobile-nav-panel { width: 100vw; max-width: 340px; }
+  }
+
+  /* ── 390px (iPhone SE, маленькие) ── */
+  @media (max-width: 390px) {
+    .hero-main { min-height: 220px; }
+    .hero-main-title { font-size: 15px; }
+    .side-card { min-width: calc(90vw); }
+    .ratings-grid { grid-template-columns: repeat(2, 1fr); }
+    .birthdays-grid { grid-template-columns: repeat(2, 1fr); }
+    .press-card { width: calc(85vw); }
+    .news-card-img-wrap { width: 85px; height: 65px; }
+    .logo-name { font-size: 15px !important; }
+    .logo-mark { width: 32px !important; height: 32px !important; }
+    .header-inner { gap: 6px; padding: 0 12px; }
+    .horoscopes-grid { grid-template-columns: repeat(2, 1fr); }
+    .jobs-categories { grid-template-columns: 1fr 1fr; }
+    .quote-avatar { width: 40px !important; height: 48px !important; }
+    .finance-bar .finance-item { padding: 0 8px; }
+    .footer-subscribe-form { flex-direction: column; }
+    .footer-subscribe-btn { width: 100%; text-align: center; padding: 10px; }
+  }
+
 </style>
 </head>
 <body>
@@ -1860,9 +2048,9 @@
 <header>
   <div class="header-inner">
     <a href="https://globalmsk.ru" class="logo">
-      <div class="logo-mark"><picture><source media="(max-width:1024px)" srcset="logo.gif" type="image/gif" class="logo-static"><img src="logo.gif" alt="ГлобалМСК логотип" id="logoImg"></picture></div>
+      <div class="logo-mark"><img src="logo.gif" alt="ГлобалМСК"></div>
       <div class="logo-text">
-        <span class="logo-name"><span class="fn-grad">ГЛОБАЛ</span><span class="fn-dark">МСК.РУ</span></span>
+        <span class="logo-name">ГЛОБАЛМСК.РУ</span>
         <span class="logo-sub">Московский бизнес портал</span>
       </div>
     </a>
@@ -1931,9 +2119,9 @@
   <div class="mobile-nav-panel">
     <div class="mobile-nav-head">
       <a href="https://globalmsk.ru" class="logo">
-        <div class="logo-mark"><picture><source media="(max-width:1024px)" srcset="logo.gif" type="image/gif" class="logo-static"><img src="logo.gif" alt="ГлобалМСК логотип" id="logoImg"></picture></div>
+        <div class="logo-mark"><img src="logo.gif" alt="ГлобалМСК"></div>
         <div class="logo-text">
-          <span class="logo-name"><span class="fn-grad">ГЛОБАЛ</span><span class="fn-dark">МСК.РУ</span></span>
+          <span class="logo-name">ГЛОБАЛМСК.РУ</span>
           <span class="logo-sub">Московский бизнес портал</span>
         </div>
       </a>
@@ -2741,13 +2929,9 @@
       <!-- БРЕНД -->
       <div class="footer-brand">
         <a href="https://globalmsk.ru" class="logo">
-          <div class="logo-mark">
-            <img src="logo.gif" alt="ГлобалМСК">
-          </div>
+          <div class="logo-mark"><img src="logo.gif" alt="ГлобалМСК"></div>
           <div class="logo-text">
-            <span class="logo-name">
-              <span class="fn-grad">ГЛОБАЛ</span><span class="fn-white">МСК.РУ</span>
-            </span>
+<span class="logo-name">ГЛОБАЛМСК.РУ</span>
             <span class="logo-sub">Московский бизнес портал</span>
           </div>
         </a>
@@ -2873,12 +3057,33 @@
     }
 
     // Restore saved theme
-    const saved = localStorage.getItem('gmsk-theme') ||
-      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const saved = localStorage.getItem('gmsk-theme') || 'light';
     setTheme(saved);
 
     btnsLight.forEach(b => b.addEventListener('click', () => setTheme('light')));
     btnsDark.forEach(b  => b.addEventListener('click', () => setTheme('dark')));
+  })();
+
+  // Статичный первый кадр gif
+  (function() {
+    var imgs = document.querySelectorAll('.logo-mark img');
+    imgs.forEach(function(img) {
+      // Клонируем src без #, это сбрасывает анимацию в начало и останавливает
+      var src = img.src;
+      img.src = '';
+      img.src = src + (src.indexOf('?') === -1 ? '?' : '&') + 'static=1';
+      // После загрузки — останавливаем через canvas если доступен
+      img.addEventListener('load', function() {
+        try {
+          var c = document.createElement('canvas');
+          c.width = img.naturalWidth || 46;
+          c.height = img.naturalHeight || 46;
+          c.getContext('2d').drawImage(img, 0, 0);
+          var frozen = c.toDataURL();
+          if (frozen !== 'data:,') img.src = frozen;
+        } catch(e) {}
+      });
+    });
   })();
 
   // Pixel-perfect logo-sub width via scaleX

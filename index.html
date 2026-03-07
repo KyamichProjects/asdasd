@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>ГлобалМСК — Московский бизнес портал</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+AR:wght@400;700&display=swap" rel="stylesheet">
@@ -2149,6 +2149,265 @@
   [data-theme="dark"] .quote-news-title { color: rgba(255,255,255,0.35); }
   [data-theme="dark"] .quote-card:hover { background: rgba(255,255,255,0.08); }
 
+  /* Кнопка Новости — неактивна на главной */
+  .nav-link-news {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 30px;
+    padding: 0 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 7px;
+    flex-shrink: 0;
+    transition: color 0.18s, background 0.18s;
+    margin-right: 6px;
+  }
+  .nav-link-news svg { width: 13px; height: 13px; flex-shrink: 0; opacity: 0.5; transition: opacity 0.18s; }
+  .nav-link-news:hover { color: var(--accent); background: rgba(8,145,178,0.08); }
+  .nav-link-news:hover svg { opacity: 1; }
+  [data-theme="dark"] .nav-link-news { color: rgba(255,255,255,0.5); }
+  [data-theme="dark"] .nav-link-news:hover { color: #5dd8f0; background: rgba(8,145,178,0.12); }
+
+  /* ═══════════════════════════════════════════════════════
+     ПОЛНЫЙ АДАПТИВ — все брейкпоинты
+     1280 → 1024 → 768 → 640 → 480 → 390
+  ═══════════════════════════════════════════════════════ */
+
+  /* ── 1280px: чуть сжимаем ── */
+  @media (max-width: 1280px) {
+    .main-layout { padding: 0 20px; gap: 24px; }
+    .news-grid { padding: 0 20px; gap: 16px; }
+    .ratings-grid, .birthdays-grid { gap: 12px; }
+    .section-header { padding: 0 20px; }
+    .ratings-section, .birthdays-section, .jobs-section, .cards-row-section,
+    .topics-strip, .ad-block { padding-left: 20px; padding-right: 20px; }
+    .quotes-section .section-header { padding: 0 20px; }
+    .quotes-grid { padding: 0 20px; }
+  }
+
+  /* ── 1024px: планшет альбомный ── */
+  @media (max-width: 1024px) {
+    /* Хедер */
+    .header-top-row { padding: 0 20px; }
+    .logo-name { font-size: 16px !important; }
+    .header-search { display: none; }
+
+    /* Главная сетка — убрать сайдбар */
+    .main-layout { grid-template-columns: 1fr; }
+    .main-sidebar { display: none; }
+
+    /* Новости */
+    .news-grid { grid-template-columns: repeat(2, 1fr); padding: 0 20px; }
+
+    /* Рейтинги */
+    .ratings-grid { grid-template-columns: repeat(3, 1fr); }
+    .birthdays-grid { grid-template-columns: repeat(3, 1fr); }
+
+    /* Jobs */
+    .jobs-layout { grid-template-columns: 1fr; }
+    .jobs-sidebar { display: none; }
+
+    /* Секции */
+    .ratings-section, .birthdays-section, .jobs-section,
+    .cards-row-section, .topics-strip { padding: 32px 20px; }
+    .section-header { padding: 0 20px; }
+    .quotes-grid { grid-template-columns: repeat(2, 1fr); padding: 0 20px; }
+    .press-grid { grid-template-columns: repeat(2, 1fr); padding: 0 20px 40px; }
+    .horoscope-ticker-wrap, .press-ticker-wrap { margin: 0 -20px; }
+    .ad-block { padding: 0 20px; }
+    .footer-top { padding: 40px 20px 32px; }
+    .topbar-inner { padding: 0 20px; }
+    .breaking-inner { padding: 0 20px; }
+  }
+
+  /* ── 768px: планшет вертикальный ── */
+  @media (max-width: 768px) {
+    /* Finance bar */
+    .finance-bar { height: 28px; }
+    .finance-item { padding: 0 10px; font-size: 10px; }
+
+    /* Топбар */
+    .topbar { height: 32px; }
+    .topbar-inner { gap: 8px; }
+    .topbar-date { display: none; }
+
+    /* Хедер строка 1 */
+    .header-top-row { height: 54px; gap: 10px; padding: 0 16px; }
+    .logo-mark { width: 38px; height: 38px; }
+    .logo-name { font-size: 15px !important; }
+    .logo-sub { display: none; }
+    .btn-cabinet span, .btn-subscribe span { display: none; }
+    .btn-cabinet, .btn-subscribe { padding: 0 8px; min-width: 32px; }
+
+    /* Хедер строка 2 — скрыть, показывать через бургер */
+    .header-nav-row { display: none; }
+
+    /* Герой */
+    .hero { grid-template-columns: 1fr; gap: 10px; margin: 16px auto; padding: 0 16px; }
+    .hero-main { min-height: 240px; border-radius: 14px; }
+    .hero-main-title { font-size: 17px; }
+    .hero-side { flex-direction: row; overflow-x: auto; gap: 10px; padding-bottom: 4px; scrollbar-width: none; }
+    .hero-side::-webkit-scrollbar { display: none; }
+    .side-card { min-width: 220px; flex-shrink: 0; }
+
+    /* Новости */
+    .news-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 16px; }
+    .section-header { padding: 0 16px; }
+
+    /* Рейтинги */
+    .ratings-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .birthdays-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .ratings-section, .birthdays-section { padding: 28px 16px; }
+
+    /* Карточки гороскопа */
+    .horoscope-card { width: 130px; }
+
+    /* Jobs */
+    .jobs-section { padding: 28px 16px; }
+    .job-card { padding: 14px; }
+
+    /* Цитаты */
+    .quotes-section { margin: 32px 0; padding: 40px 0; }
+    .quotes-grid { grid-template-columns: 1fr; padding: 0 16px; gap: 12px; }
+    .quotes-section .section-header { padding: 0 16px; margin-bottom: 24px; }
+
+    /* Пресс-релизы */
+    .press-grid { grid-template-columns: 1fr; padding: 0 16px 32px; }
+    .press-ticker-section { padding: 0 16px; }
+
+    /* Темы */
+    .topics-strip { padding: 0 16px 32px; }
+    .topics-inner { gap: 6px; }
+    .topic-chip { font-size: 11px; padding: 6px 12px; }
+
+    /* Footer */
+    .footer-subscribe-bar { padding: 14px 16px; }
+    .footer-subscribe-inner { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .footer-subscribe-form { width: 100%; max-width: 100%; }
+    .footer-subscribe-input { flex: 1; min-width: 0; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 24px; padding: 28px 16px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; padding: 16px; }
+    .footer-bottom-links { flex-wrap: wrap; justify-content: center; gap: 8px 16px; }
+    .footer-stats { grid-template-columns: repeat(3, 1fr); }
+
+    /* Ad */
+    .ad-block { padding: 0 16px; margin: 12px auto; }
+    .ad-banner-wide { height: 60px; font-size: 11px; }
+    .breaking-inner { padding: 0 16px; }
+    .breaking-label { font-size: 9px; padding: 2px 7px; }
+  }
+
+  /* ── 640px: большой телефон ── */
+  @media (max-width: 640px) {
+    html, body { overflow-x: hidden; }
+
+    /* Finance */
+    .finance-bar .finance-items { animation-duration: 20s; }
+    .fi-label { display: none; }
+
+    /* Герой */
+    .hero-main-title { font-size: 16px; line-height: 1.4; }
+    .hero-cat { font-size: 10px; }
+    .hero-side { display: none; }
+    .hero { padding: 0 12px; }
+
+    /* Новости — одна колонка */
+    .news-grid { grid-template-columns: 1fr; padding: 0 12px; }
+    .section-header { padding: 0 12px; }
+    .section-title { font-size: 18px; }
+
+    /* Рейтинги */
+    .ratings-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .person-card { padding: 14px 10px; }
+    .person-card .person-name { font-size: 11px; }
+    .birthdays-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .birthday-card { padding: 14px 10px; }
+    .ratings-section, .birthdays-section { padding: 24px 12px; }
+
+    /* Jobs */
+    .jobs-section { padding: 24px 12px; }
+    .job-cards-list { gap: 10px; }
+
+    /* Гороскопы */
+    .horoscope-card { width: 120px; padding: 14px 10px; }
+    .horoscope-sign { font-size: 28px; }
+
+    /* Пресс-тикер */
+    .press-card { width: 240px; }
+    .press-card-img-wrap { height: 130px; }
+
+    /* Цитаты */
+    .quote-card { padding: 18px; }
+    .quote-avatar { width: 42px; height: 50px; }
+    .quote-name { font-size: 12px; }
+    .quote-text { font-size: 12.5px; }
+
+    /* Топики */
+    .topics-strip { padding: 0 12px 28px; }
+
+    /* Footer */
+    .footer-top { grid-template-columns: 1fr; gap: 24px; padding: 24px 12px; }
+    .footer-stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .footer-stat-val { font-size: 16px; }
+    .footer-subscribe-bar { padding: 14px 12px; }
+    .footer-bottom { padding: 14px 12px; font-size: 11px; }
+
+    /* Scroll to top */
+    .scroll-top { width: 38px; height: 38px; right: 12px; bottom: 12px; }
+
+    /* Ad */
+    .ad-block { padding: 0 12px; }
+
+    /* Logo */
+    .logo { gap: 8px; }
+    .logo-mark { width: 34px; height: 34px; }
+  }
+
+  /* ── 480px: средний телефон ── */
+  @media (max-width: 480px) {
+    .hero-main { min-height: 200px; border-radius: 12px; }
+    .hero-main-title { font-size: 14px; }
+    .ratings-grid { grid-template-columns: repeat(2, 1fr); }
+    .birthdays-grid { grid-template-columns: repeat(2, 1fr); }
+    .person-photo { width: 56px; height: 70px; }
+    .rating-score { font-size: 11px; }
+    .news-card-title { font-size: 13.5px; }
+    .footer-top { gap: 20px; }
+    .header-top-row { gap: 8px; }
+    .btn-cabinet, .btn-subscribe { display: none; }
+    .theme-toggle { transform: scale(0.9); }
+  }
+
+  /* ── 390px: маленький телефон ── */
+  @media (max-width: 390px) {
+    .finance-item { padding: 0 8px; }
+    .hero { padding: 0 10px; }
+    .hero-main { min-height: 180px; }
+    .news-grid { padding: 0 10px; gap: 10px; }
+    .section-header { padding: 0 10px; }
+    .ratings-section, .birthdays-section, .jobs-section { padding: 20px 10px; }
+    .ratings-grid, .birthdays-grid { gap: 8px; }
+    .person-card { padding: 12px 8px; border-radius: 10px; }
+    .person-photo { width: 50px; height: 62px; }
+    .person-name { font-size: 10px; }
+    .person-pos { font-size: 9px; }
+    .birthday-card { padding: 12px 8px; }
+    .quote-card { padding: 14px; }
+    .quote-avatar { width: 38px; height: 46px; }
+    .press-card { width: 210px; }
+    .footer-top { padding: 20px 10px; gap: 20px; }
+    .footer-subscribe-bar { padding: 12px 10px; }
+    .footer-stats { gap: 6px; }
+    .footer-stat-val { font-size: 14px; }
+    .footer-bottom { padding: 12px 10px; gap: 8px; }
+    .logo-name { font-size: 13px !important; letter-spacing: 0.8px; }
+    .header-top-row { padding: 0 10px; gap: 6px; }
+  }
+
 </style>
 </head>
 <body>
@@ -2282,7 +2541,7 @@
   <!-- СТРОКА 2: навигация + кнопки добавления -->
   <div class="header-nav-row">
     <nav>
-      <a href="https://globalmsk.ru/news" class="nav-news-btn">
+      <a href="news.html" class="nav-link-news">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8"/></svg>
         Новости
       </a>
@@ -2356,7 +2615,7 @@
       </div>
     </div>
     <nav class="mobile-nav-links">
-      <a href="https://globalmsk.ru/news" class="nav-news-btn">
+      <a href="news.html" class="nav-link-news">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8"/></svg>
         Новости
       </a>
@@ -2490,7 +2749,7 @@
 <div class="section-header anim-3">
   <span class="section-title">Новости Москвы</span>
   <span class="section-rule"></span>
-  <a href="https://globalmsk.ru/news" class="section-link">
+  <a href="news.html" class="section-link">
     Все новости
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </a>
@@ -3362,7 +3621,7 @@
           Разделы
         </div>
         <div class="footer-links">
-          <a href="https://globalmsk.ru/news">Новости Москвы</a>
+          <a href="news.html">Новости Москвы</a>
           <a href="https://globalmsk.ru/firmnews">Пресс-релизы</a>
           <a href="https://globalmsk.ru/person">Рейтинг персон</a>
           <a href="https://globalmsk.ru/catalog">Каталог компаний</a>

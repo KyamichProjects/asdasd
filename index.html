@@ -2545,7 +2545,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8"/></svg>
         Новости
       </a>
-      <a href="https://globalmsk.ru/firmnews">
+      <a href="firmnews.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         Пресс-релизы
       </a>
@@ -2619,7 +2619,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8"/></svg>
         Новости
       </a>
-      <a href="https://globalmsk.ru/firmnews">
+      <a href="firmnews.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         Пресс-релизы
       </a>
@@ -2887,7 +2887,7 @@
   <div class="section-header" style="padding:0; margin-bottom:20px;">
     <span class="section-title">Пресс-релизы</span>
     <span class="section-rule"></span>
-    <a href="https://globalmsk.ru/firmnews" class="section-link">
+    <a href="firmnews.html" class="section-link">
       Все релизы
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -3622,7 +3622,7 @@
         </div>
         <div class="footer-links">
           <a href="news.html">Новости Москвы</a>
-          <a href="https://globalmsk.ru/firmnews">Пресс-релизы</a>
+          <a href="firmnews.html">Пресс-релизы</a>
           <a href="https://globalmsk.ru/person">Рейтинг персон</a>
           <a href="https://globalmsk.ru/catalog">Каталог компаний</a>
           <a href="https://globalmsk.ru/vacancy">Вакансии</a>
@@ -3816,10 +3816,12 @@
 
   // Scroll to top
   const scrollBtn = document.getElementById('scrollTop');
-  window.addEventListener('scroll', () => {
-    scrollBtn.classList.toggle('visible', window.scrollY > 400);
-  });
-  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  if (scrollBtn) {
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
 
   // Burger menu
   const burger = document.getElementById('burgerBtn');

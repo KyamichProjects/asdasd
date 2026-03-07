@@ -53,8 +53,7 @@
   [data-theme="dark"] .press-ticker-wrap { background: var(--card-bg); border-color: var(--border); }
   [data-theme="dark"] .press-ticker-wrap::before { background: linear-gradient(to right, #161d26, transparent); }
   [data-theme="dark"] .press-ticker-wrap::after  { background: linear-gradient(to left,  #161d26, transparent); }
-  [data-theme="dark"] nav a { color: var(--ink); }
-  [data-theme="dark"] nav a:hover { background: rgba(8,145,178,0.12); }
+
   [data-theme="dark"] .section-title { color: var(--ink); }
   [data-theme="dark"] .topic-pill { background: var(--card-bg); border-color: var(--border); color: var(--ink); }
   [data-theme="dark"] .topic-pill:hover { background: rgba(8,145,178,0.15); }
@@ -188,33 +187,15 @@
   }
   .fn-dark { color: var(--ink); -webkit-text-fill-color: var(--ink); }
 
-  /* ─── HEADER ─── */
-  header {
-    background: var(--white);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    animation: slideDown 0.5s ease both;
-  }
-  @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-  .header-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 32px;
-    height: 72px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
+  /* ─── LOGO ─── */
   .logo {
     display: flex;
     align-items: center;
     gap: 12px;
     text-decoration: none;
     flex-shrink: 0;
+    color: inherit;
   }
   .logo-mark {
     width: 46px;
@@ -224,11 +205,7 @@
     justify-content: center;
     flex-shrink: 0;
   }
-  .logo-mark img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
+  .logo-mark img { width: 100%; height: 100%; object-fit: contain; }
   .logo-text {
     display: flex;
     flex-direction: column;
@@ -239,16 +216,17 @@
     font-family: 'Inter', 'Noto Sans', sans-serif;
     font-size: 18px;
     font-weight: 900;
+    letter-spacing: 1.5px;
     white-space: nowrap;
     display: block;
-    letter-spacing: 1.5px;
-    color: var(--ink);
-    -webkit-text-fill-color: var(--ink);
-    background: none;
+    color: var(--ink) !important;
+    -webkit-text-fill-color: var(--ink) !important;
+    background: none !important;
+    text-decoration: none;
   }
   [data-theme="dark"] .logo-name {
-    color: #ffffff;
-    -webkit-text-fill-color: #ffffff;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
   }
   .logo-sub {
     font-size: 7.5px;
@@ -260,40 +238,47 @@
     transform-origin: left center;
   }
 
-  nav {
+  /* ─── HEADER ─── */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+    overflow: visible;
+  }
+  [data-theme="dark"] header { background: #161d26; box-shadow: 0 1px 0 rgba(255,255,255,0.06); }
+
+  /* Строка 1: логотип + поиск + auth */
+  .header-top-row {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 60px;
     display: flex;
-    gap: 2px;
-    flex: 1;
-    flex-wrap: nowrap;
-    overflow: hidden;
-    min-width: 0;
+    align-items: center;
+    gap: 16px;
   }
-  nav a {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--ink);
-    text-decoration: none;
-    padding: 5px 8px;
-    border-radius: 6px;
-    letter-spacing: 0;
-    transition: all 0.2s;
-    position: relative;
-    white-space: nowrap;
+  /* Строка 2: навигация + кнопки добавления */
+  .header-nav-row {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    overflow-x: auto;
+    overflow-y: visible;
+    scrollbar-width: none;
   }
-  nav a::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    left: 12px;
-    right: 12px;
-    height: 2px;
-    background: var(--grad);
-    transform: scaleX(0);
-    transition: transform 0.25s ease;
-    transform-origin: left;
-  }
-  nav a:hover { color: var(--accent); background: rgba(8,145,178,0.07); }
-  nav a:hover::after { transform: scaleX(1); }
+  .header-nav-row::-webkit-scrollbar { display: none; }
+  [data-theme="dark"] .header-nav-row { border-top-color: rgba(255,255,255,0.05); }
+
+  /* Старый header-inner — убрать */
+  .header-inner { display: contents; }
 
   .header-search {
     display: flex;
@@ -308,7 +293,7 @@
   }
   .header-search:focus-within {
     border-color: var(--accent);
-    background: white;
+    background: var(--white);
     box-shadow: 0 0 0 3px rgba(8,145,178,0.1);
   }
   .header-search input {
@@ -317,7 +302,7 @@
     font-family: 'Inter', 'Noto Sans', 'Noto Sans SC', 'Noto Sans AR', sans-serif;
     font-size: 13px;
     color: var(--ink);
-    width: 160px;
+    width: 130px;
     outline: none;
   }
   .header-search input::placeholder { color: var(--muted); }
@@ -325,11 +310,86 @@
   .search-btn:hover { color: var(--accent); }
   .search-btn svg { width: 15px; height: 15px; }
 
+
+  /* ─── НАВИГАЦИЯ ─── */
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    overflow: visible;
+    padding: 0 4px;
+  }
+  nav a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 30px;
+    padding: 0 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 7px;
+    flex-shrink: 0;
+    position: relative;
+    transition: color 0.18s, background 0.18s, box-shadow 0.18s;
+    letter-spacing: 0.01em;
+  }
+  nav a svg {
+    width: 13px; height: 13px;
+    flex-shrink: 0;
+    opacity: 0.5;
+    transition: opacity 0.18s, transform 0.18s;
+  }
+  nav a:hover {
+    color: var(--accent);
+    background: rgba(8,145,178,0.08);
+  }
+  nav a:hover svg { opacity: 1; transform: scale(1.1); }
+
+  /* Тёмная тема */
+  [data-theme="dark"] nav a { color: rgba(255,255,255,0.5); }
+  [data-theme="dark"] nav a:hover { color: #5dd8f0; background: rgba(8,145,178,0.12); }
+
+  /* Разделитель */
+  .nav-sep {
+    width: 1px; height: 16px;
+    background: rgba(0,0,0,0.08);
+    flex-shrink: 0; margin: 0 4px;
+  }
+  [data-theme="dark"] .nav-sep { background: rgba(255,255,255,0.08); }
+
+  /* Кнопка НОВОСТИ — акцентная таблетка */
+  .nav-news-btn {
+    background: var(--grad) !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    border-radius: 7px !important;
+    padding: 0 14px !important;
+    height: 30px !important;
+    box-shadow: 0 2px 8px rgba(8,145,178,0.35) !important;
+    margin-right: 6px;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+  }
+  .nav-news-btn svg { opacity: 1 !important; stroke: white !important; }
+  .nav-news-btn:hover {
+    filter: brightness(1.08) !important;
+    box-shadow: 0 4px 14px rgba(8,145,178,0.5) !important;
+    color: #fff !important;
+    transform: translateY(-1px);
+  }
+
+  .header-nav-row { overflow: visible; }
+
   /* ─── HEADER AUTH BUTTONS ─── */
   .header-auth {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
     flex-shrink: 0;
   }
   .btn-cabinet,
@@ -553,15 +613,16 @@
     padding: 56px 0;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
   }
   .quotes-section::before {
     content: '«»';
     position: absolute;
     font-family: 'Playfair Display', serif;
-    font-size: 400px;
-    color: rgba(255,255,255,0.02);
-    top: -80px;
-    left: -40px;
+    font-size: 280px;
+    color: rgba(255,255,255,0.025);
+    top: -50px;
+    left: -20px;
     line-height: 1;
     pointer-events: none;
   }
@@ -1562,14 +1623,93 @@
   .resume-name{font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:3px}
   .resume-spec{font-size:11.5px;color:var(--accent);margin-bottom:6px}
   .resume-meta span{display:block;font-size:10.5px;color:var(--muted);line-height:1.5}
-  .horoscope-card{flex-shrink:0;width:260px;background:linear-gradient(135deg,rgba(0,198,167,.06),rgba(0,102,204,.06));border-radius:12px;padding:18px;text-decoration:none;color:inherit;transition:all .25s;border:1px solid rgba(8,145,178,.12);display:flex;flex-direction:column;gap:10px}
-  .horoscope-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(8,145,178,.12);border-color:rgba(8,145,178,.3)}
-  .horoscope-head{display:flex;gap:12px;align-items:center}
-  .horoscope-icon{width:48px;height:48px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--grad);font-size:26px;line-height:1}
-  .horoscope-sign{font-size:15px;font-weight:700;color:var(--ink)}
-  .horoscope-range{font-size:11px;color:var(--muted);margin-top:2px}
-  .horoscope-text{font-size:12px;color:var(--muted);line-height:1.65;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-  .horoscope-more{font-size:11.5px;font-weight:600;color:var(--accent)}
+  /* Гороскопы — лента */
+  .horoscope-ticker-wrap {
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.07);
+    background: var(--white);
+    position: relative;
+  }
+  [data-theme="dark"] .horoscope-ticker-wrap {
+    background: var(--card-bg, #161d26);
+    border-color: rgba(255,255,255,0.07);
+  }
+  .horoscope-ticker-wrap::before,
+  .horoscope-ticker-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 60px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .horoscope-ticker-wrap::before { left: 0; background: linear-gradient(to right, var(--white, white), transparent); }
+  .horoscope-ticker-wrap::after  { right: 0; background: linear-gradient(to left,  var(--white, white), transparent); }
+  [data-theme="dark"] .horoscope-ticker-wrap::before { background: linear-gradient(to right, #161d26, transparent); }
+  [data-theme="dark"] .horoscope-ticker-wrap::after  { background: linear-gradient(to left,  #161d26, transparent); }
+  .horoscope-ticker-track {
+    display: flex;
+    gap: 0;
+    animation: horoscopeTicker 45s linear infinite;
+    width: max-content;
+  }
+  .horoscope-ticker-track:hover { animation-play-state: paused; }
+  @keyframes horoscopeTicker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .horoscope-card {
+    flex-shrink: 0;
+    width: 240px;
+    background: transparent;
+    border-right: 1px solid rgba(0,0,0,0.06);
+    border-radius: 0;
+    padding: 20px 18px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: background 0.2s, transform 0.22s, box-shadow 0.22s;
+    position: relative;
+    overflow: hidden;
+  }
+  [data-theme="dark"] .horoscope-card { border-color: rgba(255,255,255,0.06); }
+  .horoscope-card:hover {
+    background: rgba(8,145,178,0.05);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(8,145,178,0.12);
+    z-index: 3;
+  }
+  .horoscope-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--grad);
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+    transform-origin: left;
+  }
+  .horoscope-card:hover::after { transform: scaleX(1); }
+  .horoscope-head { display: flex; gap: 12px; align-items: center; }
+  .horoscope-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--grad);
+    font-size: 22px; line-height: 1;
+    box-shadow: 0 4px 12px rgba(8,145,178,0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .horoscope-card:hover .horoscope-icon { transform: scale(1.08); box-shadow: 0 6px 18px rgba(8,145,178,0.4); }
+  .horoscope-sign { font-size: 14px; font-weight: 700; color: var(--ink); transition: color 0.2s; }
+  .horoscope-card:hover .horoscope-sign { color: var(--accent); }
+  .horoscope-range { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .horoscope-text { font-size: 12px; color: var(--muted); line-height: 1.65; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .horoscope-more { font-size: 11.5px; font-weight: 600; color: var(--accent); margin-top: auto; }
 
 
   /* ─── FINANCE TICKER ─── */
@@ -1968,6 +2108,17 @@
     .footer-subscribe-btn { width: 100%; text-align: center; padding: 10px; }
   }
 
+  @media (max-width: 1200px) {
+    .btn-cabinet span, .btn-subscribe span,
+    .btn-cabinet, .btn-subscribe { font-size: 0; gap: 0; }
+    .btn-cabinet svg, .btn-subscribe svg { width: 15px; height: 15px; }
+    .header-add-group { display: none; }
+  }
+  @media (max-width: 1400px) {
+    .header-search input { width: 110px; }
+    .header-auth { gap: 8px; }
+  }
+
 </style>
 </head>
 <body>
@@ -2046,7 +2197,8 @@
 <div class="ad-block"><div class="ad-banner ad-banner-wide"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> Реклама 970×90</div></div>
 <!-- HEADER -->
 <header>
-  <div class="header-inner">
+  <!-- СТРОКА 1: логотип + поиск + auth + тема -->
+  <div class="header-top-row">
     <a href="https://globalmsk.ru" class="logo">
       <div class="logo-mark"><img src="logo.gif" alt="ГлобалМСК"></div>
       <div class="logo-text">
@@ -2054,21 +2206,85 @@
         <span class="logo-sub">Московский бизнес портал</span>
       </div>
     </a>
-    <nav>
-      <a href="https://globalmsk.ru/news">Новости</a>
-      <a href="https://globalmsk.ru/firmnews">Пресс-релизы</a>
-      <a href="https://globalmsk.ru/person">Люди</a>
-      <a href="https://globalmsk.ru/catalog">Компании</a>
-      <a href="https://globalmsk.ru/vacancy">Работа</a>
-      <a href="https://globalmsk.ru/horoscope">Гороскопы</a>
-    </nav>
-    <div class="header-search">
-      <input type="text" placeholder="Поиск по сайту…" aria-label="Поиск">
+
+    <!-- Поиск по странице -->
+    <div class="header-search" id="siteSearch">
+      <input type="text" id="searchInput" placeholder="Поиск по сайту…" aria-label="Поиск" autocomplete="off">
+      <button class="search-btn" id="searchClearBtn" style="display:none" aria-label="Очистить">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
       <button class="search-btn" aria-label="Найти">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       </button>
     </div>
+    <!-- Результаты поиска -->
+    <div id="searchResults" style="display:none;position:absolute;top:60px;left:50%;transform:translateX(-50%);width:520px;max-width:90vw;background:var(--white);border:1px solid rgba(0,0,0,0.1);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.12);z-index:200;max-height:380px;overflow-y:auto;padding:8px 0"></div>
 
+    <div style="flex:1"></div>
+
+    <div class="header-auth">
+      <a href="https://globalmsk.ru/login" class="btn-cabinet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Мой кабинет</span>
+      </a>
+      <span style="width:1px;height:14px;background:rgba(0,0,0,0.12);flex-shrink:0"></span>
+      <a href="https://globalmsk.ru/subscribe" class="btn-subscribe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>Подписка</span>
+      </a>
+      <span style="width:1px;height:14px;background:rgba(0,0,0,0.12);flex-shrink:0"></span>
+      <div class="theme-toggle" title="Переключить тему" style="flex-shrink:0">
+        <button class="theme-btn active" id="themeLight" aria-label="Светлая тема">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+        <button class="theme-btn" id="themeDark" aria-label="Тёмная тема">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Burger (мобиль) -->
+    <button class="burger" id="burgerBtn" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- СТРОКА 2: навигация + кнопки добавления -->
+  <div class="header-nav-row">
+    <nav>
+      <a href="https://globalmsk.ru/news" class="nav-news-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8"/></svg>
+        Новости
+      </a>
+      <a href="https://globalmsk.ru/firmnews">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Пресс-релизы
+      </a>
+      <a href="https://globalmsk.ru/person">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Люди
+      </a>
+      <a href="https://globalmsk.ru/catalog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        Компании
+      </a>
+      <a href="https://globalmsk.ru/vacancy">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        Работа
+      </a>
+      <a href="https://globalmsk.ru/horoscope">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+        Гороскопы
+      </a>
+      <a href="https://globalmsk.ru/courses">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Курсы
+      </a>
+    </nav>
+
+    <div style="flex:1"></div>
+
+    <!-- Кнопки добавления в nav-row -->
     <div class="header-add-group">
       <a href="https://globalmsk.ru/firmnews/add" class="header-add-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -2083,35 +2299,9 @@
         Персону
       </a>
     </div>
-    <div class="header-auth">
-      <a href="https://globalmsk.ru/login" class="btn-cabinet">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        Мой кабинет
-      </a>
-      <span style="width:1px;height:14px;background:rgba(0,0,0,0.12);flex-shrink:0"></span>
-      <a href="https://globalmsk.ru/subscribe" class="btn-subscribe">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Подписка на рассылку
-      </a>
-      <span style="width:1px;height:14px;background:rgba(0,0,0,0.12);flex-shrink:0"></span>
-      <div class="theme-toggle" title="Переключить тему">
-        <button class="theme-btn active" id="themeLight" aria-label="Светлая тема">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        </button>
-        <button class="theme-btn" id="themeDark" aria-label="Тёмная тема">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Burger button -->
-    <button class="burger" id="burgerBtn" aria-label="Меню">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
   </div>
 </header>
+
 
 <!-- MOBILE DRAWER NAV -->
 <div class="mobile-nav" id="mobileNav">
@@ -2136,7 +2326,7 @@
       </div>
     </div>
     <nav class="mobile-nav-links">
-      <a href="https://globalmsk.ru/news">
+      <a href="https://globalmsk.ru/news" class="nav-news-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8"/></svg>
         Новости
       </a>
@@ -2873,32 +3063,199 @@
     <a href="https://globalmsk.ru/horoscope" class="cards-row-link">Все</a>
     <span class="cards-row-rule"></span>
   </div>
-  <div class="cards-row-wrap">
-    <div class="cards-scroll">
-      <a href="https://globalmsk.ru/horoscope/scorpio" class="horoscope-card">
-        <div class="horoscope-head"><div class="horoscope-icon">&#9807;</div><div><div class="horoscope-sign">Скорпион</div><div class="horoscope-range">24 окт &mdash; 21 ноя</div></div></div>
-        <div class="horoscope-text">Ложь, высказанная сегодня Скорпионами, обязательно будет иметь последствия именно для вас. Избегайте интриг и бессовестных поступков, так можно многое потерять безвозвратно.</div>
-        <span class="horoscope-more">Читать далее &rarr;</span>
-      </a>
+  <div class="horoscope-ticker-wrap">
+    <div class="horoscope-ticker-track">
       <a href="https://globalmsk.ru/horoscope/aries" class="horoscope-card">
-        <div class="horoscope-head"><div class="horoscope-icon">&#9800;</div><div><div class="horoscope-sign">Овен</div><div class="horoscope-range">21 мар &mdash; 20 апр</div></div></div>
-        <div class="horoscope-text">В возникших сегодня неприятностях Овны будут виноваты исключительно сами, но это ещё не все последствия ранее сказанных слов. Сохраняйте спокойствие.</div>
-        <span class="horoscope-more">Читать далее &rarr;</span>
-      </a>
-      <a href="https://globalmsk.ru/horoscope/virgo" class="horoscope-card">
-        <div class="horoscope-head"><div class="horoscope-icon">&#9805;</div><div><div class="horoscope-sign">Дева</div><div class="horoscope-range">24 авг &mdash; 23 сен</div></div></div>
-        <div class="horoscope-text">В этот день Девам в руки само по себе ничего не пойдёт. Прилагайте максимум усилий, но будьте предельно осторожны. Успешными окажутся переговоры с партнёрами.</div>
-        <span class="horoscope-more">Читать далее &rarr;</span>
-      </a>
-      <a href="https://globalmsk.ru/horoscope/leo" class="horoscope-card">
-        <div class="horoscope-head"><div class="horoscope-icon">&#9804;</div><div><div class="horoscope-sign">Лев</div><div class="horoscope-range">23 июл &mdash; 22 авг</div></div></div>
-        <div class="horoscope-text">Сегодня Львы почувствуют прилив сил и энергии. Отличный день для новых проектов и установления деловых контактов. Финансовые дела пойдут в гору.</div>
-        <span class="horoscope-more">Читать далее &rarr;</span>
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♈</div>
+          <div><div class="horoscope-sign">Овен</div><div class="horoscope-range">21 мар — 20 апр</div></div>
+        </div>
+        <div class="horoscope-text">В возникших неприятностях Овны виноваты исключительно сами. Сохраняйте спокойствие и не повторяйте прошлых ошибок.</div>
+        <span class="horoscope-more">Читать далее →</span>
       </a>
       <a href="https://globalmsk.ru/horoscope/taurus" class="horoscope-card">
-        <div class="horoscope-head"><div class="horoscope-icon">&#9801;</div><div><div class="horoscope-sign">Телец</div><div class="horoscope-range">21 апр &mdash; 20 май</div></div></div>
-        <div class="horoscope-text">День благоприятен для решения финансовых вопросов. Стоит прислушаться к советам близких — они могут указать верный путь в непростой ситуации.</div>
-        <span class="horoscope-more">Читать далее &rarr;</span>
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♉</div>
+          <div><div class="horoscope-sign">Телец</div><div class="horoscope-range">21 апр — 20 май</div></div>
+        </div>
+        <div class="horoscope-text">День благоприятен для финансовых вопросов. Прислушайтесь к советам близких — они укажут верный путь.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/gemini" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♊</div>
+          <div><div class="horoscope-sign">Близнецы</div><div class="horoscope-range">21 май — 20 июн</div></div>
+        </div>
+        <div class="horoscope-text">Активный день для общения и новых знакомств. Деловые встречи принесут неожиданно хорошие результаты.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/cancer" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♋</div>
+          <div><div class="horoscope-sign">Рак</div><div class="horoscope-range">21 июн — 22 июл</div></div>
+        </div>
+        <div class="horoscope-text">Интуиция сегодня особенно сильна. Доверьтесь внутреннему голосу при принятии важных решений.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/leo" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♌</div>
+          <div><div class="horoscope-sign">Лев</div><div class="horoscope-range">23 июл — 22 авг</div></div>
+        </div>
+        <div class="horoscope-text">Почувствуете прилив сил и энергии. Отличный день для новых проектов и установления деловых контактов.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/virgo" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♍</div>
+          <div><div class="horoscope-sign">Дева</div><div class="horoscope-range">24 авг — 23 сен</div></div>
+        </div>
+        <div class="horoscope-text">В этот день само по себе ничего не пойдёт. Прилагайте максимум усилий. Переговоры с партнёрами пройдут успешно.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/libra" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♎</div>
+          <div><div class="horoscope-sign">Весы</div><div class="horoscope-range">23 сен — 22 окт</div></div>
+        </div>
+        <div class="horoscope-text">Гармоничный день для творчества и личных отношений. Не откладывайте важные разговоры.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/scorpio" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♏</div>
+          <div><div class="horoscope-sign">Скорпион</div><div class="horoscope-range">24 окт — 21 ноя</div></div>
+        </div>
+        <div class="horoscope-text">Ложь, высказанная сегодня, обязательно будет иметь последствия. Избегайте интриг и бессовестных поступков.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/sagittarius" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♐</div>
+          <div><div class="horoscope-sign">Стрелец</div><div class="horoscope-range">22 ноя — 21 дек</div></div>
+        </div>
+        <div class="horoscope-text">Стремление к новым горизонтам сегодня особенно сильно. Самое время для планирования путешествий.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/capricorn" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♑</div>
+          <div><div class="horoscope-sign">Козерог</div><div class="horoscope-range">22 дек — 19 янв</div></div>
+        </div>
+        <div class="horoscope-text">Трудолюбие и упорство принесут плоды. Финансовые вложения сегодня особенно перспективны.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/aquarius" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♒</div>
+          <div><div class="horoscope-sign">Водолей</div><div class="horoscope-range">20 янв — 18 фев</div></div>
+        </div>
+        <div class="horoscope-text">День полон неожиданных встреч и открытий. Будьте открыты к новым идеям и нестандартным решениям.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/pisces" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♓</div>
+          <div><div class="horoscope-sign">Рыбы</div><div class="horoscope-range">19 фев — 20 мар</div></div>
+        </div>
+        <div class="horoscope-text">Творческий потенциал на пике. Уделите время искусству или медитации — это восстановит внутренний баланс.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/aries" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♈</div>
+          <div><div class="horoscope-sign">Овен</div><div class="horoscope-range">21 мар — 20 апр</div></div>
+        </div>
+        <div class="horoscope-text">В возникших неприятностях Овны виноваты исключительно сами. Сохраняйте спокойствие и не повторяйте прошлых ошибок.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/taurus" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♉</div>
+          <div><div class="horoscope-sign">Телец</div><div class="horoscope-range">21 апр — 20 май</div></div>
+        </div>
+        <div class="horoscope-text">День благоприятен для финансовых вопросов. Прислушайтесь к советам близких — они укажут верный путь.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/gemini" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♊</div>
+          <div><div class="horoscope-sign">Близнецы</div><div class="horoscope-range">21 май — 20 июн</div></div>
+        </div>
+        <div class="horoscope-text">Активный день для общения и новых знакомств. Деловые встречи принесут неожиданно хорошие результаты.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/cancer" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♋</div>
+          <div><div class="horoscope-sign">Рак</div><div class="horoscope-range">21 июн — 22 июл</div></div>
+        </div>
+        <div class="horoscope-text">Интуиция сегодня особенно сильна. Доверьтесь внутреннему голосу при принятии важных решений.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/leo" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♌</div>
+          <div><div class="horoscope-sign">Лев</div><div class="horoscope-range">23 июл — 22 авг</div></div>
+        </div>
+        <div class="horoscope-text">Почувствуете прилив сил и энергии. Отличный день для новых проектов и установления деловых контактов.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/virgo" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♍</div>
+          <div><div class="horoscope-sign">Дева</div><div class="horoscope-range">24 авг — 23 сен</div></div>
+        </div>
+        <div class="horoscope-text">В этот день само по себе ничего не пойдёт. Прилагайте максимум усилий. Переговоры с партнёрами пройдут успешно.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/libra" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♎</div>
+          <div><div class="horoscope-sign">Весы</div><div class="horoscope-range">23 сен — 22 окт</div></div>
+        </div>
+        <div class="horoscope-text">Гармоничный день для творчества и личных отношений. Не откладывайте важные разговоры.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/scorpio" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♏</div>
+          <div><div class="horoscope-sign">Скорпион</div><div class="horoscope-range">24 окт — 21 ноя</div></div>
+        </div>
+        <div class="horoscope-text">Ложь, высказанная сегодня, обязательно будет иметь последствия. Избегайте интриг и бессовестных поступков.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/sagittarius" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♐</div>
+          <div><div class="horoscope-sign">Стрелец</div><div class="horoscope-range">22 ноя — 21 дек</div></div>
+        </div>
+        <div class="horoscope-text">Стремление к новым горизонтам сегодня особенно сильно. Самое время для планирования путешествий.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/capricorn" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♑</div>
+          <div><div class="horoscope-sign">Козерог</div><div class="horoscope-range">22 дек — 19 янв</div></div>
+        </div>
+        <div class="horoscope-text">Трудолюбие и упорство принесут плоды. Финансовые вложения сегодня особенно перспективны.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/aquarius" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♒</div>
+          <div><div class="horoscope-sign">Водолей</div><div class="horoscope-range">20 янв — 18 фев</div></div>
+        </div>
+        <div class="horoscope-text">День полон неожиданных встреч и открытий. Будьте открыты к новым идеям и нестандартным решениям.</div>
+        <span class="horoscope-more">Читать далее →</span>
+      </a>
+      <a href="https://globalmsk.ru/horoscope/pisces" class="horoscope-card">
+        <div class="horoscope-head">
+          <div class="horoscope-icon">♓</div>
+          <div><div class="horoscope-sign">Рыбы</div><div class="horoscope-range">19 фев — 20 мар</div></div>
+        </div>
+        <div class="horoscope-text">Творческий потенциал на пике. Уделите время искусству или медитации — это восстановит внутренний баланс.</div>
+        <span class="horoscope-more">Читать далее →</span>
       </a>
     </div>
   </div>
@@ -3064,25 +3421,91 @@
     btnsDark.forEach(b  => b.addEventListener('click', () => setTheme('dark')));
   })();
 
-  // Статичный первый кадр gif
+  // gif — статичный через CSS (анимация остановлена)
+  document.querySelectorAll('.logo-mark img').forEach(function(img){
+    img.style.animationPlayState='paused';
+  });
+
+
+  // ── ПОИСК ПО СТРАНИЦЕ ──────────────────────────────────────────
   (function() {
-    var imgs = document.querySelectorAll('.logo-mark img');
-    imgs.forEach(function(img) {
-      // Клонируем src без #, это сбрасывает анимацию в начало и останавливает
-      var src = img.src;
-      img.src = '';
-      img.src = src + (src.indexOf('?') === -1 ? '?' : '&') + 'static=1';
-      // После загрузки — останавливаем через canvas если доступен
-      img.addEventListener('load', function() {
-        try {
-          var c = document.createElement('canvas');
-          c.width = img.naturalWidth || 46;
-          c.height = img.naturalHeight || 46;
-          c.getContext('2d').drawImage(img, 0, 0);
-          var frozen = c.toDataURL();
-          if (frozen !== 'data:,') img.src = frozen;
-        } catch(e) {}
+    const input   = document.getElementById('searchInput');
+    const results = document.getElementById('searchResults');
+    const clearBtn= document.getElementById('searchClearBtn');
+    if (!input) return;
+
+    // Собираем индекс: все заголовки, названия карточек, ссылки
+    function buildIndex() {
+      const items = [];
+      // Новостные карточки
+      document.querySelectorAll('.news-card, .side-card, .press-card, .horoscope-card, .vacancy-card, .resume-card, .rating-person-card, .birthday-card').forEach(el => {
+        const titleEl = el.querySelector('.news-card-title, .press-card-title, .horoscope-sign, .vacancy-title, .resume-title, .rating-person-name, .birthday-name');
+        const href = el.href || el.querySelector('a')?.href || '#';
+        const title = titleEl?.textContent.trim() || el.textContent.trim().slice(0, 80);
+        const cat = el.querySelector('.news-card-cat, .press-card-cat, .vacancy-company, .horoscope-range')?.textContent.trim() || '';
+        if (title.length > 3) items.push({ title, cat, href });
       });
+      return items;
+    }
+
+    let index = [];
+    document.fonts.ready.then(() => { index = buildIndex(); });
+
+    input.addEventListener('input', function() {
+      const q = this.value.trim().toLowerCase();
+      clearBtn.style.display = q ? 'flex' : 'none';
+      if (!index.length) index = buildIndex();
+
+      if (!q) { results.style.display = 'none'; return; }
+
+      const found = index.filter(i => i.title.toLowerCase().includes(q)).slice(0, 8);
+      if (!found.length) {
+        results.innerHTML = '<div style="padding:16px 20px;color:var(--muted);font-size:13px">Ничего не найдено</div>';
+      } else {
+        results.innerHTML = found.map(i => `
+          <a href="${i.href}" style="display:flex;flex-direction:column;gap:2px;padding:10px 18px;text-decoration:none;color:var(--ink);transition:background 0.15s;border-bottom:1px solid rgba(0,0,0,0.05)"
+             onmouseover="this.style.background='rgba(8,145,178,0.06)'" onmouseout="this.style.background=''">
+            <span style="font-size:13px;font-weight:600;color:var(--ink)">${i.title.slice(0,70)}${i.title.length>70?'…':''}</span>
+            ${i.cat ? `<span style="font-size:11px;color:var(--accent)">${i.cat}</span>` : ''}
+          </a>`).join('');
+      }
+      results.style.display = 'block';
+
+      // Подсветить совпадения на странице
+      document.querySelectorAll('.search-highlight').forEach(e => {
+        e.outerHTML = e.textContent;
+      });
+      if (q.length >= 2) {
+        document.querySelectorAll('.news-card-title, .press-card-title, .horoscope-sign, .vacancy-title').forEach(el => {
+          const esc = q.replace(/[.*+?^${}()|\[\]\\]/g, '\\$&'); const re = new RegExp('(' + esc + ')', 'gi');
+          if (re.test(el.textContent)) {
+            el.innerHTML = el.textContent.replace(re, '<mark class="search-highlight" style="background:rgba(8,145,178,0.2);color:var(--accent);border-radius:2px;padding:0 1px">$1</mark>');
+          }
+        });
+      }
+    });
+
+    clearBtn.addEventListener('click', function() {
+      input.value = '';
+      clearBtn.style.display = 'none';
+      results.style.display = 'none';
+      document.querySelectorAll('.search-highlight').forEach(e => { e.outerHTML = e.textContent; });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('#siteSearch') && !e.target.closest('#searchResults')) {
+        results.style.display = 'none';
+      }
+    });
+
+    // Позиционируем дропдаун под поиском
+    input.addEventListener('focus', function() {
+      const rect = document.getElementById('siteSearch').getBoundingClientRect();
+      results.style.left = rect.left + 'px';
+      results.style.top = (rect.bottom + 6) + 'px';
+      results.style.transform = 'none';
+      results.style.width = Math.max(rect.width, 460) + 'px';
+      if (input.value.trim()) results.style.display = 'block';
     });
   })();
 

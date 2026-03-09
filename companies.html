@@ -4,8 +4,26 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-<title>Каталог компаний Москвы — ГлобалМСК.ру</title>
-<meta name="description" content="Каталог предприятий и компаний Москвы: поиск по отраслям, рейтинги, контакты. Более 12 000 организаций в базе.">
+<title>Каталог компаний Москвы — ГлобалМСК.ру | Московский бизнес портал</title>
+  <meta name="description" content="Каталог компаний и организаций Москвы. Рейтинг лучших компаний по отраслям, новости бизнеса, вакансии и пресс-релизы.">
+  <meta name="keywords" content="каталог компаний Москвы, рейтинг компаний, московский бизнес, организации Москвы, ГлобалМСК">
+  <link rel="canonical" href="https://globalmsk.ru/catalog">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://globalmsk.ru/catalog">
+  <meta property="og:title" content="Каталог компаний — ГлобалМСК.ру">
+  <meta property="og:description" content="Рейтинг и каталог компаний Москвы. Поиск по отраслям, рейтинги, новости.">
+  <meta property="og:image" content="https://globalmsk.ru/assets/images/og-image.jpg">
+  <meta property="og:site_name" content="ГлобалМСК.ру">
+  <meta property="og:locale" content="ru_RU">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Каталог компаний — ГлобалМСК.ру">
+  <meta name="twitter:description" content="Рейтинг и каталог компаний Москвы. Поиск по отраслям, рейтинги, новости.">
+  <meta name="twitter:image" content="https://globalmsk.ru/assets/images/og-image.jpg">
+  <!-- Additional SEO -->
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="ГлобалМСК.ру">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -90,23 +108,45 @@
   ::-webkit-scrollbar-track { background: var(--light); }
   ::-webkit-scrollbar-thumb { background: var(--grad); }
 
-  /* ── FINANCE BAR ── */
+  /* ─── FINANCE TICKER ─── */
   .finance-bar {
-    background: #060b13; border-bottom: 1px solid rgba(255,255,255,0.06);
-    overflow: hidden; padding: 0; height: 38px; display: flex; align-items: center;
+    background: #0a1628;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+    height: 32px;
+    display: flex;
+    align-items: center;
   }
-  .finance-inner {
-    display: flex; align-items: center; gap: 0;
-    white-space: nowrap; animation: finTicker 25s linear infinite; padding-left: 100%;
+  
+  @keyframes financeTicker { 0%{transform:translateX(0)}
+  .finance-track { overflow: hidden; flex: 1; height: 100%; }
+  .finance-items {
+    display: flex;
+    gap: 0;
+    animation: financeTicker 45s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+    height: 100%;
   }
-  @keyframes finTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-  .finance-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-right: 28px; flex-shrink: 0; }
-  .finance-item { display: inline-flex; align-items: center; gap: 6px; margin-right: 36px; font-size: 12px; }
+  .finance-items:hover { animation-play-state: paused; }
+  .finance-item .fi-label { color: rgba(255,255,255,0.4); font-weight: 500; } 100% { transform: translateX(-100%); } }
+  .finance-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 20px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    border-right: 1px solid rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.85);
+    height: 32px;
+  }
   .fi-name { color: rgba(255,255,255,0.5); font-weight: 500; }
   .fi-val  { color: #fff; font-weight: 700; }
   .fi-chg  { font-size: 11px; font-weight: 600; }
-  .finance-item.up   .fi-chg { color: #22c55e; }
-  .finance-item.down .fi-chg { color: #ef4444; }
+  .fi-up   { color: #22c55e; font-size: 10px; font-weight: 600; }
+  .fi-dn   { color: #ef4444; font-size: 10px; font-weight: 600; }
 
   /* ── TOPBAR ── */
   .topbar { background: #0a0f18; color: rgba(255,255,255,0.5); font-size: 11px; letter-spacing: 0.06em; padding: 7px 0; overflow: hidden; }
@@ -119,6 +159,43 @@
   .ticker-items a:hover { color: #fff; }
   @keyframes topTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   .topbar-date { white-space: nowrap; color: rgba(255,255,255,0.3); font-size: 11px; flex-shrink: 0; }
+
+  /* ── BREAKING BAR ── */
+  .breaking-bar {
+    background: var(--grad);
+    color: white;
+    padding: 9px 0;
+    overflow: hidden;
+  }
+  .breaking-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .breaking-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: rgba(0,0,0,0.25);
+    padding: 3px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .breaking-text {
+    font-size: 13px;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .breaking-text a { color: white; text-decoration: none; }
+  .breaking-text a:hover { text-decoration: underline; }
+
 
   /* ── LOGO ── */
   .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; color: inherit; }
@@ -672,6 +749,189 @@
   .sb-quote-name { font-size: 11px; color: var(--accent); font-weight: 500; }
   .sb-quote-text { font-size: 12px; color: var(--muted); line-height: 1.5; font-style: italic; }
 
+
+
+/* ═══════════════════════════════════════════════════
+   MOBILE ADAPTIVE — COMPANIES PAGE
+   ═══════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .co-body { grid-template-columns: 1fr 260px; gap: 20px; padding: 0 20px; }
+  .co-page-header-inner { padding: 0 20px; }
+}
+
+@media (max-width: 900px) {
+  .co-body { grid-template-columns: 1fr; padding: 0 16px; margin-top: 16px; }
+  .co-sidebar { display: none; }
+  .co-stats-inner { padding: 0 16px; gap: 18px; flex-wrap: wrap; }
+}
+
+@media (max-width: 768px) {
+  /* Finance / breaking / topbar */
+  .finance-bar { height: 30px; }
+  .fi-label { display: none; }
+  .topbar-inner { padding: 0 14px; }
+  .topbar-date { display: none; }
+  .breaking-inner { padding: 0 14px; }
+  .breaking-label { font-size: 9px; padding: 2px 7px; }
+  /* Header */
+  .header-top-row { height: 54px; padding: 0 14px; gap: 8px; }
+  .header-nav-row { padding: 0 14px; }
+  nav { display: none; }
+  .burger { display: flex; }
+  .header-add-group { display: none; }
+  /* Companies page */
+  .co-page-header-inner { padding: 0 14px; }
+  .co-page-title { font-size: 22px; }
+  .co-card { grid-template-columns: 72px 1fr; }
+  .co-card-logo { padding: 10px; }
+  .co-card-logo img { width: 48px; height: 48px; }
+  .co-filter-bar { flex-wrap: wrap; gap: 8px; padding: 12px 14px; }
+  .co-search-box input { font-size: 13px; }
+}
+
+@media (max-width: 480px) {
+  .finance-items { animation-duration: 20s; }
+  .header-top-row { height: 50px; padding: 0 12px; }
+  .logo-name { font-size: 14px; }
+  .logo-sub { display: none; }
+  .btn-cabinet span, .btn-subscribe span { display: none; }
+  /* Companies */
+  .co-body { padding: 0 12px; margin-top: 12px; }
+  .co-page-title { font-size: 18px; }
+  .co-card { grid-template-columns: 60px 1fr; gap: 0; }
+  .co-card-logo { padding: 8px; }
+  .co-card-logo img { width: 40px; height: 40px; }
+  .co-card-name { font-size: 13px; }
+  .co-card-desc { display: none; }
+  .co-pagination { flex-wrap: wrap; gap: 4px; }
+  .co-alpha-bar { flex-wrap: wrap; gap: 3px; padding: 8px 12px; }
+}
+
+@media (max-width: 360px) {
+  .logo-name { font-size: 12px; }
+  .gmsk-ai-nav-btn span:not(.gmsk-ai-dot) { display: none; }
+  .co-body { padding: 0 8px; }
+}
+
+
+  /* ═══════════════════════════════════════
+     УНИВЕРСАЛЬНЫЙ АДАПТИВ — все страницы
+  ═══════════════════════════════════════ */
+
+  /* Базовые touch-улучшения */
+  * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+  input, button, select, textarea { font-family: inherit; }
+
+  /* === ХЕДЕР === */
+  @media (max-width: 1024px) {
+    .header-top-row { height: 56px; }
+    .header-search { max-width: 240px; }
+  }
+
+  @media (max-width: 768px) {
+    /* Хедер */
+    .header-top-row { height: 52px; padding: 0 14px; gap: 10px; }
+    .header-nav-row { padding: 0 14px; height: 40px; }
+    nav { display: none !important; }
+    .burger { display: flex !important; }
+    .header-add-group { display: none !important; }
+    .header-search { display: none !important; }
+    .logo-sub { display: none; }
+    .logo-name { font-size: 15px !important; }
+    .logo-mark { width: 34px !important; height: 34px !important; }
+
+    /* Finance bar */
+    .finance-bar { height: 28px; }
+    .finance-inner { padding: 0 14px; gap: 8px; }
+    .fi-label { display: none; }
+    .fi-val { font-size: 11px; }
+
+    /* Topbar */
+    .topbar-inner { padding: 0 14px; gap: 6px; }
+    .topbar-date { display: none; }
+    .topbar-live-label { font-size: 9px; padding: 2px 6px; }
+
+    /* Breaking bar */
+    .breaking-inner { padding: 0 14px; gap: 8px; }
+    .breaking-label { font-size: 9px; padding: 2px 6px; }
+    .breaking-text { font-size: 12px; }
+
+    /* AI */
+    .gmsk-ai-nav-btn .gmsk-ai-label { display: none; }
+    #gmskAiChat { width: calc(100vw - 20px) !important; right: 10px !important; left: 10px !important; max-height: 70vh; bottom: 70px !important; }
+
+    /* Scroll top */
+    .scroll-top { right: 14px !important; bottom: 14px !important; }
+
+    /* Footer */
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .footer-inner { padding: 28px 16px 0; }
+    .footer-logo-text { font-size: 22px; }
+    .footer-bottom { padding: 16px; font-size: 12px; }
+  }
+
+  @media (max-width: 640px) {
+    /* Хедер */
+    .header-top-row { height: 48px; padding: 0 12px; }
+    .logo-name { font-size: 14px !important; }
+    .logo-mark { width: 30px !important; height: 30px !important; }
+
+    /* Мобильное меню */
+    .mobile-nav-inner { width: 85vw; }
+
+    /* Footer */
+    .footer-top { grid-template-columns: 1fr; gap: 18px; }
+    .footer-social { justify-content: flex-start; gap: 10px; }
+
+    /* Breaking / topbar */
+    .breaking-text { font-size: 11px; }
+    .topbar-item { font-size: 11px; }
+  }
+
+  @media (max-width: 480px) {
+    .header-top-row { padding: 0 10px; gap: 8px; }
+    .logo-name { font-size: 13px !important; }
+
+    /* AI chat */
+    #gmskAiChat { width: 100vw !important; right: 0 !important; left: 0 !important; border-radius: 16px 16px 0 0; bottom: 0 !important; max-height: 80vh; }
+
+    /* Finance */
+    .finance-bar { font-size: 10px; }
+    .finance-track { gap: 14px; }
+  }
+
+  @media (max-width: 360px) {
+    .logo-name { font-size: 12px !important; }
+    .gmsk-ai-nav-btn { padding: 0 8px !important; gap: 0 !important; }
+    .header-top-row { padding: 0 8px; gap: 6px; }
+    .auth-btn span { display: none; }
+  }
+
+  /* === Контент-секции === */
+  @media (max-width: 900px) {
+    /* Сайдбар скрываем, контент на всю ширину */
+    .pe-body, .co-body, .fn-layout, .news-layout, .vac-layout {
+      grid-template-columns: 1fr !important;
+    }
+    .sidebar, .right-sidebar, .sb-sidebar {
+      display: none !important;
+    }
+  }
+
+  /* === Таблицы на мобиле === */
+  @media (max-width: 600px) {
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  }
+
+  /* === Убираем hover-эффекты на touch === */
+  @media (hover: none) {
+    .news-card:hover, .hor-card:hover, .hsc:hover,
+    .rating-person-card:hover, .birthday-card:hover,
+    .vacancy-card:hover, .fn-card:hover, .pe-card:hover,
+    .co-card:hover { transform: none !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -726,6 +986,11 @@
 
 <!-- TOPBAR -->
 
+
+
+
+
+
 <div class="finance-bar">
   <div class="finance-track">
     <div class="finance-items" id="financeTicker">
@@ -757,14 +1022,6 @@
     </div>
   </div>
 </div>
-<div class="breaking-bar">
-  <div class="breaking-inner">
-    <span class="breaking-label">Срочно</span>
-    <div class="breaking-text">
-      <a href="https://globalmsk.ru/news/id/78889">Ликсутов рассказал о передаче в Музей транспорта Москвы уникальных исторических материалов</a>
-    </div>
-  </div>
-</div>
 <div class="topbar">
   <div class="topbar-inner">
     <div class="topbar-ticker">
@@ -778,7 +1035,14 @@
     <span class="topbar-date">8 марта 2026</span>
   </div>
 </div>
-
+<div class="breaking-bar">
+  <div class="breaking-inner">
+    <span class="breaking-label">Срочно</span>
+    <div class="breaking-text">
+      <a href="https://globalmsk.ru/news/id/78889">Ликсутов рассказал о передаче в Музей транспорта Москвы уникальных исторических материалов</a>
+    </div>
+  </div>
+</div>
 <header>
   <div class="header-top-row">
     <a href="index.html" class="logo">
@@ -850,13 +1114,9 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
         Работа
       </a>
-      <a href="https://globalmsk.ru/horoscope">
+      <a href="horoscope.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
         Гороскопы
-      </a>
-      <a href="https://globalmsk.ru/courses">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        Курсы
       </a>
     </nav>
     <div style="flex:1"></div>
@@ -1552,8 +1812,7 @@
           <a href="person.html">Рейтинг персон</a>
           <a href="companies.html">Каталог компаний</a>
           <a href="vacancy.html">Вакансии</a>
-          <a href="https://globalmsk.ru/horoscope">Гороскопы</a>
-          <a href="https://globalmsk.ru/courses">Онлайн курсы</a>
+          <a href="horoscope.html">Гороскопы</a>
         </div>
       </div>
       <div>
@@ -1772,19 +2031,21 @@
 
 <script>
 (function(){
-  var GROQ_KEY = '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';
+  var GROQ_KEY = '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';
   var GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
-  var SYSTEM   = 'Ты AI-помощник портала ГлобалМСК.ру — крупнейшего делового портала Москвы. Разделы: Новости (news.html), Пресс-релизы (firmnews.html), Рейтинг персон (person.html), Каталог компаний (companies.html), Вакансии, Гороскопы, Курсы. Отвечай на русском языке, кратко и дружелюбно.';
-  var btn     = document.getElementById('gmskAiBtn');
-  var chat    = document.getElementById('gmskAiChat');
-  var closeBtn= document.getElementById('gmskAiClose');
-  var msgs    = document.getElementById('gmskMessages');
-  var input   = document.getElementById('gmskInput');
-  var sendBtn = document.getElementById('gmskSend');
-  var chips   = document.getElementById('gmskChips');
-  var history = [];
-  var busy    = false;
+  var SYSTEM = 'Ты — помощник портала ГлобалМСК.ру. Помогай пользователям ориентироваться на сайте. Разделы: Главная (index.html), Новости (news.html), Пресс-релизы (firmnews.html), Люди (person.html), Компании (companies.html), Вакансии (vacancy.html), Гороскопы (horoscope.html). Отвечай только по теме сайта, кратко, на русском. Не пиши код и HTML.';
+
+  var btn      = document.getElementById('gmskAiBtn');
+  var chat     = document.getElementById('gmskAiChat');
+  var closeBtn = document.getElementById('gmskAiClose');
+  var msgs     = document.getElementById('gmskMessages');
+  var input    = document.getElementById('gmskInput');
+  var sendBtn  = document.getElementById('gmskSend');
+  var chips    = document.getElementById('gmskChips');
+  var history  = [];
+  var busy     = false;
   if (!btn || !chat) return;
+
   btn.addEventListener('click', function(e) {
     e.stopPropagation();
     chat.classList.toggle('open');
@@ -1802,10 +2063,11 @@
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
   });
   sendBtn.addEventListener('click', function() { send(); });
-  function addMsg(text, role) {
+
+  function addMsg(html, role) {
     var d = document.createElement('div');
     d.className = 'gmsk-msg ' + (role === 'user' ? 'gmsk-msg-user' : 'gmsk-msg-bot');
-    d.innerHTML = text;
+    d.innerHTML = html;
     msgs.appendChild(d);
     msgs.scrollTop = msgs.scrollHeight;
   }
@@ -1816,53 +2078,94 @@
       d.className = 'gmsk-msg gmsk-msg-bot gmsk-msg-typing';
       d.id = 'gmskTyping';
       d.innerHTML = '<span></span><span></span><span></span>';
-      msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
-    } else if (!show && t) { t.remove(); }
+      msgs.appendChild(d);
+      msgs.scrollTop = msgs.scrollHeight;
+    } else if (!show && t) {
+      t.remove();
+    }
   }
-  function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
   function fmt(s) {
     return esc(s)
       .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
       .replace(/\*(.*?)\*/g,'<em>$1</em>')
       .replace(/\n/g,'<br>');
   }
+
   function send(text) {
     var msg = (text !== undefined ? String(text) : input.value).trim();
     if (!msg || busy) return;
     input.value = '';
     chips.style.display = 'none';
-    busy = true; sendBtn.disabled = true;
+    busy = true;
+    sendBtn.disabled = true;
     addMsg(esc(msg), 'user');
     history.push({ role: 'user', content: msg });
     typing(true);
-    fetch(GROQ_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + GROQ_KEY },
-      body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
-        messages: [{ role: 'system', content: SYSTEM }].concat(history),
-        temperature: 0.7,
-        max_tokens: 512
-      })
-    })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', GROQ_URL, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Authorization', 'Bearer ' + GROQ_KEY);
+    xhr.timeout = 20000;
+
+    xhr.onload = function() {
       typing(false);
-      if (data.error) {
-        addMsg('Ошибка: ' + esc(data.error.message), 'bot'); history.pop();
-      } else if (data.choices && data.choices[0] && data.choices[0].message) {
-        var reply = data.choices[0].message.content || '';
-        addMsg(fmt(reply), 'bot');
-        history.push({ role: 'assistant', content: reply });
-      } else {
-        addMsg('Не удалось получить ответ. Попробуйте снова.', 'bot'); history.pop();
+      busy = false;
+      sendBtn.disabled = false;
+      input.focus();
+      try {
+        var data = JSON.parse(xhr.responseText);
+        if (data.choices && data.choices[0] && data.choices[0].message) {
+          var reply = data.choices[0].message.content || '';
+          addMsg(fmt(reply), 'bot');
+          history.push({ role: 'assistant', content: reply });
+        } else if (data.error) {
+          var code = xhr.status;
+          if (code === 429) {
+            addMsg('⏳ Превышен лимит запросов. Подождите немного и попробуйте снова.', 'bot');
+          } else if (code === 401) {
+            addMsg('🔑 Ошибка авторизации AI. Обратитесь к администратору.', 'bot');
+          } else {
+            addMsg('⚠️ ' + esc(data.error.message || 'Ошибка сервиса'), 'bot');
+          }
+          history.pop();
+        } else {
+          addMsg('Не удалось получить ответ. Попробуйте ещё раз.', 'bot');
+          history.pop();
+        }
+      } catch(e) {
+        addMsg('Ошибка обработки ответа. Попробуйте ещё раз.', 'bot');
+        history.pop();
       }
-    })
-    .catch(function() {
+    };
+
+    xhr.ontimeout = function() {
       typing(false);
-      addMsg('Ошибка соединения. Проверьте интернет.', 'bot'); history.pop();
-    })
-    .finally(function() { busy = false; sendBtn.disabled = false; input.focus(); });
+      busy = false;
+      sendBtn.disabled = false;
+      input.focus();
+      addMsg('⏱ Сервер не ответил вовремя. Попробуйте ещё раз.', 'bot');
+      history.pop();
+    };
+
+    xhr.onerror = function() {
+      typing(false);
+      busy = false;
+      sendBtn.disabled = false;
+      input.focus();
+      addMsg('⚠️ Ошибка запроса. Убедитесь, что сайт открыт через сервер (не file://).', 'bot');
+      history.pop();
+    };
+
+    xhr.send(JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages: [{ role: 'system', content: SYSTEM }].concat(history),
+      temperature: 0.5,
+      max_tokens: 400
+    }));
   }
 })();
 </script>

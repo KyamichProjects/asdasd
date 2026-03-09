@@ -325,7 +325,7 @@
     opacity: 0.5;
     transition: opacity 0.18s, transform 0.18s;
   }
-  nav a:hover {
+  nav a:not(.nav-person-btn):hover {
     color: var(--accent);
     background: rgba(8,145,178,0.08);
   }
@@ -333,7 +333,7 @@
 
   /* Тёмная тема */
   [data-theme="dark"] nav a { color: rgba(255,255,255,0.5); }
-  [data-theme="dark"] nav a:hover { color: #5dd8f0; background: rgba(8,145,178,0.12); }
+  [data-theme="dark"] nav a:not(.nav-person-btn):hover { color: #5dd8f0; background: rgba(8,145,178,0.12); }
 
   /* Разделитель */
   .nav-sep {
@@ -1978,7 +1978,7 @@ nav a:not(.nav-firmnews-btn):hover { color: var(--accent) !important; background
 .ticker-items {
   display: inline-flex;
   gap: 60px;
-  animation: topTicker 35s linear infinite;
+  animation: topTicker 60s linear infinite;
   white-space: nowrap;
 }
 .ticker-items a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.15s; }
@@ -2206,6 +2206,183 @@ nav a:not(.nav-firmnews-btn):hover { color: var(--accent) !important; background
   .person-card-body { padding: 10px 12px; }
 }
 
+
+  /* ── NAV HOVER FIX: активные кнопки не серые при hover ── */
+  .nav-companies-btn, .nav-person-btn, .nav-firmnews-btn, .nav-news-btn {
+    background: var(--grad) !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    border-radius: 7px !important;
+    padding: 0 14px !important;
+    height: 30px !important;
+    box-shadow: 0 2px 8px rgba(8,145,178,0.35) !important;
+  }
+  .nav-companies-btn:hover, .nav-person-btn:hover, .nav-firmnews-btn:hover, .nav-news-btn:hover {
+    filter: brightness(1.08) !important;
+    box-shadow: 0 4px 14px rgba(8,145,178,0.5) !important;
+    color: #fff !important;
+    background: var(--grad) !important;
+    transform: translateY(-1px);
+  }
+  .nav-companies-btn svg, .nav-person-btn svg, .nav-firmnews-btn svg, .nav-news-btn svg {
+    opacity: 1 !important;
+    stroke: white !important;
+  }
+  nav a:not(.nav-companies-btn):not(.nav-person-btn):not(.nav-firmnews-btn):not(.nav-news-btn):hover {
+    color: var(--accent) !important;
+    background: rgba(8,145,178,0.08) !important;
+  }
+  [data-theme="dark"] nav a:not(.nav-companies-btn):not(.nav-person-btn):not(.nav-firmnews-btn):not(.nav-news-btn):hover {
+    color: #5dd8f0 !important;
+    background: rgba(8,145,178,0.12) !important;
+  }
+
+  /* ═══════════ GLOBALMSK AI ═══════════ */
+  .gmsk-ai-nav-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0 13px; height: 30px; border-radius: 20px;
+    background: linear-gradient(135deg, #7c3aed, #0891b2);
+    color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .02em;
+    border: none; cursor: pointer; flex-shrink: 0;
+    box-shadow: 0 2px 12px rgba(124,58,237,.4);
+    transition: opacity .2s, transform .15s, box-shadow .2s;
+    position: relative;
+  }
+  .gmsk-ai-nav-btn:hover { opacity: .9; transform: translateY(-1px); box-shadow: 0 4px 18px rgba(124,58,237,.5); }
+  .gmsk-ai-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: #4ade80;
+    box-shadow: 0 0 0 0 rgba(74,222,128,.6);
+    animation: gmsk-pulse 2s infinite;
+  }
+  @keyframes gmsk-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(74,222,128,.6); }
+    70%  { box-shadow: 0 0 0 5px rgba(74,222,128,0); }
+    100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+  }
+
+  /* ── Chat Window ── */
+  #gmskAiChat {
+    position: fixed; bottom: 90px; right: 24px;
+    width: 380px; max-height: 560px;
+    background: var(--white, #fff); border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.18), 0 0 0 1px rgba(124,58,237,.12);
+    display: flex; flex-direction: column; z-index: 9999;
+    transform: scale(.92) translateY(16px); opacity: 0;
+    pointer-events: none;
+    transition: transform .25s cubic-bezier(.34,1.56,.64,1), opacity .2s;
+    overflow: hidden;
+  }
+  #gmskAiChat.open {
+    transform: scale(1) translateY(0); opacity: 1; pointer-events: all;
+  }
+  .gmsk-chat-header {
+    display: flex; align-items: center; gap: 10px; padding: 14px 16px;
+    background: linear-gradient(135deg, #7c3aed, #0891b2);
+    color: #fff; flex-shrink: 0;
+  }
+  .gmsk-chat-header-icon {
+    width: 34px; height: 34px; background: rgba(255,255,255,.2);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .gmsk-chat-header-title { font-size: 14px; font-weight: 800; line-height: 1.2; }
+  .gmsk-chat-header-sub { font-size: 11px; opacity: .8; }
+  .gmsk-chat-close {
+    margin-left: auto; background: rgba(255,255,255,.2); border: none;
+    color: #fff; width: 28px; height: 28px; border-radius: 8px; cursor: pointer;
+    font-size: 16px; display: flex; align-items: center; justify-content: center;
+    transition: background .15s; flex-shrink: 0;
+  }
+  .gmsk-chat-close:hover { background: rgba(255,255,255,.35); }
+  .gmsk-chat-messages {
+    flex: 1; overflow-y: auto; padding: 14px 14px 6px;
+    display: flex; flex-direction: column; gap: 10px;
+    scroll-behavior: smooth;
+  }
+  .gmsk-chat-messages::-webkit-scrollbar { width: 4px; }
+  .gmsk-chat-messages::-webkit-scrollbar-thumb { background: rgba(124,58,237,.2); border-radius: 2px; }
+  .gmsk-msg {
+    max-width: 88%; padding: 9px 13px; border-radius: 14px;
+    font-size: 13px; line-height: 1.5; word-break: break-word;
+  }
+  .gmsk-msg-bot {
+    background: var(--light, #e4eff2); color: var(--ink, #0d0d12);
+    border-bottom-left-radius: 4px; align-self: flex-start;
+  }
+  .gmsk-msg-user {
+    background: linear-gradient(135deg, #7c3aed, #0891b2);
+    color: #fff; border-bottom-right-radius: 4px; align-self: flex-end;
+  }
+  .gmsk-msg-typing {
+    display: flex; gap: 5px; align-items: center; padding: 12px 14px;
+  }
+  .gmsk-msg-typing span {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #0891b2);
+    animation: gmsk-bounce .9s infinite;
+  }
+  .gmsk-msg-typing span:nth-child(2) { animation-delay: .15s; }
+  .gmsk-msg-typing span:nth-child(3) { animation-delay: .3s; }
+  @keyframes gmsk-bounce {
+    0%,60%,100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+  }
+  .gmsk-chat-suggestions {
+    display: flex; flex-wrap: wrap; gap: 6px; padding: 0 14px 10px;
+  }
+  .gmsk-chip {
+    font-size: 11.5px; padding: 5px 11px; border-radius: 20px;
+    border: 1px solid rgba(124,58,237,.25); color: #7c3aed;
+    background: rgba(124,58,237,.05); cursor: pointer; transition: all .15s;
+    white-space: nowrap;
+  }
+  .gmsk-chip:hover { background: #7c3aed; color: #fff; border-color: #7c3aed; }
+  .gmsk-chat-input-row {
+    display: flex; gap: 8px; padding: 10px 14px 14px; flex-shrink: 0;
+    border-top: 1px solid var(--border, rgba(0,0,0,.08));
+  }
+  .gmsk-chat-input {
+    flex: 1; padding: 9px 14px; border-radius: 20px; font-size: 13px;
+    border: 1.5px solid rgba(124,58,237,.25); background: var(--light, #e4eff2);
+    color: var(--ink, #0d0d12); outline: none; transition: border-color .15s;
+    font-family: inherit;
+  }
+  .gmsk-chat-input:focus { border-color: #7c3aed; }
+  .gmsk-chat-input::placeholder { color: var(--muted, #6b7a80); }
+  .gmsk-chat-send {
+    width: 38px; height: 38px; border-radius: 50%; border: none; cursor: pointer;
+    background: linear-gradient(135deg, #7c3aed, #0891b2);
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: opacity .15s, transform .15s;
+  }
+  .gmsk-chat-send:hover { opacity: .88; transform: scale(1.08); }
+  .gmsk-chat-send:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+  [data-theme="dark"] .gmsk-msg-bot { background: #1e2730; color: #e8edf0; }
+  [data-theme="dark"] .gmsk-chat-input { background: #1e2730; color: #e8edf0; border-color: rgba(124,58,237,.3); }
+  @media(max-width: 480px) {
+    #gmskAiChat { width: calc(100vw - 24px); right: 12px; bottom: 76px; }
+  }
+  /* ═══════════════════════════════════ */
+
+  /* ── SIDEBAR QUOTES ── */
+  .sb-quotes-block .sb-title { display: flex; align-items: center; justify-content: space-between; }
+  .sb-quotes-block .sb-title a { font-size: 11px; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; }
+  .sb-quotes-list { display: flex; flex-direction: column; gap: 0; }
+  .sb-quote-item {
+    display: flex; flex-direction: column; gap: 7px;
+    padding: 12px 16px; text-decoration: none; color: inherit;
+    border-bottom: 1px solid var(--border, rgba(0,0,0,0.07));
+    transition: background 0.15s;
+  }
+  .sb-quote-item:hover { background: var(--light); }
+  .sb-quote-item:last-child { border-bottom: none; }
+  .sb-quote-meta { display: flex; align-items: flex-start; gap: 10px; }
+  .sb-quote-meta img { width: 42px; height: 50px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+  .sb-quote-info { display: flex; flex-direction: column; gap: 3px; }
+  .sb-quote-headline { font-size: 12px; font-weight: 600; color: var(--ink); line-height: 1.35; }
+  .sb-quote-name { font-size: 11px; color: var(--accent); font-weight: 500; }
+  .sb-quote-text { font-size: 12px; color: var(--muted); line-height: 1.5; font-style: italic; }
+
 </style>
 </head>
 <body>
@@ -2242,11 +2419,11 @@ nav a:not(.nav-firmnews-btn):hover { color: var(--accent) !important; background
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Люди
       </a>
-      <a href="https://globalmsk.ru/catalog">
+      <a href="companies.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
         Компании
       </a>
-      <a href="https://globalmsk.ru/vacancy">
+      <a href="vacancy.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
         Работа
       </a>
@@ -2255,28 +2432,49 @@ nav a:not(.nav-firmnews-btn):hover { color: var(--accent) !important; background
 </div>
 
 <!-- FINANCE BAR -->
-<div class="finance-bar">
-  <div class="finance-inner">
-    <span class="finance-label">Курсы</span>
-    <span class="finance-item up"><span class="fi-name">USD/RUB</span><span class="fi-val">89.50</span><span class="fi-chg">+0.12</span></span>
-    <span class="finance-item down"><span class="fi-name">EUR/RUB</span><span class="fi-val">96.80</span><span class="fi-chg">−0.23</span></span>
-    <span class="finance-item up"><span class="fi-name">CNY/RUB</span><span class="fi-val">12.21</span><span class="fi-chg">+0.05</span></span>
-    <span class="finance-item up"><span class="fi-name">BRENT</span><span class="fi-val">72.40</span><span class="fi-chg">+0.81</span></span>
-    <span class="finance-item down"><span class="fi-name">GOLD</span><span class="fi-val">2 910</span><span class="fi-chg">−5.2</span></span>
-    <span class="finance-item up"><span class="fi-name">IMOEX</span><span class="fi-val">3 142</span><span class="fi-chg">+18.4</span></span>
-    <span class="finance-item up"><span class="fi-name">BTC</span><span class="fi-val">62 800</span><span class="fi-chg">+1.2%</span></span>
-    <span class="finance-label">Курсы</span>
-    <span class="finance-item up"><span class="fi-name">USD/RUB</span><span class="fi-val">89.50</span><span class="fi-chg">+0.12</span></span>
-    <span class="finance-item down"><span class="fi-name">EUR/RUB</span><span class="fi-val">96.80</span><span class="fi-chg">−0.23</span></span>
-    <span class="finance-item up"><span class="fi-name">CNY/RUB</span><span class="fi-val">12.21</span><span class="fi-chg">+0.05</span></span>
-    <span class="finance-item up"><span class="fi-name">BRENT</span><span class="fi-val">72.40</span><span class="fi-chg">+0.81</span></span>
-    <span class="finance-item down"><span class="fi-name">GOLD</span><span class="fi-val">2 910</span><span class="fi-chg">−5.2</span></span>
-    <span class="finance-item up"><span class="fi-name">IMOEX</span><span class="fi-val">3 142</span><span class="fi-chg">+18.4</span></span>
-    <span class="finance-item up"><span class="fi-name">BTC</span><span class="fi-val">62 800</span><span class="fi-chg">+1.2%</span></span>
-  </div>
-</div>
+
 
 <!-- TOPBAR -->
+
+<div class="finance-bar">
+  <div class="finance-track">
+    <div class="finance-items" id="financeTicker">
+      <span class="finance-item"><span class="fi-label">USD/RUB</span>&nbsp;<span class="fi-val">88.42</span>&nbsp;<span class="fi-up">▲ 0.31</span></span>
+      <span class="finance-item"><span class="fi-label">EUR/RUB</span>&nbsp;<span class="fi-val">95.18</span>&nbsp;<span class="fi-dn">▼ 0.12</span></span>
+      <span class="finance-item"><span class="fi-label">CNY/RUB</span>&nbsp;<span class="fi-val">12.17</span>&nbsp;<span class="fi-up">▲ 0.05</span></span>
+      <span class="finance-item"><span class="fi-label">НЕФТЬ Brent</span>&nbsp;<span class="fi-val">$74.20</span>&nbsp;<span class="fi-dn">▼ 0.85</span></span>
+      <span class="finance-item"><span class="fi-label">НЕФТЬ WTI</span>&nbsp;<span class="fi-val">$70.15</span>&nbsp;<span class="fi-dn">▼ 0.63</span></span>
+      <span class="finance-item"><span class="fi-label">ГАЗ TTF</span>&nbsp;<span class="fi-val">€38.40</span>&nbsp;<span class="fi-up">▲ 1.20</span></span>
+      <span class="finance-item"><span class="fi-label">ЗОЛОТО</span>&nbsp;<span class="fi-val">$2 915</span>&nbsp;<span class="fi-up">▲ 12.4</span></span>
+      <span class="finance-item"><span class="fi-label">СЕРЕБРО</span>&nbsp;<span class="fi-val">$32.80</span>&nbsp;<span class="fi-up">▲ 0.44</span></span>
+      <span class="finance-item"><span class="fi-label">IMOEX</span>&nbsp;<span class="fi-val">2 847</span>&nbsp;<span class="fi-up">▲ 18</span></span>
+      <span class="finance-item"><span class="fi-label">КЛЮЧ.СТАВКА</span>&nbsp;<span class="fi-val">21%</span>&nbsp;<span class="fi-label">ЦБ РФ</span></span>
+      <span class="finance-item"><span class="fi-label">БИТКОИН</span>&nbsp;<span class="fi-val">$84 200</span>&nbsp;<span class="fi-dn">▼ 1 340</span></span>
+      <span class="finance-item"><span class="fi-label">ПЛАТИНА</span>&nbsp;<span class="fi-val">$956</span>&nbsp;<span class="fi-dn">▼ 4</span></span>
+      <!-- дубль для бесшовной прокрутки -->
+      <span class="finance-item"><span class="fi-label">USD/RUB</span>&nbsp;<span class="fi-val">88.42</span>&nbsp;<span class="fi-up">▲ 0.31</span></span>
+      <span class="finance-item"><span class="fi-label">EUR/RUB</span>&nbsp;<span class="fi-val">95.18</span>&nbsp;<span class="fi-dn">▼ 0.12</span></span>
+      <span class="finance-item"><span class="fi-label">CNY/RUB</span>&nbsp;<span class="fi-val">12.17</span>&nbsp;<span class="fi-up">▲ 0.05</span></span>
+      <span class="finance-item"><span class="fi-label">НЕФТЬ Brent</span>&nbsp;<span class="fi-val">$74.20</span>&nbsp;<span class="fi-dn">▼ 0.85</span></span>
+      <span class="finance-item"><span class="fi-label">НЕФТЬ WTI</span>&nbsp;<span class="fi-val">$70.15</span>&nbsp;<span class="fi-dn">▼ 0.63</span></span>
+      <span class="finance-item"><span class="fi-label">ГАЗ TTF</span>&nbsp;<span class="fi-val">€38.40</span>&nbsp;<span class="fi-up">▲ 1.20</span></span>
+      <span class="finance-item"><span class="fi-label">ЗОЛОТО</span>&nbsp;<span class="fi-val">$2 915</span>&nbsp;<span class="fi-up">▲ 12.4</span></span>
+      <span class="finance-item"><span class="fi-label">СЕРЕБРО</span>&nbsp;<span class="fi-val">$32.80</span>&nbsp;<span class="fi-up">▲ 0.44</span></span>
+      <span class="finance-item"><span class="fi-label">IMOEX</span>&nbsp;<span class="fi-val">2 847</span>&nbsp;<span class="fi-up">▲ 18</span></span>
+      <span class="finance-item"><span class="fi-label">КЛЮЧ.СТАВКА</span>&nbsp;<span class="fi-val">21%</span>&nbsp;<span class="fi-label">ЦБ РФ</span></span>
+      <span class="finance-item"><span class="fi-label">БИТКОИН</span>&nbsp;<span class="fi-val">$84 200</span>&nbsp;<span class="fi-dn">▼ 1 340</span></span>
+      <span class="finance-item"><span class="fi-label">ПЛАТИНА</span>&nbsp;<span class="fi-val">$956</span>&nbsp;<span class="fi-dn">▼ 4</span></span>
+    </div>
+  </div>
+</div>
+<div class="breaking-bar">
+  <div class="breaking-inner">
+    <span class="breaking-label">Срочно</span>
+    <div class="breaking-text">
+      <a href="https://globalmsk.ru/news/id/78889">Ликсутов рассказал о передаче в Музей транспорта Москвы уникальных исторических материалов</a>
+    </div>
+  </div>
+</div>
 <div class="topbar">
   <div class="topbar-inner">
     <div class="topbar-ticker">
@@ -2318,6 +2516,12 @@ nav a:not(.nav-firmnews-btn):hover { color: var(--accent) !important; background
     <div style="flex:1"></div>
 
     <div class="header-auth">
+      <button id="gmskAiBtn" class="gmsk-ai-nav-btn" title="GlobalMsk AI">
+      <svg viewBox="0 0 24 24" fill="none" width="13" height="13"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" fill="white"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" fill="rgba(255,255,255,0.6)"/></svg>
+      GlobalMsk AI
+      <span class="gmsk-ai-dot"></span>
+    </button>
+      <span style="width:1px;height:14px;background:rgba(0,0,0,0.12);flex-shrink:0"></span>
       <a href="https://globalmsk.ru/login" class="btn-cabinet">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         <span>Мой кабинет</span>
@@ -2359,15 +2563,15 @@ nav a:not(.nav-firmnews-btn):hover { color: var(--accent) !important; background
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         Пресс-релизы
       </a>
-      <a href="https://globalmsk.ru/person" class="nav-person-btn">
+      <a href="person.html" class="nav-person-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         Люди
       </a>
-      <a href="https://globalmsk.ru/catalog">
+      <a href="companies.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
         Компании
       </a>
-      <a href="https://globalmsk.ru/vacancy">
+      <a href="vacancy.html">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
         Работа
       </a>
@@ -2820,6 +3024,50 @@ nav a:not(.nav-firmnews-btn):hover { color: var(--accent) !important; background
     <div class="birthday-pos">Актёр</div>
   </div>
 </div>
+
+    <div class="sb-block sb-quotes-block">
+      <div class="sb-title">
+        Цитаты
+        <a href="https://globalmsk.ru/quotes">Все</a>
+      </div>
+      <div class="sb-quotes-list">
+
+        <a href="https://globalmsk.ru/news/id/78997" class="sb-quote-item">
+          <div class="sb-quote-meta">
+            <img src="https://globalmsk.ru/cache/person50x60/2-12954158530.webp" alt="Клепач" loading="lazy">
+            <div class="sb-quote-info">
+              <div class="sb-quote-headline">Клепач спрогнозировал рост доллара</div>
+              <div class="sb-quote-name">КЛЕПАЧ Андрей Николаевич</div>
+            </div>
+          </div>
+          <div class="sb-quote-text">«Если никаких шоков с экспортом не произойдет — будет 88-89 рублей за доллар…»</div>
+        </a>
+
+        <a href="https://globalmsk.ru/news/id/78996" class="sb-quote-item">
+          <div class="sb-quote-meta">
+            <img src="https://globalmsk.ru/cache/person50x60/152-12725274190.webp" alt="Делягин" loading="lazy">
+            <div class="sb-quote-info">
+              <div class="sb-quote-headline">Делягин о маркировке «Честный знак»</div>
+              <div class="sb-quote-name">ДЕЛЯГИН Михаил</div>
+            </div>
+          </div>
+          <div class="sb-quote-text">«Малый и средний бизнес воспринимается как конкурент, который подлежит уничтожению…»</div>
+        </a>
+
+        <a href="https://globalmsk.ru/news/id/78985" class="sb-quote-item">
+          <div class="sb-quote-meta">
+            <img src="https://globalmsk.ru/cache/person50x60/152-12695967560.webp" alt="Сафонов" loading="lazy">
+            <div class="sb-quote-info">
+              <div class="sb-quote-headline">Фиксируют сокращение кадров на рынке труда</div>
+              <div class="sb-quote-name">САФОНОВ Александр Львович</div>
+            </div>
+          </div>
+          <div class="sb-quote-text">«Увольнения напрямую связаны с замедлением темпов экономического развития России…»</div>
+        </a>
+
+      </div>
+    </div>
+
       <a class="sb-add-btn" href="https://globalmsk.ru/client/person/add">+ Добавить персону</a>
     </div>
 
@@ -2899,8 +3147,8 @@ nav a:not(.nav-firmnews-btn):hover { color: var(--accent) !important; background
           <a href="news.html">Новости Москвы</a>
           <a href="firmnews.html">Пресс-релизы</a>
           <a href="https://globalmsk.ru/person">Рейтинг персон</a>
-          <a href="https://globalmsk.ru/catalog">Каталог компаний</a>
-          <a href="https://globalmsk.ru/vacancy">Вакансии</a>
+          <a href="companies.html">Каталог компаний</a>
+          <a href="vacancy.html">Вакансии</a>
           <a href="https://globalmsk.ru/resume">Резюме</a>
           <a href="https://globalmsk.ru/horoscope">Гороскопы</a>
           <a href="https://globalmsk.ru/courses">Онлайн курсы</a>
@@ -3009,5 +3257,139 @@ nav a:not(.nav-firmnews-btn):hover { color: var(--accent) !important; background
 })();
 
 </script>
+
+<!-- ═══ GLOBALMSK AI CHAT ═══ -->
+<div id="gmskAiChat" role="dialog" aria-label="GlobalMsk AI">
+  <div class="gmsk-chat-header">
+    <div class="gmsk-chat-header-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" fill="white"/>
+        <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" fill="rgba(255,255,255,0.6)"/>
+      </svg>
+    </div>
+    <div>
+      <div class="gmsk-chat-header-title">GlobalMsk AI</div>
+      <div class="gmsk-chat-header-sub">Llama 3.3 70B · онлайн</div>
+    </div>
+    <button class="gmsk-chat-close" id="gmskAiClose" aria-label="Закрыть">✕</button>
+  </div>
+  <div class="gmsk-chat-messages" id="gmskMessages">
+    <div class="gmsk-msg gmsk-msg-bot">
+      👋 Привет! Я <strong>GlobalMsk AI</strong> — помощник портала ГлобалМСК.<br><br>
+      Помогу найти новости, компании, персоны, пресс-релизы или отвечу на любой вопрос о бизнесе и экономике России.
+    </div>
+  </div>
+  <div class="gmsk-chat-suggestions" id="gmskChips">
+    <button class="gmsk-chip">📰 Последние новости</button>
+    <button class="gmsk-chip">🏢 Топ компании</button>
+    <button class="gmsk-chip">👤 Рейтинг персон</button>
+    <button class="gmsk-chip">💼 Вакансии</button>
+  </div>
+  <div class="gmsk-chat-input-row">
+    <input class="gmsk-chat-input" id="gmskInput" type="text" placeholder="Задайте вопрос…" maxlength="500" autocomplete="off">
+    <button class="gmsk-chat-send" id="gmskSend" aria-label="Отправить">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var GROQ_KEY = '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';
+  var GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
+  var SYSTEM   = 'Ты AI-помощник портала ГлобалМСК.ру — крупнейшего делового портала Москвы. Разделы: Новости (news.html), Пресс-релизы (firmnews.html), Рейтинг персон (person.html), Каталог компаний (companies.html), Вакансии, Гороскопы, Курсы. Отвечай на русском языке, кратко и дружелюбно.';
+  var btn     = document.getElementById('gmskAiBtn');
+  var chat    = document.getElementById('gmskAiChat');
+  var closeBtn= document.getElementById('gmskAiClose');
+  var msgs    = document.getElementById('gmskMessages');
+  var input   = document.getElementById('gmskInput');
+  var sendBtn = document.getElementById('gmskSend');
+  var chips   = document.getElementById('gmskChips');
+  var history = [];
+  var busy    = false;
+  if (!btn || !chat) return;
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    chat.classList.toggle('open');
+    if (chat.classList.contains('open')) setTimeout(function(){ input.focus(); }, 280);
+  });
+  closeBtn.addEventListener('click', function(e) { e.stopPropagation(); chat.classList.remove('open'); });
+  document.addEventListener('click', function(e) {
+    if (!chat.contains(e.target) && e.target !== btn) chat.classList.remove('open');
+  });
+  chat.addEventListener('click', function(e) { e.stopPropagation(); });
+  chips.querySelectorAll('.gmsk-chip').forEach(function(chip) {
+    chip.addEventListener('click', function() { send(chip.textContent.trim()); });
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+  });
+  sendBtn.addEventListener('click', function() { send(); });
+  function addMsg(text, role) {
+    var d = document.createElement('div');
+    d.className = 'gmsk-msg ' + (role === 'user' ? 'gmsk-msg-user' : 'gmsk-msg-bot');
+    d.innerHTML = text;
+    msgs.appendChild(d);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  function typing(show) {
+    var t = document.getElementById('gmskTyping');
+    if (show && !t) {
+      var d = document.createElement('div');
+      d.className = 'gmsk-msg gmsk-msg-bot gmsk-msg-typing';
+      d.id = 'gmskTyping';
+      d.innerHTML = '<span></span><span></span><span></span>';
+      msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+    } else if (!show && t) { t.remove(); }
+  }
+  function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function fmt(s) {
+    return esc(s)
+      .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g,'<em>$1</em>')
+      .replace(/\n/g,'<br>');
+  }
+  function send(text) {
+    var msg = (text !== undefined ? String(text) : input.value).trim();
+    if (!msg || busy) return;
+    input.value = '';
+    chips.style.display = 'none';
+    busy = true; sendBtn.disabled = true;
+    addMsg(esc(msg), 'user');
+    history.push({ role: 'user', content: msg });
+    typing(true);
+    fetch(GROQ_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + GROQ_KEY },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [{ role: 'system', content: SYSTEM }].concat(history),
+        temperature: 0.7,
+        max_tokens: 512
+      })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      typing(false);
+      if (data.error) {
+        addMsg('Ошибка: ' + esc(data.error.message), 'bot'); history.pop();
+      } else if (data.choices && data.choices[0] && data.choices[0].message) {
+        var reply = data.choices[0].message.content || '';
+        addMsg(fmt(reply), 'bot');
+        history.push({ role: 'assistant', content: reply });
+      } else {
+        addMsg('Не удалось получить ответ. Попробуйте снова.', 'bot'); history.pop();
+      }
+    })
+    .catch(function() {
+      typing(false);
+      addMsg('Ошибка соединения. Проверьте интернет.', 'bot'); history.pop();
+    })
+    .finally(function() { busy = false; sendBtn.disabled = false; input.focus(); });
+  }
+})();
+</script>
+<!-- ═══════════════════════════ -->
+
 </body>
 </html>
